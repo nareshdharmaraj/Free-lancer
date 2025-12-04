@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About LexIcon - Our Story</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <style>
+        /* RTL Navigation Support */
+        [dir="rtl"] #navbar-content {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .space-x-8 > * + * {
+            margin-left: 0;
+            margin-right: 2rem;
+        }
+        
+        [dir="rtl"] .space-x-4 > * + * {
+            margin-left: 0;
+            margin-right: 1rem;
+        }
+        
+        [dir="rtl"] .flex {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .no-rtl {
+            flex-direction: row !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full top-0 z-50 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between" id="navbar-content">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold flex items-center space-x-2 group">
+                        <i class="fas fa-balance-scale text-cyan-300 group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span class="gradient-text" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a id="nav-home" href="index.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                        Home
+                    </a>
+                    <a id="nav-about" href="about.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                        About
+                    </a>
+                    <a id="nav-services" href="services.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                        Services
+                    </a>
+                    <a id="nav-team" href="team.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                        Team
+                    </a>
+                    <a id="nav-contact" href="contact.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                        Contact
+                    </a>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="coming-soon.html" class="btn-gradient text-sm inline-block">Case Evaluation</a>
+                    <a href="login.html" class="text-white hover:text-cyan-300 transition-all duration-300">
+                        <i id="nav-login" class="fas fa-user text-xl" title="Login"></i>
+                    </a>
+                    <button id="language-toggle" class="text-white hover:text-cyan-300 transition-all duration-300 relative group">
+                        <i class="fas fa-language text-xl" title="Toggle Text Direction (LTR/RTL)"></i>
+                        <span class="absolute top-full right-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">RTL/LTR</span>
+                    </button>
+                </div>
+                
+                <button id="mobile-menu-toggle" class="md:hidden text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="index.html" class="block py-2 text-slate-300 hover:text-amber-600">Home</a>
+                <a href="about.html" class="block py-2 text-amber-600">About</a>
+                <a href="services.html" class="block py-2 text-slate-300 hover:text-amber-600">Services</a>
+                <a href="team.html" class="block py-2 text-slate-300 hover:text-amber-600">Team</a>
+                <a href="contact.html" class="block py-2 text-slate-300 hover:text-amber-600">Contact</a>
+                <a href="login.html" class="block py-2 text-slate-300 hover:text-amber-600">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-96 flex items-center justify-center mt-20" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069') center/cover;">
+        <div class="text-center text-white px-6" data-aos="fade-up">
+            <h1 class="text-6xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">Our Story</h1>
+            <p class="text-xl text-slate-300">From humble beginnings to global excellence</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-5xl font-bold text-slate-900 mb-8" style="font-family: 'Playfair Display', serif;">
+                From a Single Desk in Brooklyn<br>
+                to a <span class="text-amber-600">Global Powerhouse</span>
+            </h2>
+            <p class="text-xl text-slate-600 leading-relaxed">
+                LexIcon was founded on a simple principle: excellence is not negotiable. What began as a one-person operation in 1985 has grown into one of the world's most respected legal institutions, representing Fortune 500 companies and high-net-worth individuals across three continents.
+            </p>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Our Journey</h2>
+                <p class="text-xl text-slate-600">Four decades of legal excellence</p>
+            </div>
+            
+            <div class="timeline">
+                <!-- 1985 -->
+                <div class="timeline-item grid md:grid-cols-2 gap-8" data-aos="fade-right">
+                    <div class="text-right md:pr-12">
+                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">1985</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">The Foundation</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Arthur Vanguard opens a modest practice in Brooklyn, specializing in corporate law. His first case: defending a small manufacturing company against an unjust patent claim. He wins, setting the tone for decades to come.
+                        </p>
+                    </div>
+                    <div class="md:pl-12 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800" alt="1985" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- 1995 -->
+                <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-left">
+                    <div class="order-2 md:order-1 md:pr-12 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800" alt="1995" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="order-1 md:order-2 md:pl-12">
+                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">1995</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Expansion & Recognition</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            After winning a landmark $500M verdict in a securities fraud case, LexIcon attracts national attention. The firm expands to Manhattan, hiring 15 elite attorneys from top law schools.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- 2005 -->
+                <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-right">
+                    <div class="text-right md:pr-12">
+                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2005</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Global Reach</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Opening offices in London and Hong Kong, LexIcon becomes a truly international firm. The firm now handles complex cross-border M&A transactions worth billions.
+                        </p>
+                    </div>
+                    <div class="md:pl-12 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="2005" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- 2010 -->
+                <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-left">
+                    <div class="order-2 md:order-1 md:pr-12 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800" alt="2010" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="order-1 md:order-2 md:pl-12">
+                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2010</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">The Sterling Merger</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            LexIcon merges with Sterling Partners, a boutique litigation firm known for their trial excellence. The combined entity now boasts 50+ attorneys and wins 94% of cases taken to trial.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- 2018 -->
+                <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-right">
+                    <div class="text-right md:pr-12">
+                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2018</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Top 100 Recognition</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            The firm is ranked in the Global Top 100 Law Firms by Legal 500. LexIcon's IP practice wins three landmark cases that shape technology law for the next decade.
+                        </p>
+                    </div>
+                    <div class="md:pl-12 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800" alt="2018" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-left">
+                    <div class="order-2 md:order-1 md:pr-12 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=800" alt="2024" class="rounded-lg shadow-xl w-full">
+                    </div>
+                    <div class="order-1 md:order-2 md:pl-12">
+                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2024</div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Middle East Expansion</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Opening a state-of-the-art office in Dubai, LexIcon now serves clients across North America, Europe, Asia, and the Middle East. The firm handles over $5 billion in annual case value.
+                        </p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Our Core Values</h2>
+                <p class="text-xl text-slate-600">The principles that guide every decision we make</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="premium-card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-scale-balanced text-5xl text-amber-600 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Integrity</h3>
+                    <p class="text-slate-600">
+                        We uphold the highest ethical standards in every case, every interaction, every decision.
+                    </p>
+                </div>
+                
+                <div class="premium-card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-trophy text-5xl text-amber-600 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Excellence</h3>
+                    <p class="text-slate-600">
+                        Mediocrity has no place here. We strive for perfection in research, strategy, and execution.
+                    </p>
+                </div>
+                
+                <div class="premium-card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-handshake-angle text-5xl text-amber-600 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Partnership</h3>
+                    <p class="text-slate-600">
+                        Your success is our success. We work alongside you as trusted advisors and fierce advocates.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder's Signature -->
+    <section class="py-20 bg-slate-900 text-white">
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+            <p class="text-2xl font-light mb-12 leading-relaxed" style="font-family: 'Playfair Display', serif;">
+                "Justice is not a privilege. It is a right that must be fought for, defended, and upheld with unwavering commitment. That is the mission of LexIcon, and it will remain so for generations to come."
+            </p>
+            <div class="text-6xl text-amber-600 mb-4" style="font-family: 'Playfair Display', serif; font-style: italic;">
+                Arthur Vanguard
+            </div>
+            <div class="text-slate-400 uppercase tracking-wider">Founder & Senior Partner</div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-5xl font-bold text-slate-900 mb-6" style="font-family: 'Playfair Display', serif;">
+                Become Part of Our Legacy
+            </h2>
+            <p class="text-xl text-slate-600 mb-8">
+                Whether you're facing a complex legal challenge or seeking strategic counsel, we're here to help.
+            </p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="contact.html" class="btn-gold inline-block">Contact Us Today</a>
+                <a href="team.html" class="btn-outline-gold inline-block">Meet Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4" style="font-family: 'Playfair Display', serif;">
+                        <span class="text-amber-600">Vanguard</span> Legal
+                    </h3>
+                    <p class="text-slate-500 mb-4">
+                        Excellence in legal representation since 1985.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-400 hover:text-amber-600 transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-amber-600 transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-slate-400 hover:text-amber-600 transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="hover:text-amber-600 transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Practice Areas</a></li>
+                        <li><a href="team.html" class="hover:text-amber-600 transition-colors">Our Team</a></li>
+                        <li><a href="contact.html" class="hover:text-amber-600 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Corporate Law</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Litigation</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">IP Protection</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">M&A Advisory</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-amber-600"></i>
+                            <span>500 Park Avenue<br>New York, NY 10022</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone text-amber-600"></i>
+                            <span>+1 (212) 555-0100</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-amber-600"></i>
+                            <span>info@vanguardlegal.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 pt-8 text-center text-slate-500">
+                <p>&copy; 2025 LexIcon. All rights reserved. | <a href="#" class="hover:text-amber-600">Privacy Policy</a> | <a href="#" class="hover:text-amber-600">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
+    <script>
+        // Initialize RTL/LTR manager
+        document.addEventListener('DOMContentLoaded', function() {
+            window.alignmentManager = new AlignmentManager();
+        });
+    </script>
+    
+</body>
+</html>

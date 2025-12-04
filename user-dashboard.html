@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal - LexIcon</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        [dir="rtl"] .sidebar-icon {
+            margin-left: 0;
+            margin-right: 0.75rem;
+        }
+        
+        [dir="rtl"] .notification-badge {
+            left: auto;
+            right: auto;
+        }
+        
+        [dir="rtl"] .border-r {
+            border-right: none;
+            border-left: 1px solid #e2e8f0;
+        }
+        
+        [dir="rtl"] .border-l-4 {
+            border-left: none;
+            border-right: 4px solid;
+        }
+        
+        .no-rtl {
+            direction: ltr !important;
+        }
+        
+        .no-rtl * {
+            direction: ltr !important;
+        }
+
+        /* Dashboard Specific Styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .premium-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-button.active {
+            border-bottom-color: #6366f1;
+            color: #1e293b;
+        }
+
+        .settings-tab-content {
+            display: none;
+        }
+
+        .settings-tab-content.active {
+            display: block;
+        }
+
+        .settings-tab-button.active {
+            border-bottom-color: #6366f1;
+            color: #1e293b;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Enhanced RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .h-screen {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] #sidebar {
+            border-right: none !important;
+            border-left: 1px solid #e2e8f0 !important;
+        }
+
+        [dir="ltr"] #sidebar {
+            border-left: none !important;
+            border-right: 1px solid #e2e8f0 !important;
+        }
+
+        [dir="rtl"] .justify-between {
+            flex-direction: row-reverse;
+        }
+
+        /* Horizontal Tab Navigation */
+        [dir="rtl"] .border-b {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] [role="tab"] {
+            text-align: right;
+        }
+
+        /* Tab Highlights and Active States */
+        [dir="rtl"] .border-indigo-500 {
+            border-left: 2px solid #6366f1 !important;
+            border-bottom: 2px solid #6366f1 !important;
+            border-right: none !important;
+        }
+
+        [dir="ltr"] .border-indigo-500 {
+            border-right: none !important;
+            border-left: none !important;
+        }
+
+        /* Header and Navigation Alignment */
+        [dir="rtl"] header .flex {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .grid {
+            direction: rtl;
+        }
+
+        /* Button Groups */
+        [dir="rtl"] .gap-2,
+        [dir="rtl"] .gap-3,
+        [dir="rtl"] .gap-4 {
+            flex-direction: row-reverse;
+        }
+
+        /* Ensure tab content alignment */
+        [dir="rtl"] .tab-content {
+            text-align: right;
+        }
+
+        [dir="rtl"] .space-x-3 > * + * {
+            margin-left: 0;
+            margin-right: 0.75rem;
+        }
+
+        [dir="rtl"] .space-x-4 > * + * {
+            margin-left: 0;
+            margin-right: 1rem;
+        }
+
+        [dir="rtl"] .ml-auto {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        [dir="rtl"] .mr-2 {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+
+        [dir="rtl"] .border-r {
+            border-right: none;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        [dir="rtl"] .border-l-4 {
+            border-left: none;
+            border-right: 4px solid;
+        }
+
+        [dir="rtl"] .rounded-l-lg {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    
+    <div class="flex h-screen overflow-hidden" id="main-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-64 bg-white border-r border-slate-200 flex-shrink-0">
+            <div class="p-6 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center no-rtl">
+                        <i class="fas fa-balance-scale text-white text-lg"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold gradient-text" style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        LexIcon
+                    </h2>
+                </div>
+                <p class="text-slate-500 text-xs mt-2 ml-13">Client Portal</p>
+            </div>
+            
+            <nav class="p-4">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-amber-600 bg-amber-50 rounded-lg mb-2 font-semibold">
+                    <i class="fas fa-briefcase"></i>
+                    <span>My Case</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg mb-2">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>Billing</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg mb-2">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                    <span class="ml-auto bg-red-500 text-white text-xs rounded-full px-2 py-1">3</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg mb-2">
+                    <i class="fas fa-folder"></i>
+                    <span>Documents</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg mb-2">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Appointments</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg mb-2">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            
+            <div class="absolute bottom-0 w-64 p-4 border-t border-slate-200">
+                <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <!-- Top Bar -->
+            <header class="bg-white border-b border-slate-200 px-8 py-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-slate-900">Welcome Back, Mr. Wayne</h1>
+                        <p class="text-slate-600 text-sm">Here's an overview of your case</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button id="rtl-toggle-btn" class="text-slate-600 hover:text-indigo-600 transition-colors" title="Toggle Text Direction (LTR/RTL)">
+                            <i class="fas fa-language text-2xl"></i>
+                        </button>
+                        <button class="relative">
+                            <i class="fas fa-bell text-2xl text-slate-600"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+                        </button>
+                        <div class="flex items-center gap-3 no-rtl">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100" alt="Profile" class="w-10 h-10 rounded-full">
+                            <div>
+                                <div class="font-semibold text-slate-900">Bruce Wayne</div>
+                                <div class="text-xs text-slate-500">Client</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-8">
+                <!-- Dashboard Tabs (My Case Sub-tabs) -->
+                <div class="mb-8" id="mycase-subtabs">
+                    <div class="flex gap-2 border-b border-slate-200" role="tablist">
+                        <button class="tab-button active px-6 py-3 font-semibold text-slate-700 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="overview" role="tab">
+                            <i class="fas fa-chart-line mr-2"></i>Overview
+                        </button>
+                        <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="timeline" role="tab">
+                            <i class="fas fa-clock mr-2"></i>Timeline
+                        </button>
+                        <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="documents" role="tab">
+                            <i class="fas fa-folder mr-2"></i>Documents
+                        </button>
+                        <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="team">
+                            <i class="fas fa-users mr-2"></i>Team
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Overview -->
+                <div class="tab-content active" data-tab="overview">
+                    <!-- Alert Banner -->
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-8 rounded-lg flex items-start gap-4">
+                        <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-green-900 mb-1">Good Morning, Mr. Wayne</h3>
+                            <p class="text-green-800">Your hearing is scheduled for tomorrow at 09:00 AM in Courtroom 5B. Your attorney, Alexander Specter, will meet you 30 minutes prior.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="glass rounded-xl p-6 border border-white/20 hover:shadow-2xl transition-shadow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Next Hearing</p>
+                                    <h3 class="text-3xl font-bold gradient-text" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tomorrow</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-calendar-check text-2xl text-white"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-sm">09:00 AM - Courtroom 5B</p>
+                        </div>
+
+                        <div class="glass rounded-xl p-6 border border-white/20 hover:shadow-2xl transition-shadow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Case Status</p>
+                                    <h3 class="text-3xl font-bold gradient-text" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Active</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-briefcase text-2xl text-white"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-sm">Deposition Phase</p>
+                        </div>
+
+                        <div class="glass rounded-xl p-6 border border-white/20 hover:shadow-2xl transition-shadow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Days Active</p>
+                                    <h3 class="text-3xl font-bold gradient-text" data-target="87" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-hourglass-half text-2xl text-white"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-sm">Started Sept 8, 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="grid lg:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white rounded-xl shadow-lg p-6 no-rtl">
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Case Activity</h3>
+                            <div style="max-height: 250px;">
+                                <canvas id="activityChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-lg p-6 no-rtl">
+                            <h3 class="text-xl font-bold text-slate-900 mb-4">Time Distribution</h3>
+                            <div style="max-height: 250px;">
+                                <canvas id="timeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bars -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                        <h3 class="text-xl font-bold text-slate-900 mb-6">Case Milestones</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-semibold text-slate-700">Discovery Phase</span>
+                                    <span class="text-sm font-bold text-emerald-600">100%</span>
+                                </div>
+                                <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full animate-slideInLeft" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-semibold text-slate-700">Deposition Prep</span>
+                                    <span class="text-sm font-bold text-blue-600">75%</span>
+                                </div>
+                                <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-slideInLeft" style="width: 75%; animation-delay: 0.2s;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-semibold text-slate-700">Document Review</span>
+                                    <span class="text-sm font-bold text-purple-600">60%</span>
+                                </div>
+                                <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-slideInLeft" style="width: 60%; animation-delay: 0.4s;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm font-semibold text-slate-700">Trial Preparation</span>
+                                    <span class="text-sm font-bold text-orange-600">30%</span>
+                                </div>
+                                <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full animate-slideInLeft" style="width: 30%; animation-delay: 0.6s;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Timeline -->
+                <div class="tab-content" data-tab="timeline" style="display: none;">
+                <!-- Case Timeline -->
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6" style="font-family: 'Playfair Display', serif;">Case Progress</h2>
+                    
+                    <div class="progress-timeline">
+                        <div class="progress-step completed">
+                            <div class="progress-step-circle">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="text-sm font-semibold text-slate-700 mt-2">Consultation</div>
+                            <div class="text-xs text-slate-500">Completed</div>
+                        </div>
+                        
+                        <div class="progress-step completed">
+                            <div class="progress-step-circle">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="text-sm font-semibold text-slate-700 mt-2">Discovery</div>
+                            <div class="text-xs text-slate-500">Completed</div>
+                        </div>
+                        
+                        <div class="progress-step active">
+                            <div class="progress-step-circle">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <div class="text-sm font-semibold text-amber-700 mt-2">Deposition</div>
+                            <div class="text-xs text-amber-600">In Progress</div>
+                        </div>
+                        
+                        <div class="progress-step">
+                            <div class="progress-step-circle">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="text-sm font-semibold text-slate-500 mt-2">Trial</div>
+                            <div class="text-xs text-slate-400">Upcoming</div>
+                        </div>
+                        
+                        <div class="progress-step">
+                            <div class="progress-step-circle">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="text-sm font-semibold text-slate-500 mt-2">Verdict</div>
+                            <div class="text-xs text-slate-400">Pending</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="premium-card p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Next Hearing</p>
+                                <h3 class="text-3xl font-bold text-slate-900">Tomorrow</h3>
+                            </div>
+                            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-calendar-check text-2xl text-amber-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm">December 5, 2025 at 09:00 AM</p>
+                    </div>
+
+                    <div class="premium-card p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Days Since Filing</p>
+                                <h3 class="text-3xl font-bold text-slate-900">142</h3>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-hourglass-half text-2xl text-blue-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm">Filed on July 15, 2025</p>
+                    </div>
+
+                    <div class="premium-card p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Case Status</p>
+                                <h3 class="text-xl font-bold text-green-600">On Track</h3>
+                            </div>
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-chart-line text-2xl text-green-600"></i>
+                            </div>
+                        </div>
+                        <p class="text-slate-600 text-sm">All milestones met on schedule</p>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Tab Content: Documents -->
+                <div class="tab-content" data-tab="documents" style="display: none;">
+                <!-- Recent Documents -->
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-slate-900" style="font-family: 'Playfair Display', serif;">Recent Documents</h2>
+                        <button class="text-amber-600 hover:text-amber-700 font-semibold text-sm">
+                            View All <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-slate-50">
+                                <tr>
+                                    <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Document Name</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Type</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Date</th>
+                                    <th class="text-right py-3 px-4 font-semibold text-slate-700 text-sm">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-file-pdf text-2xl text-red-500"></i>
+                                            <span class="font-semibold text-slate-900">Subpoena_Response.pdf</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-600">Legal Filing</td>
+                                    <td class="py-4 px-4 text-slate-600">Dec 1, 2025</td>
+                                    <td class="py-4 px-4 text-right">
+                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-file-word text-2xl text-blue-500"></i>
+                                            <span class="font-semibold text-slate-900">Settlement_Draft_v2.docx</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-600">Agreement</td>
+                                    <td class="py-4 px-4 text-slate-600">Nov 28, 2025</td>
+                                    <td class="py-4 px-4 text-right">
+                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-4 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <i class="fas fa-file-alt text-2xl text-slate-500"></i>
+                                            <span class="font-semibold text-slate-900">Discovery_Documents.zip</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-600">Evidence</td>
+                                    <td class="py-4 px-4 text-slate-600">Nov 22, 2025</td>
+                                    <td class="py-4 px-4 text-right">
+                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Tab Content: Team -->
+                <div class="tab-content" data-tab="team" style="display: none;">
+                <!-- Your Legal Team -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-6" style="font-family: 'Playfair Display', serif;">Your Legal Team</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Attorney" class="w-16 h-16 rounded-full">
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-lg">Alexander Specter</h3>
+                                <p class="text-amber-600 font-semibold text-sm">Lead Attorney</p>
+                                <div class="flex gap-3 mt-2">
+                                    <a href="#" class="text-slate-600 hover:text-amber-600">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <a href="#" class="text-slate-600 hover:text-amber-600">
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100" alt="Paralegal" class="w-16 h-16 rounded-full">
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-lg">Sarah Martinez</h3>
+                                <p class="text-amber-600 font-semibold text-sm">Case Manager</p>
+                                <div class="flex gap-3 mt-2">
+                                    <a href="#" class="text-slate-600 hover:text-amber-600">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <a href="#" class="text-slate-600 hover:text-amber-600">
+                                        <i class="fas fa-phone"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Tab Content: Billing -->
+                <div class="tab-content" data-tab="billing" style="display: none;">
+                    <!-- Outstanding Balance -->
+                    <div class="glass rounded-xl p-6 border border-amber-200 mb-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Outstanding Balance</p>
+                                <h3 class="text-4xl font-bold gradient-text" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">$12,450.00</h3>
+                            </div>
+                            <button class="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                                <i class="fas fa-credit-card mr-2"></i>Make Payment
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Invoice History -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">Recent Invoices</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-slate-50">
+                                    <tr>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Invoice #</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Description</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Date</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Amount</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Status</th>
+                                        <th class="text-right py-3 px-4 font-semibold text-slate-700 text-sm">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4 font-semibold text-slate-900">#INV-2025-012</td>
+                                        <td class="py-4 px-4 text-slate-600">Legal Services - December</td>
+                                        <td class="py-4 px-4 text-slate-600">Dec 1, 2025</td>
+                                        <td class="py-4 px-4 font-semibold text-slate-900">$4,850.00</td>
+                                        <td class="py-4 px-4">
+                                            <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">Pending</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-credit-card"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4 font-semibold text-slate-900">#INV-2025-011</td>
+                                        <td class="py-4 px-4 text-slate-600">Deposition Preparation</td>
+                                        <td class="py-4 px-4 text-slate-600">Nov 15, 2025</td>
+                                        <td class="py-4 px-4 font-semibold text-slate-900">$7,600.00</td>
+                                        <td class="py-4 px-4">
+                                            <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">Pending</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-credit-card"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4 font-semibold text-slate-900">#INV-2025-010</td>
+                                        <td class="py-4 px-4 text-slate-600">Discovery Phase Services</td>
+                                        <td class="py-4 px-4 text-slate-600">Oct 20, 2025</td>
+                                        <td class="py-4 px-4 font-semibold text-slate-900">$8,200.00</td>
+                                        <td class="py-4 px-4">
+                                            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Paid</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
+                                            <button class="text-slate-400 cursor-not-allowed mx-1"><i class="fas fa-check-circle"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4 font-semibold text-slate-900">#INV-2025-009</td>
+                                        <td class="py-4 px-4 text-slate-600">Initial Consultation & Filing</td>
+                                        <td class="py-4 px-4 text-slate-600">Sept 10, 2025</td>
+                                        <td class="py-4 px-4 font-semibold text-slate-900">$5,500.00</td>
+                                        <td class="py-4 px-4">
+                                            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Paid</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
+                                            <button class="text-slate-400 cursor-not-allowed mx-1"><i class="fas fa-check-circle"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-slate-900">Payment Methods</h3>
+                            <button class="text-amber-600 hover:text-amber-700 font-semibold text-sm">
+                                <i class="fas fa-plus mr-1"></i>Add New
+                            </button>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="border-2 border-amber-300 rounded-lg p-4 bg-gradient-to-br from-amber-50 to-orange-50">
+                                <div class="flex items-center justify-between mb-3">
+                                    <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
+                                    <span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Primary</span>
+                                </div>
+                                <p class="text-slate-900 font-semibold">Visa •••• 4242</p>
+                                <p class="text-slate-600 text-sm">Expires 12/2026</p>
+                            </div>
+                            <div class="border border-slate-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-3">
+                                    <i class="fab fa-cc-mastercard text-3xl text-orange-600"></i>
+                                    <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                                <p class="text-slate-900 font-semibold">Mastercard •••• 8888</p>
+                                <p class="text-slate-600 text-sm">Expires 08/2027</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Messages -->
+                <div class="tab-content" data-tab="messages" style="display: none;">
+                    <div class="grid lg:grid-cols-3 gap-6">
+                        <!-- Message List -->
+                        <div class="lg:col-span-1 bg-white rounded-xl shadow-lg">
+                            <div class="p-4 border-b border-slate-200">
+                                <h3 class="text-lg font-bold text-slate-900">Messages</h3>
+                            </div>
+                            <div class="divide-y divide-slate-200 max-h-[600px] overflow-y-auto">
+                                <div class="p-4 hover:bg-slate-50 cursor-pointer border-l-4 border-amber-600 bg-amber-50">
+                                    <div class="flex items-start gap-3">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50" alt="Attorney" class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <h4 class="font-semibold text-slate-900">Alexander Specter</h4>
+                                                <span class="text-xs text-slate-500">2h ago</span>
+                                            </div>
+                                            <p class="text-sm text-slate-600 truncate">Deposition scheduled for tomorrow morning...</p>
+                                            <span class="inline-block mt-1 px-2 py-0.5 bg-amber-600 text-white rounded-full text-xs">New</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 hover:bg-slate-50 cursor-pointer">
+                                    <div class="flex items-start gap-3">
+                                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=50" alt="Case Manager" class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <h4 class="font-semibold text-slate-900">Sarah Martinez</h4>
+                                                <span class="text-xs text-slate-500">Yesterday</span>
+                                            </div>
+                                            <p class="text-sm text-slate-600 truncate">Document updates completed...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 hover:bg-slate-50 cursor-pointer">
+                                    <div class="flex items-start gap-3">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50" alt="Attorney" class="w-10 h-10 rounded-full">
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <h4 class="font-semibold text-slate-900">Alexander Specter</h4>
+                                                <span class="text-xs text-slate-500">Dec 1</span>
+                                            </div>
+                                            <p class="text-sm text-slate-600 truncate">Settlement offer discussion...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 hover:bg-slate-50 cursor-pointer">
+                                    <div class="flex items-start gap-3">
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold">LS</div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between">
+                                                <h4 class="font-semibold text-slate-900">LexIcon Support</h4>
+                                                <span class="text-xs text-slate-500">Nov 28</span>
+                                            </div>
+                                            <p class="text-sm text-slate-600 truncate">Your account has been verified...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Thread -->
+                        <div class="lg:col-span-2 bg-white rounded-xl shadow-lg flex flex-col">
+                            <div class="p-4 border-b border-slate-200 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50" alt="Attorney" class="w-10 h-10 rounded-full">
+                                    <div>
+                                        <h4 class="font-semibold text-slate-900">Alexander Specter</h4>
+                                        <p class="text-xs text-slate-500">Lead Attorney</p>
+                                    </div>
+                                </div>
+                                <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+
+                            <div class="flex-1 p-6 space-y-4 overflow-y-auto max-h-[450px]">
+                                <div class="flex gap-3">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=40" alt="Attorney" class="w-8 h-8 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="bg-slate-100 rounded-lg p-3 max-w-md">
+                                            <p class="text-sm text-slate-900">Good afternoon! I wanted to update you on the deposition scheduled for tomorrow at 9:00 AM. Please review the attached preparation materials.</p>
+                                        </div>
+                                        <span class="text-xs text-slate-500 mt-1 inline-block">Today at 2:30 PM</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-3 justify-end">
+                                    <div class="flex-1 flex flex-col items-end">
+                                        <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg p-3 max-w-md">
+                                            <p class="text-sm">Thank you for the update. I've reviewed the materials. Should I bring any additional documents?</p>
+                                        </div>
+                                        <span class="text-xs text-slate-500 mt-1">Today at 3:15 PM</span>
+                                    </div>
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">JD</div>
+                                </div>
+
+                                <div class="flex gap-3">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=40" alt="Attorney" class="w-8 h-8 rounded-full">
+                                    <div class="flex-1">
+                                        <div class="bg-slate-100 rounded-lg p-3 max-w-md">
+                                            <p class="text-sm text-slate-900">Just the photo ID and any notes you'd like to reference. We'll go over everything 30 minutes before the deposition starts.</p>
+                                        </div>
+                                        <span class="text-xs text-slate-500 mt-1 inline-block">Today at 3:20 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 border-t border-slate-200">
+                                <div class="flex gap-3">
+                                    <input type="text" placeholder="Type your message..." class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    <button class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Documents -->
+                <div class="tab-content" data-tab="documents-main" style="display: none;">
+                    <div class="grid lg:grid-cols-4 gap-6">
+                        <!-- Document Categories -->
+                        <div class="lg:col-span-1 bg-white rounded-xl shadow-lg p-6">
+                            <h3 class="text-lg font-bold text-slate-900 mb-4">Categories</h3>
+                            <div class="space-y-2">
+                                <button class="w-full text-left px-4 py-2 bg-amber-50 text-amber-700 rounded-lg font-semibold hover:bg-amber-100 transition-colors">
+                                    <i class="fas fa-folder mr-2"></i>All Documents (24)
+                                </button>
+                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                    <i class="fas fa-file-pdf mr-2"></i>Legal Filings (8)
+                                </button>
+                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                    <i class="fas fa-file-contract mr-2"></i>Agreements (5)
+                                </button>
+                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                    <i class="fas fa-file-alt mr-2"></i>Evidence (7)
+                                </button>
+                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                    <i class="fas fa-file-invoice mr-2"></i>Billing (4)
+                                </button>
+                            </div>
+                            <button class="w-full mt-6 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                <i class="fas fa-upload mr-2"></i>Upload Document
+                            </button>
+                        </div>
+
+                        <!-- Document Grid -->
+                        <div class="lg:col-span-3">
+                            <div class="bg-white rounded-xl shadow-lg p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-xl font-bold text-slate-900">All Documents</h3>
+                                    <div class="flex gap-2">
+                                        <button class="px-3 py-2 text-amber-600 border border-amber-300 rounded-lg hover:bg-amber-50"><i class="fas fa-th"></i></button>
+                                        <button class="px-3 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50"><i class="fas fa-list"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <i class="fas fa-file-pdf text-4xl text-red-500"></i>
+                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                        </div>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Subpoena_Response.pdf</h4>
+                                        <p class="text-xs text-slate-500 mb-2">2.4 MB • Dec 1, 2025</p>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
+                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <i class="fas fa-file-word text-4xl text-blue-500"></i>
+                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                        </div>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Settlement_Draft_v2.docx</h4>
+                                        <p class="text-xs text-slate-500 mb-2">1.8 MB • Nov 28, 2025</p>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
+                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <i class="fas fa-file-archive text-4xl text-amber-500"></i>
+                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                        </div>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Discovery_Documents.zip</h4>
+                                        <p class="text-xs text-slate-500 mb-2">15.2 MB • Nov 22, 2025</p>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
+                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <i class="fas fa-file-contract text-4xl text-green-500"></i>
+                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                        </div>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Retainer_Agreement.pdf</h4>
+                                        <p class="text-xs text-slate-500 mb-2">890 KB • Sept 8, 2025</p>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
+                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <i class="fas fa-file-image text-4xl text-purple-500"></i>
+                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                        </div>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Evidence_Photos.zip</h4>
+                                        <p class="text-xs text-slate-500 mb-2">8.5 MB • Nov 10, 2025</p>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
+                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <i class="fas fa-file-excel text-4xl text-emerald-500"></i>
+                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                        </div>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Financial_Records.xlsx</h4>
+                                        <p class="text-xs text-slate-500 mb-2">3.2 MB • Oct 28, 2025</p>
+                                        <div class="flex gap-2">
+                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
+                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Appointments -->
+                <div class="tab-content" data-tab="appointments" style="display: none;">
+                    <!-- Upcoming Appointments -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold text-slate-900">Upcoming Appointments</h3>
+                            <button class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                <i class="fas fa-plus mr-2"></i>Schedule New
+                            </button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-amber-600 bg-amber-50 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-lg mb-1">Deposition Hearing</h4>
+                                        <p class="text-slate-600 text-sm mb-2">with Alexander Specter</p>
+                                        <div class="flex items-center gap-4 text-sm text-slate-600">
+                                            <span><i class="fas fa-calendar mr-2 text-amber-600"></i>Tomorrow, Dec 5, 2025</span>
+                                            <span><i class="fas fa-clock mr-2 text-amber-600"></i>09:00 AM - 11:00 AM</span>
+                                            <span><i class="fas fa-map-marker-alt mr-2 text-amber-600"></i>Court Room 3B</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-amber-600 hover:text-amber-700"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="border-l-4 border-blue-600 bg-blue-50 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-lg mb-1">Strategy Meeting</h4>
+                                        <p class="text-slate-600 text-sm mb-2">with Alexander Specter & Sarah Martinez</p>
+                                        <div class="flex items-center gap-4 text-sm text-slate-600">
+                                            <span><i class="fas fa-calendar mr-2 text-blue-600"></i>Dec 8, 2025</span>
+                                            <span><i class="fas fa-clock mr-2 text-blue-600"></i>02:00 PM - 03:30 PM</span>
+                                            <span><i class="fas fa-video mr-2 text-blue-600"></i>Video Conference</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-blue-600 hover:text-blue-700"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="border-l-4 border-purple-600 bg-purple-50 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-lg mb-1">Document Review Session</h4>
+                                        <p class="text-slate-600 text-sm mb-2">with Sarah Martinez</p>
+                                        <div class="flex items-center gap-4 text-sm text-slate-600">
+                                            <span><i class="fas fa-calendar mr-2 text-purple-600"></i>Dec 12, 2025</span>
+                                            <span><i class="fas fa-clock mr-2 text-purple-600"></i>10:00 AM - 12:00 PM</span>
+                                            <span><i class="fas fa-map-marker-alt mr-2 text-purple-600"></i>Office - Conference Room A</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-purple-600 hover:text-purple-700"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Past Appointments -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-slate-900 mb-6">Past Appointments</h3>
+                        <div class="space-y-3">
+                            <div class="border border-slate-200 rounded-lg p-4 opacity-75">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-slate-900">Case Consultation</h4>
+                                        <p class="text-sm text-slate-600">Dec 1, 2025 • 03:00 PM - 04:30 PM</p>
+                                    </div>
+                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
+                                </div>
+                            </div>
+                            <div class="border border-slate-200 rounded-lg p-4 opacity-75">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-slate-900">Discovery Phase Review</h4>
+                                        <p class="text-sm text-slate-600">Nov 20, 2025 • 11:00 AM - 12:00 PM</p>
+                                    </div>
+                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
+                                </div>
+                            </div>
+                            <div class="border border-slate-200 rounded-lg p-4 opacity-75">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-semibold text-slate-900">Initial Consultation</h4>
+                                        <p class="text-sm text-slate-600">Sept 8, 2025 • 10:00 AM - 11:00 AM</p>
+                                    </div>
+                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content: Settings -->
+                <div class="tab-content" data-tab="settings" style="display: none;">
+                    <!-- Settings Sub-tabs -->
+                    <div class="mb-8">
+                        <div class="flex gap-2 border-b border-slate-200">
+                            <button class="settings-tab-button active px-6 py-3 font-semibold text-slate-700 border-b-2 border-indigo-600 hover:text-indigo-600 transition-colors" data-settings-tab="profile">
+                                <i class="fas fa-user mr-2"></i>Profile
+                            </button>
+                            <button class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-settings-tab="notifications">
+                                <i class="fas fa-bell mr-2"></i>Notifications
+                            </button>
+                            <button class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-settings-tab="security">
+                                <i class="fas fa-lock mr-2"></i>Security
+                            </button>
+                            <button class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-settings-tab="billing">
+                                <i class="fas fa-credit-card mr-2"></i>Billing
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab Contents -->
+                    <div class="space-y-6">
+                        <!-- Profile Settings Tab -->
+                        <div class="settings-tab-content active" data-settings-tab="profile">
+                            <div class="bg-white rounded-xl shadow-lg p-6">
+                                <h3 class="text-xl font-bold text-slate-900 mb-6">Profile Information</h3>
+                                <div class="space-y-4">
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-semibold text-slate-700 mb-2">First Name</label>
+                                            <input type="text" value="John" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-semibold text-slate-700 mb-2">Last Name</label>
+                                            <input type="text" value="Doe" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
+                                        <input type="email" value="john.doe@email.com" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
+                                        <input type="tel" value="+1 (555) 123-4567" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Address</label>
+                                        <textarea rows="3" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">123 Main Street
+New York, NY 10001</textarea>
+                                    </div>
+                                    <button class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notifications Settings Tab -->
+                        <div class="settings-tab-content" data-settings-tab="notifications" style="display: none;">
+                            <div class="bg-white rounded-xl shadow-lg p-6">
+                                <h3 class="text-xl font-bold text-slate-900 mb-6">Notification Preferences</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+                                        <div>
+                                            <h4 class="font-semibold text-slate-900">Email Notifications</h4>
+                                            <p class="text-sm text-slate-600">Receive updates via email</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+                                        <div>
+                                            <h4 class="font-semibold text-slate-900">SMS Notifications</h4>
+                                            <p class="text-sm text-slate-600">Receive text message alerts</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                        </label>
+                                    </div>
+                                    <div class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+                                        <div>
+                                            <h4 class="font-semibold text-slate-900">Case Updates</h4>
+                                            <p class="text-sm text-slate-600">Notifications about case progress</p>
+                                        </div>
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" checked class="sr-only peer">
+                                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Settings Tab -->
+                        <div class="settings-tab-content" data-settings-tab="security" style="display: none;">
+                            <div class="bg-white rounded-xl shadow-lg p-6">
+                                <h3 class="text-xl font-bold text-slate-900 mb-6">Security Settings</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Current Password</label>
+                                        <input type="password" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">New Password</label>
+                                        <input type="password" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Confirm New Password</label>
+                                        <input type="password" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    </div>
+                                    <button class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                        Update Password
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Billing Settings Tab -->
+                        <div class="settings-tab-content" data-settings-tab="billing" style="display: none;">
+                            <div class="bg-white rounded-xl shadow-lg p-6">
+                                <h3 class="text-xl font-bold text-slate-900 mb-6">Billing Preferences</h3>
+                                <div class="space-y-4">
+                                    <div class="border border-slate-200 rounded-lg p-4">
+                                        <h4 class="font-semibold text-slate-900 mb-2">Auto-Pay Settings</h4>
+                                        <label class="flex items-center gap-3">
+                                            <input type="checkbox" class="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500">
+                                            <span class="text-slate-700">Enable automatic payment for invoices</span>
+                                        </label>
+                                    </div>
+                                    <div class="border border-slate-200 rounded-lg p-4">
+                                        <h4 class="font-semibold text-slate-900 mb-2">Invoice Delivery</h4>
+                                        <div class="space-y-2">
+                                            <label class="flex items-center gap-3">
+                                                <input type="radio" name="invoice-delivery" value="email" checked class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
+                                                <span class="text-slate-700">Email delivery</span>
+                                            </label>
+                                            <label class="flex items-center gap-3">
+                                                <input type="radio" name="invoice-delivery" value="postal" class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
+                                                <span class="text-slate-700">Postal mail delivery</span>
+                                            </label>
+                                            <label class="flex items-center gap-3">
+                                                <input type="radio" name="invoice-delivery" value="both" class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
+                                                <span class="text-slate-700">Both email and postal</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="border border-slate-200 rounded-lg p-4">
+                                        <h4 class="font-semibold text-slate-900 mb-2">Billing Address</h4>
+                                        <div class="space-y-3">
+                                            <input type="text" placeholder="Street Address" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <input type="text" placeholder="City" class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                                <input type="text" placeholder="ZIP Code" class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                        Save Billing Settings
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/rtl-toggle.js"></script>
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure default tab is visible
+            const defaultTab = document.querySelector('[data-tab="overview"]');
+            if (defaultTab && defaultTab.classList.contains('tab-content')) {
+                defaultTab.style.display = 'block';
+                defaultTab.classList.add('active');
+            }
+
+            // Ensure default settings tab is visible
+            const defaultSettingsTab = document.querySelector('[data-settings-tab="profile"]');
+            if (defaultSettingsTab && defaultSettingsTab.classList.contains('settings-tab-content')) {
+                defaultSettingsTab.style.display = 'block';
+                defaultSettingsTab.classList.add('active');
+            }
+
+            // Activity Chart (Line)
+            const activityCtx = document.getElementById('activityChart');
+            if (activityCtx) {
+                new Chart(activityCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+                        datasets: [{
+                            label: 'Case Activity',
+                            data: [12, 19, 15, 25, 22, 30],
+                            borderColor: 'rgba(102, 126, 234, 1)',
+                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            // Time Distribution Chart (Doughnut)
+            const timeCtx = document.getElementById('timeChart');
+            if (timeCtx) {
+                new Chart(timeCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Research', 'Meetings', 'Court', 'Documents'],
+                        datasets: [{
+                            data: [30, 25, 20, 25],
+                            backgroundColor: [
+                                'rgba(102, 126, 234, 0.8)',
+                                'rgba(75, 192, 192, 0.8)',
+                                'rgba(255, 159, 64, 0.8)',
+                                'rgba(153, 102, 255, 0.8)'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Main Tab Navigation
+            const mainTabMap = {
+                'My Case': 'overview',
+                'Billing': 'billing',
+                'Messages': 'messages',
+                'Documents': 'documents-main',
+                'Appointments': 'appointments',
+                'Settings': 'settings'
+            };
+
+            const sidebarLinks = document.querySelectorAll('#sidebar nav a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabName = this.querySelector('span').textContent.trim();
+                    const targetTab = mainTabMap[tabName];
+                    
+                    if (targetTab) {
+                        // Hide all main tab contents
+                        document.querySelectorAll('.tab-content').forEach(content => {
+                            content.style.display = 'none';
+                        });
+                        
+                        // Show selected tab
+                        const selectedTab = document.querySelector(`[data-tab="${targetTab}"]`);
+                        if (selectedTab) {
+                            selectedTab.style.display = 'block';
+                        }
+                        
+                        // Update active sidebar link
+                        sidebarLinks.forEach(l => {
+                            l.classList.remove('text-amber-600', 'bg-amber-50', 'font-semibold');
+                            l.classList.add('text-slate-600', 'hover:bg-slate-50');
+                        });
+                        this.classList.remove('text-slate-600', 'hover:bg-slate-50');
+                        this.classList.add('text-amber-600', 'bg-amber-50', 'font-semibold');
+
+                        // Show/hide sub-tabs for My Case sections only
+                        const subTabsContainer = document.getElementById('mycase-subtabs');
+                        if (subTabsContainer) {
+                            if (targetTab === 'overview' || targetTab === 'timeline' || targetTab === 'documents' || targetTab === 'team') {
+                                subTabsContainer.style.display = 'block';
+                                // If switching to My Case, show overview by default
+                                if (targetTab === 'overview') {
+                                    document.querySelector('[data-tab="overview"]').style.display = 'block';
+                                }
+                            } else {
+                                subTabsContainer.style.display = 'none';
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Sub-tab Navigation (for My Case tabs)
+            const subTabButtons = document.querySelectorAll('.tab-button');
+            subTabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Hide all sub-tab contents
+                    const subTabContents = document.querySelectorAll('[data-tab="overview"], [data-tab="timeline"], [data-tab="documents"], [data-tab="team"]');
+                    subTabContents.forEach(content => {
+                        if (content.tagName !== 'BUTTON') {
+                            content.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show selected sub-tab
+                    const selectedContent = document.querySelector(`.tab-content[data-tab="${targetTab}"]`);
+                    if (selectedContent) {
+                        selectedContent.style.display = 'block';
+                    }
+                    
+                    // Update active button
+                    subTabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'text-slate-700', 'border-indigo-600');
+                        btn.classList.add('text-slate-600', 'border-transparent');
+                    });
+                    this.classList.remove('text-slate-600', 'border-transparent');
+                    this.classList.add('active', 'text-slate-700', 'border-indigo-600');
+                });
+            });
+
+            // Settings Sub-tab Navigation
+            const settingsTabButtons = document.querySelectorAll('.settings-tab-button');
+            settingsTabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-settings-tab');
+                    
+                    // Hide all settings tab contents
+                    document.querySelectorAll('.settings-tab-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Show selected settings tab
+                    const selectedContent = document.querySelector(`.settings-tab-content[data-settings-tab="${targetTab}"]`);
+                    if (selectedContent) {
+                        selectedContent.style.display = 'block';
+                    }
+                    
+                    // Update active button
+                    settingsTabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'text-slate-700', 'border-indigo-600');
+                        btn.classList.add('text-slate-600', 'border-transparent');
+                    });
+                    this.classList.remove('text-slate-600', 'border-transparent');
+                    this.classList.add('active', 'text-slate-700', 'border-indigo-600');
+                });
+            });
+
+            // RTL Toggle - Enhanced initialization
+            window.alignmentManager = new AlignmentManager();
+            
+            // Double-check RTL toggle button binding
+            setTimeout(() => {
+                const rtlBtn = document.getElementById('rtl-toggle-btn');
+                if (rtlBtn && !rtlBtn.hasAttribute('data-rtl-bound')) {
+                    rtlBtn.setAttribute('data-rtl-bound', 'true');
+                    rtlBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('RTL toggle clicked');
+                        window.alignmentManager.toggleAlignment();
+                    });
+                }
+            }, 500);
+        });
+    </script>
+    
+</body>
+</html>

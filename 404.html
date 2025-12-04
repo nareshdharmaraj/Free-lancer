@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | LexIcon</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-slate-950 min-h-screen flex items-center justify-center">
+    
+    <div class="text-center px-6">
+        <!-- Gavel Icon -->
+        <div class="mb-8 relative">
+            <i class="fas fa-gavel text-9xl text-amber-600 animate-pulse"></i>
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4">
+                <span class="text-7xl font-bold text-white" style="font-family: 'Playfair Display', serif;">404</span>
+            </div>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-6xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;">
+            Objection! <span class="text-amber-600">Overruled.</span>
+        </h1>
+
+        <!-- Message -->
+        <p class="text-2xl text-slate-300 mb-4 max-w-2xl mx-auto">
+            The page you're looking for has been dismissed from the proceedings.
+        </p>
+        <p class="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
+            It seems this URL is not in our jurisdiction. Perhaps it was moved, deleted, or never existed in the first place.
+        </p>
+
+        <!-- Actions -->
+        <div class="flex gap-4 justify-center flex-wrap">
+            <a href="index.html" class="btn-gold inline-block">
+                <i class="fas fa-home mr-2"></i>
+                Return Home
+            </a>
+            <a href="contact.html" class="btn-outline-gold inline-block">
+                <i class="fas fa-envelope mr-2"></i>
+                Contact Support
+            </a>
+        </div>
+
+        <!-- Popular Links -->
+        <div class="mt-16">
+            <p class="text-slate-400 mb-6">Or try one of these popular pages:</p>
+            <div class="flex gap-6 justify-center flex-wrap text-slate-300">
+                <a href="about.html" class="hover:text-amber-600 transition-colors">
+                    <i class="fas fa-info-circle mr-2"></i>About Us
+                </a>
+                <a href="services.html" class="hover:text-amber-600 transition-colors">
+                    <i class="fas fa-briefcase mr-2"></i>Services
+                </a>
+                <a href="team.html" class="hover:text-amber-600 transition-colors">
+                    <i class="fas fa-users mr-2"></i>Our Team
+                </a>
+                <a href="login.html" class="hover:text-amber-600 transition-colors">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Client Portal
+                </a>
+            </div>
+        </div>
+
+        <!-- Language Toggle -->
+        <div class="mt-12">
+            <button id="language-toggle" class="text-slate-400 hover:text-amber-600 transition-colors" title="Toggle Text Direction (LTR/RTL)">
+                <i class="fas fa-language text-2xl mr-2"></i>
+                <span class="text-sm">Toggle Language Direction</span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-slate-500 text-sm">
+            <p>&copy; 2025 LexIcon. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
+
+    <style>
+        @keyframes gavel-strike {
+            0%, 100% {
+                transform: rotate(-20deg);
+            }
+            50% {
+                transform: rotate(0deg);
+            }
+        }
+        
+        .fas.fa-gavel {
+            animation: gavel-strike 2s ease-in-out infinite;
+        }
+    </style>
+    
+</body>
+</html>
