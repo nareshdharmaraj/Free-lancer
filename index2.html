@@ -119,6 +119,37 @@
                 transform: translateY(0);
             }
         }
+        /* Mobile RTL Button */
+        #mobile-language-toggle {
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 0.5rem;
+            background: rgba(148, 163, 184, 0.1);
+            margin: 0.5rem 1rem;
+            padding: 0.75rem 1rem !important;
+        }
+        #mobile-language-toggle:hover {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: #d97706;
+        }
+        #mobile-language-toggle i {
+            color: #d97706;
+        }
+        
+        /* Mobile RTL Button */
+        #mobile-language-toggle {
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 0.5rem;
+            background: rgba(148, 163, 184, 0.1);
+            margin: 0.5rem 1rem;
+            padding: 0.75rem 1rem !important;
+        }
+        #mobile-language-toggle:hover {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: #d97706;
+        }
+        #mobile-language-toggle i {
+            color: #d97706;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50 min-h-screen">
@@ -137,9 +168,22 @@
                 
                 <!-- Desktop Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a id="nav-home" href="index.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
-                        Home
-                    </a>
+                    <div class="relative dropdown">
+                        <button class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
+                            Home
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-home mr-2"></i>
+                                Home 1
+                            </a>
+                            <a href="index2.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-star mr-2"></i>
+                                Home 2
+                            </a>
+                        </div>
+                    </div>
                     <a id="nav-about" href="about.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         About
                     </a>
@@ -152,6 +196,22 @@
                     <a id="nav-contact" href="contact.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         Contact
                     </a>
+                    <div class="relative dropdown">
+                        <button class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
+                            Dashboard
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-user mr-2"></i>
+                                Client Dashboard
+                            </a>
+                            <a href="admin-dashboard.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-shield-alt mr-2"></i>
+                                Admin Dashboard
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Action Buttons -->
@@ -174,12 +234,34 @@
             
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="index.html" class="block py-2 text-slate-300 hover:text-amber-600">Home</a>
-                <a href="about.html" class="block py-2 text-slate-300 hover:text-amber-600">About</a>
-                <a href="services.html" class="block py-2 text-slate-300 hover:text-amber-600">Services</a>
-                <a href="team.html" class="block py-2 text-slate-300 hover:text-amber-600">Team</a>
-                <a href="contact.html" class="block py-2 text-slate-300 hover:text-amber-600">Contact</a>
-                <a href="login.html" class="block py-2 text-slate-300 hover:text-amber-600">Login</a>
+                <div class="border-b border-slate-700 mb-2 pb-2">
+                    <div class="text-slate-500 text-xs uppercase tracking-wide mb-2 px-4">Home Pages</div>
+                    <a href="index.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-home mr-2"></i>Home 1
+                    </a>
+                    <a href="index2.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-star mr-2"></i>Home 2
+                    </a>
+                </div>
+                <a href="about.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">About</a>
+                <a href="services.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Services</a>
+                <a href="team.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Team</a>
+                <a href="contact.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Contact</a>
+                <div class="border-t border-slate-700 mt-2 pt-2">
+                    <div class="text-slate-500 text-xs uppercase tracking-wide mb-2 px-4">Dashboards</div>
+                    <a href="user-dashboard.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-user mr-2"></i>Client Dashboard
+                    </a>
+                    <a href="admin-dashboard.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-shield-alt mr-2"></i>Admin Dashboard
+                    </a>
+                </div>
+                <a href="login.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Login</a>
+                <div class="border-t border-slate-700 mt-2 pt-2">
+                    <button id="mobile-language-toggle" class="w-full text-left py-2 text-slate-300 hover:text-amber-600 transition-all duration-300">
+                        <i class="fas fa-language mr-2"></i>RTL/LTR Toggle
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -515,6 +597,205 @@
         </div>
     </section>
 
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;" data-aos="fade-up">
+                    Why Choose <span class="gradient-text" style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
+                </h2>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                    Discover the LexIcon advantage: where legal expertise meets strategic innovation, and client success is our unwavering commitment.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:translateY(-5px)">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-trophy text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Proven Track Record</h3>
+                        <p class="text-slate-300 mb-6">
+                            With a 94% success rate and over $2.5B recovered for clients, our results speak louder than words. We don't just practice law—we master it.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-slate-400 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i>
+                                <span>5000+ cases won</span>
+                            </div>
+                            <div class="flex items-center text-slate-400 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i>
+                                <span>40+ years experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:translateY(-5px)">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Elite Legal Team</h3>
+                        <p class="text-slate-300 mb-6">
+                            Our attorneys are graduates of top-tier law schools, with specialized expertise across multiple practice areas and decades of courtroom experience.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-slate-400 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i>
+                                <span>Ivy League educated</span>
+                            </div>
+                            <div class="flex items-center text-slate-400 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i>
+                                <span>Board certified specialists</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:translateY(-5px)">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Client-First Approach</h3>
+                        <p class="text-slate-300 mb-6">
+                            Your success is our mission. We provide personalized attention, transparent communication, and strategic counsel tailored to your unique situation.
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-slate-400 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i>
+                                <span>24/7 availability</span>
+                            </div>
+                            <div class="flex items-center text-slate-400 text-sm">
+                                <i class="fas fa-check-circle text-amber-500 mr-3"></i>
+                                <span>Transparent pricing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fee Schedule Section -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;" data-aos="fade-up">
+                    Transparent <span class="gradient-text" style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pricing</span>
+                </h2>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                    Clear, competitive rates with no hidden fees. We believe in transparency from consultation to case resolution.
+                </p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <!-- Consultation -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-handshake text-slate-300 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Initial Consultation</h3>
+                        <div class="text-4xl font-bold text-amber-600 mb-4">FREE</div>
+                        <p class="text-slate-400 mb-6">Comprehensive case evaluation with senior partner</p>
+                        <ul class="text-slate-400 text-sm space-y-2 mb-6">
+                            <li>• 60-minute consultation</li>
+                            <li>• Case analysis & strategy</li>
+                            <li>• Legal options review</li>
+                            <li>• No obligation</li>
+                        </ul>
+                        <a href="coming-soon.html" class="btn-outline w-full inline-block px-6 py-3 border-2 border-slate-600 text-slate-300 hover:bg-slate-600 hover:text-white transition-all">
+                            Schedule Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Standard Rates -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border-2 border-amber-600 rounded-xl p-8 h-full hover:transform hover:scale-105 transition-all duration-300 text-center relative">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                            MOST POPULAR
+                        </div>
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-balance-scale text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Standard Representation</h3>
+                        <div class="text-4xl font-bold text-amber-600 mb-2">$750</div>
+                        <div class="text-slate-400 mb-6">per hour</div>
+                        <p class="text-slate-300 mb-6">Comprehensive legal representation for complex matters</p>
+                        <ul class="text-slate-400 text-sm space-y-2 mb-6">
+                            <li>• Senior partner involvement</li>
+                            <li>• Dedicated case team</li>
+                            <li>• Regular status updates</li>
+                            <li>• Document management</li>
+                        </ul>
+                        <a href="coming-soon.html" class="btn-gradient w-full inline-block px-6 py-3">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Premium Service -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-crown text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Premium Service</h3>
+                        <div class="text-4xl font-bold text-amber-600 mb-2">$1,200</div>
+                        <div class="text-slate-400 mb-6">per hour</div>
+                        <p class="text-slate-300 mb-6">White-glove service for high-stakes matters</p>
+                        <ul class="text-slate-400 text-sm space-y-2 mb-6">
+                            <li>• Founding partner attention</li>
+                            <li>• 24/7 availability</li>
+                            <li>• Priority scheduling</li>
+                            <li>• Concierge services</li>
+                        </ul>
+                        <a href="coming-soon.html" class="btn-outline w-full inline-block px-6 py-3 border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-slate-900 transition-all">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-aos="fade-up">
+                <div class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-lg p-6 text-center hover:border-amber-600 transition-colors">
+                    <i class="fas fa-file-contract text-amber-500 text-2xl mb-3"></i>
+                    <h4 class="text-white font-semibold mb-2">Contract Review</h4>
+                    <div class="text-amber-600 font-bold">$500</div>
+                    <div class="text-slate-400 text-sm">flat fee</div>
+                </div>
+                <div class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-lg p-6 text-center hover:border-amber-600 transition-colors">
+                    <i class="fas fa-search text-amber-500 text-2xl mb-3"></i>
+                    <h4 class="text-white font-semibold mb-2">Legal Research</h4>
+                    <div class="text-amber-600 font-bold">$350</div>
+                    <div class="text-slate-400 text-sm">per hour</div>
+                </div>
+                <div class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-lg p-6 text-center hover:border-amber-600 transition-colors">
+                    <i class="fas fa-comments text-amber-500 text-2xl mb-3"></i>
+                    <h4 class="text-white font-semibold mb-2">Mediation</h4>
+                    <div class="text-amber-600 font-bold">$2,500</div>
+                    <div class="text-slate-400 text-sm">per session</div>
+                </div>
+                <div class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-lg p-6 text-center hover:border-amber-600 transition-colors">
+                    <i class="fas fa-phone text-amber-500 text-2xl mb-3"></i>
+                    <h4 class="text-white font-semibold mb-2">Emergency Call</h4>
+                    <div class="text-amber-600 font-bold">$200</div>
+                    <div class="text-slate-400 text-sm">per 15 min</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="relative bg-slate-950 text-slate-400 py-16">
         <!-- Gradient Accent at Top -->
@@ -652,16 +933,6 @@
             // Initialize RTL/LTR manager
             if (typeof AlignmentManager !== 'undefined') {
                 window.alignmentManager = new AlignmentManager();
-                
-                // RTL toggle functionality
-                const languageToggle = document.getElementById('language-toggle');
-                if (languageToggle) {
-                    languageToggle.addEventListener('click', function() {
-                        if (window.alignmentManager) {
-                            window.alignmentManager.toggleDirection();
-                        }
-                    });
-                }
             }
         });
     </script>

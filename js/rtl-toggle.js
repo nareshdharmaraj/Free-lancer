@@ -19,6 +19,34 @@ class AlignmentManager {
     
     // Bind toggle button
     this.bindToggleButton();
+    
+    // Initialize mobile menu handlers
+    this.initMobileMenu();
+  }
+  
+  initMobileMenu() {
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        this.updateMobileMenuDirection();
+      });
+    }
+  }
+  
+  updateMobileMenuDirection() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+      if (this.currentDir === 'rtl') {
+        mobileMenu.style.transformOrigin = 'left top';
+        mobileMenu.style.animation = 'slideInFromLeft 0.3s ease';
+      } else {
+        mobileMenu.style.transformOrigin = 'right top';
+        mobileMenu.style.animation = 'slideInFromRight 0.3s ease';
+      }
+    }
   }
 
   applyFullAlignment() {
@@ -270,6 +298,21 @@ class AlignmentManager {
       }
     }
     
+    // Handle mobile menu items
+    const mobileMenuItems = document.querySelectorAll('#mobile-menu a');
+    mobileMenuItems.forEach(item => {
+      if (isRTL) {
+        item.style.textAlign = 'right';
+        item.style.direction = 'rtl';
+      } else {
+        item.style.textAlign = 'left';
+        item.style.direction = 'ltr';
+      }
+    });
+    
+    // Update mobile menu direction if open
+    this.updateMobileMenuDirection();
+    
     // Desktop navigation links container
     document.querySelectorAll('.hidden.md\\:flex.items-center.space-x-8').forEach(navLinks => {
       if (isRTL) {
@@ -360,15 +403,26 @@ class AlignmentManager {
                      document.getElementById('language-toggle') || 
                      document.querySelector('[data-toggle="rtl"]');
     
-    if (!toggleBtn) {
-      console.log('RTL toggle button not found');
-      return;
+    const mobileToggleBtn = document.getElementById('mobile-language-toggle');
+    
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleDirection();
+      });
     }
     
-    toggleBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.toggleDirection();
-    });
+    if (mobileToggleBtn) {
+      mobileToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleDirection();
+      });
+    }
+    
+    if (!toggleBtn && !mobileToggleBtn) {
+      console.log('RTL toggle buttons not found');
+      return;
+    }
   }
 
   toggleDirection() {
@@ -388,6 +442,9 @@ class AlignmentManager {
     // Apply direction changes
     this.applyFullAlignment();
     
+    // Update navigation order
+    this.updateNavigationOrder();
+    
     // Visual feedback
     this.showDirectionChange();
     
@@ -396,6 +453,44 @@ class AlignmentManager {
       document.body.style.transition = '';
       this.isToggling = false;
     }, 300);
+  }
+
+  // Navigation Order Update Function
+  updateNavigationOrder() {
+    const nav = document.querySelector('.hidden.md\\:flex .space-x-8');
+    const isRTL = this.currentDir === 'rtl';
+    
+    if (nav) {
+      const items = Array.from(nav.children);
+      
+      if (isRTL) {
+        // Reverse order for RTL: Login, Dashboard, Contact, Team, Services, About, Home
+        items.reverse();
+      }
+      // For LTR, keep original order: Home, About, Services, Team, Contact, Dashboard
+      
+      // Clear navigation and re-append in correct order
+      nav.innerHTML = '';
+      items.forEach(item => {
+        nav.appendChild(item);
+      });
+    }
+    
+    // Update mobile navigation order
+    const mobileNav = document.getElementById('mobile-menu');
+    if (mobileNav) {
+      const mobileItems = Array.from(mobileNav.children);
+      
+      if (isRTL) {
+        mobileItems.reverse();
+      }
+      
+      // Clear and re-append mobile navigation
+      mobileNav.innerHTML = '';
+      mobileItems.forEach(item => {
+        mobileNav.appendChild(item);
+      });
+    }
   }
 
   // Alias method for dashboard compatibility

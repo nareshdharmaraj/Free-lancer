@@ -99,6 +99,156 @@
             text-align: right;
         }
 
+        /* Mobile Responsive Sidebar */
+        @media (max-width: 768px) {
+            #sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                height: 100vh;
+                z-index: 50;
+                transition: left 0.3s ease;
+                width: 280px;
+                transform: translateX(-100%);
+            }
+            
+            #sidebar.open {
+                left: 0;
+                transform: translateX(0);
+            }
+            
+            [dir="rtl"] #sidebar {
+                left: auto;
+                right: -100%;
+                transition: right 0.3s ease;
+                transform: translateX(100%);
+            }
+            
+            [dir="rtl"] #sidebar.open {
+                right: 0;
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+            
+            .mobile-sidebar-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 40;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            
+            .mobile-sidebar-overlay.active {
+                opacity: 1;
+                pointer-events: all;
+            }
+            
+            .mobile-header {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding: 0.75rem 1rem;
+                background: white;
+                border-bottom: 1px solid #e2e8f0;
+                position: sticky;
+                top: 0;
+                z-index: 30;
+                height: 60px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            
+            .mobile-hamburger {
+                display: flex;
+                flex-direction: column;
+                width: 24px;
+                height: 18px;
+                cursor: pointer;
+            }
+            
+            .mobile-hamburger span {
+                display: block;
+                height: 2px;
+                width: 100%;
+                background-color: #374151;
+                margin-bottom: 4px;
+                transition: all 0.3s ease;
+                border-radius: 2px;
+            }
+            
+            .mobile-hamburger span:last-child {
+                margin-bottom: 0;
+            }
+            
+            .mobile-hamburger:hover span {
+                background-color: #6366f1;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-header {
+                display: none;
+            }
+            
+            .mobile-sidebar-toggle {
+                display: none;
+            }
+        }
+        
+        /* Additional Mobile Styling */
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 0 !important;
+                margin-top: 0 !important;
+            }
+            
+            /* Ensure header takes full width on mobile */
+            header {
+                width: 100% !important;
+                margin-left: 0 !important;
+            }
+            
+            /* Mobile content padding */
+            .p-4.md\\:p-8 {
+                padding: 1rem !important;
+            }
+            
+            /* Mobile responsive text */
+            .text-xl.md\\:text-2xl {
+                font-size: 1.125rem !important;
+            }
+        }
+        
+        /* RTL Navigation Order */
+        [dir="rtl"] .sidebar-nav {
+            direction: rtl;
+        }
+        
+        [dir="rtl"] .sidebar-nav a {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .sidebar-nav .gap-3 {
+            gap: 0.75rem;
+            flex-direction: row-reverse;
+        }
+        
+        /* Mobile responsive grid */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .dashboard-card {
+                min-width: 100% !important;
+            }
+        }
+
         [dir="rtl"] .flex {
             flex-direction: row-reverse;
         }
@@ -204,21 +354,40 @@
 <body class="bg-slate-50">
     
     <div class="flex h-screen overflow-hidden" id="main-container">
+        <!-- Mobile Header -->
+        <div class="mobile-header">
+            <button class="mobile-sidebar-toggle p-2 text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-50">
+                <div class="mobile-hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+        
+        <!-- Mobile Sidebar Overlay -->
+        <div class="mobile-sidebar-overlay" onclick="closeMobileSidebar()"></div>
+        
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-white border-r border-slate-200 flex-shrink-0">
             <div class="p-6 border-b border-slate-200">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center no-rtl">
-                        <i class="fas fa-balance-scale text-white text-lg"></i>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center no-rtl">
+                            <i class="fas fa-balance-scale text-white text-lg"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold gradient-text" style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            LexIcon
+                        </h2>
                     </div>
-                    <h2 class="text-2xl font-bold gradient-text" style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        LexIcon
-                    </h2>
+                    <button class="mobile-sidebar-close md:hidden p-1 text-slate-400 hover:text-slate-600" onclick="closeMobileSidebar()">
+                        <i class="fas fa-times text-lg"></i>
+                    </button>
                 </div>
                 <p class="text-slate-500 text-xs mt-2 ml-13">Client Portal</p>
             </div>
             
-            <nav class="p-4">
+            <nav class="p-4 sidebar-nav">
                 <a href="#" class="flex items-center gap-3 px-4 py-3 text-amber-600 bg-amber-50 rounded-lg mb-2 font-semibold">
                     <i class="fas fa-briefcase"></i>
                     <span>My Case</span>
@@ -255,23 +424,23 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto main-content">
             <!-- Top Bar -->
-            <header class="bg-white border-b border-slate-200 px-8 py-4">
+            <header class="bg-white border-b border-slate-200 px-4 md:px-8 py-4">
                 <div class="flex items-center justify-between">
                     <div>
-                        <h1 class="text-2xl font-bold text-slate-900">Welcome Back, Mr. Wayne</h1>
+                        <h1 class="text-xl md:text-2xl font-bold text-slate-900">Welcome Back, Mr. Wayne</h1>
                         <p class="text-slate-600 text-sm">Here's an overview of your case</p>
                     </div>
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2 md:gap-4">
                         <button id="rtl-toggle-btn" class="text-slate-600 hover:text-indigo-600 transition-colors" title="Toggle Text Direction (LTR/RTL)">
-                            <i class="fas fa-language text-2xl"></i>
+                            <i class="fas fa-language text-xl md:text-2xl"></i>
                         </button>
                         <button class="relative">
-                            <i class="fas fa-bell text-2xl text-slate-600"></i>
+                            <i class="fas fa-bell text-xl md:text-2xl text-slate-600"></i>
                             <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
                         </button>
-                        <div class="flex items-center gap-3 no-rtl">
+                        <div class="hidden md:flex items-center gap-3 no-rtl">
                             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100" alt="Profile" class="w-10 h-10 rounded-full">
                             <div>
                                 <div class="font-semibold text-slate-900">Bruce Wayne</div>
@@ -282,11 +451,11 @@
                 </div>
             </header>
 
-            <div class="p-8">
+            <div class="p-4 md:p-8">
                 <!-- Dashboard Tabs (My Case Sub-tabs) -->
                 <div class="mb-8" id="mycase-subtabs">
-                    <div class="flex gap-2 border-b border-slate-200" role="tablist">
-                        <button class="tab-button active px-6 py-3 font-semibold text-slate-700 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="overview" role="tab">
+                    <div class="flex gap-1 md:gap-2 border-b border-slate-200 overflow-x-auto" role="tablist">
+                        <button class="tab-button active px-3 md:px-6 py-3 font-semibold text-sm md:text-base text-slate-700 border-b-2 border-transparent hover:text-indigo-600 transition-colors whitespace-nowrap" data-tab="overview" role="tab">
                             <i class="fas fa-chart-line mr-2"></i>Overview
                         </button>
                         <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="timeline" role="tab">
@@ -1455,10 +1624,70 @@ New York, NY 10001</textarea>
                         e.stopPropagation();
                         console.log('RTL toggle clicked');
                         window.alignmentManager.toggleAlignment();
+                        // Update navigation order after RTL toggle
+                        updateNavigationOrder();
                     });
                 }
             }, 500);
+            
+            // Initialize mobile sidebar
+            initMobileSidebar();
         });
+        
+        // Mobile Sidebar Functions
+        function initMobileSidebar() {
+            const toggleBtn = document.querySelector('.mobile-sidebar-toggle');
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', openMobileSidebar);
+            }
+        }
+        
+        function openMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.mobile-sidebar-overlay');
+            
+            if (sidebar && overlay) {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.mobile-sidebar-overlay');
+            
+            if (sidebar && overlay) {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        // RTL Navigation Order Function
+        function updateNavigationOrder() {
+            const nav = document.querySelector('.sidebar-nav');
+            const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+            
+            if (nav) {
+                const links = Array.from(nav.querySelectorAll('a'));
+                const logoutLink = nav.parentElement.querySelector('.absolute.bottom-0 a'); // Logout link
+                
+                if (isRTL) {
+                    // Reverse order for RTL: Login, Settings, Appointments, Documents, Messages, Billing, My Case
+                    links.reverse();
+                } else {
+                    // Keep original order for LTR: My Case, Billing, Messages, Documents, Appointments, Settings
+                    // Links are already in correct order
+                }
+                
+                // Clear navigation and re-append in correct order
+                nav.innerHTML = '';
+                links.forEach(link => {
+                    nav.appendChild(link);
+                });
+            }
+        }
     </script>
     
 </body>

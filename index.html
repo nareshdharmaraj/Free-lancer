@@ -65,6 +65,21 @@
         [dir="rtl"] .no-rtl {
             flex-direction: row !important;
         }
+        /* Mobile RTL Button */
+        #mobile-language-toggle {
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 0.5rem;
+            background: rgba(148, 163, 184, 0.1);
+            margin: 0.5rem 1rem;
+            padding: 0.75rem 1rem !important;
+        }
+        #mobile-language-toggle:hover {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: #d97706;
+        }
+        #mobile-language-toggle i {
+            color: #d97706;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50 min-h-screen">
@@ -83,9 +98,22 @@
                 
                 <!-- Desktop Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a id="nav-home" href="index.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
-                        Home
-                    </a>
+                    <div class="relative dropdown">
+                        <button class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
+                            Home
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-home mr-2"></i>
+                                Home 1
+                            </a>
+                            <a href="index2.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-star mr-2"></i>
+                                Home 2
+                            </a>
+                        </div>
+                    </div>
                     <a id="nav-about" href="about.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         About
                     </a>
@@ -98,6 +126,22 @@
                     <a id="nav-contact" href="contact.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         Contact
                     </a>
+                    <div class="relative dropdown">
+                        <button class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
+                            Dashboard
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-user mr-2"></i>
+                                Client Dashboard
+                            </a>
+                            <a href="admin-dashboard.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                                <i class="fas fa-shield-alt mr-2"></i>
+                                Admin Dashboard
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Action Buttons -->
@@ -120,12 +164,34 @@
             
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="index.html" class="block py-2 text-slate-300 hover:text-amber-600">Home</a>
-                <a href="about.html" class="block py-2 text-slate-300 hover:text-amber-600">About</a>
-                <a href="services.html" class="block py-2 text-slate-300 hover:text-amber-600">Services</a>
-                <a href="team.html" class="block py-2 text-slate-300 hover:text-amber-600">Team</a>
-                <a href="contact.html" class="block py-2 text-slate-300 hover:text-amber-600">Contact</a>
-                <a href="login.html" class="block py-2 text-slate-300 hover:text-amber-600">Login</a>
+                <div class="border-b border-slate-700 mb-2 pb-2">
+                    <div class="text-slate-500 text-xs uppercase tracking-wide mb-2 px-4">Home Pages</div>
+                    <a href="index.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-home mr-2"></i>Home 1
+                    </a>
+                    <a href="index2.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-star mr-2"></i>Home 2
+                    </a>
+                </div>
+                <a href="about.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">About</a>
+                <a href="services.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Services</a>
+                <a href="team.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Team</a>
+                <a href="contact.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Contact</a>
+                <div class="border-t border-slate-700 mt-2 pt-2">
+                    <div class="text-slate-500 text-xs uppercase tracking-wide mb-2 px-4">Dashboards</div>
+                    <a href="user-dashboard.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-user mr-2"></i>Client Dashboard
+                    </a>
+                    <a href="admin-dashboard.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                        <i class="fas fa-shield-alt mr-2"></i>Admin Dashboard
+                    </a>
+                </div>
+                <a href="login.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Login</a>
+                <div class="border-t border-slate-700 mt-2 pt-2">
+                    <button id="mobile-language-toggle" class="w-full text-left py-2 text-slate-300 hover:text-amber-600 transition-all duration-300">
+                        <i class="fas fa-language mr-2"></i>RTL/LTR Toggle
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -235,6 +301,200 @@
                         <p class="text-sm text-slate-400">Always available</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;" data-aos="fade-up">
+                    Why Choose <span class="gradient-text" style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
+                </h2>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                    Experience the difference that sets us apart from ordinary legal firms. Our commitment to excellence goes beyond representation—we deliver results that redefine success.
+                </p>
+            </div>
+
+            <!-- Differentiators Grid -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Differentiator 1: Track Record -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-trophy text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Unmatched Track Record</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            Over 95% success rate with $50B+ in favorable verdicts and settlements. Our results speak louder than our reputation.
+                        </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>500+ landmark victories</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Industry-leading success rate</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Record-breaking settlements</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Differentiator 2: Elite Team -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-users-crown text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Elite Legal Team</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            40+ top-tier attorneys from Ivy League institutions. Former federal judges, prosecutors, and industry leaders united under one roof.
+                        </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Harvard, Yale, Stanford graduates</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Former federal court judges</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Industry-recognized experts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Differentiator 3: Exclusive Approach -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-gem text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Exclusive Client Experience</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            White-glove service reserved for discerning clients. Personal attention, direct partner access, and bespoke legal strategies.
+                        </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Direct partner communication</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>24/7 priority support</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Concierge legal services</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Differentiator 4: Technology Edge -->
+                <div class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-brain-circuit text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Cutting-Edge Technology</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            AI-powered case analysis, predictive modeling, and advanced research tools give us the competitive edge you need to win.
+                        </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>AI case outcome prediction</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Advanced legal research AI</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Real-time case tracking</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Differentiator 5: Global Network -->
+                <div class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-globe-americas text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Global Reach</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            International legal network spanning 50+ countries. Cross-border expertise for complex multinational cases and transactions.
+                        </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>50+ country legal network</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Cross-border expertise</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>International arbitration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Differentiator 6: Results Guarantee -->
+                <div class="group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105">
+                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fas fa-handshake text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Performance Guarantee</h3>
+                        <p class="text-slate-300 mb-6 leading-relaxed">
+                            Our confidence in excellence is backed by results guarantees and performance commitments that other firms dare not offer.
+                        </p>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Results-backed guarantee</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Performance accountability</span>
+                            </div>
+                            <div class="flex items-center text-amber-400">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Client satisfaction commitment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="text-center mt-16" data-aos="fade-up">
+                <h3 class="text-3xl font-bold text-white mb-4">Experience the LexIcon Advantage</h3>
+                <p class="text-slate-400 mb-8 max-w-2xl mx-auto">
+                    Join the elite clientele who demand nothing less than extraordinary legal representation.
+                </p>
+                <a href="coming-soon.html" class="btn-gradient inline-block px-8 py-4 text-lg font-semibold mr-4">
+                    Schedule Consultation
+                </a>
+                <a href="about.html" class="btn-outline inline-block px-8 py-4 text-lg font-semibold border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-slate-900 transition-all">
+                    Learn More
+                </a>
             </div>
         </div>
     </section>
@@ -381,12 +641,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof AlignmentManager !== 'undefined') {
                 window.alignmentManager = new AlignmentManager();
-            }
-            
-            // Ensure language toggle doesn't trigger coming soon
-            const langToggle = document.getElementById('language-toggle');
-            if (langToggle) {
-                langToggle.onclick = null; // Remove any existing handlers
             }
         });
     </script>
