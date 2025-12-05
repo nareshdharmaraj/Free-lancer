@@ -42,11 +42,14 @@
             direction: ltr !important;
         }
 
-        /* Dashboard Specific Styles */
-        .glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        /* Global overflow control - Updated for mobile */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            overflow-x: auto !important;
+            max-width: none !important;
         }
 
         .premium-card {
@@ -99,49 +102,96 @@
             text-align: right;
         }
 
-        /* Mobile Responsive Sidebar */
+        /* Mobile Responsive Layout - Admin Dashboard Style */
         @media (max-width: 768px) {
-            #sidebar {
+            /* Mobile header */
+            .mobile-header {
+                height: 60px !important;
+                padding: 0.5rem 1rem !important;
                 position: fixed;
-                left: -100%;
                 top: 0;
-                height: 100vh;
-                z-index: 50;
-                transition: left 0.3s ease;
-                width: 280px;
-                transform: translateX(-100%);
-            }
-            
-            #sidebar.open {
                 left: 0;
-                transform: translateX(0);
+                right: 0;
+                z-index: 1000;
+                background: white;
+                border-bottom: 1px solid #e2e8f0;
+                display: flex !important;
+                justify-content: flex-start;
+                align-items: center;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Main container adjustments for mobile */
+            #main-container {
+                flex-direction: column !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Hide sidebar completely on mobile - remove from flow */
+            #sidebar {
+                position: absolute !important;
+                top: 0 !important;
+                left: -100% !important;
+                height: 100vh !important;
+                width: 280px !important;
+                transition: left 0.3s ease-in-out !important;
+                z-index: 1001 !important;
+                overflow-y: auto !important;
+                display: none !important;
+            }
+
+            /* Show sidebar when open */
+            #sidebar.open {
+                left: 0 !important;
+                display: block !important;
+                position: fixed !important;
+            }
+
+            /* Mobile overlay */
+            .mobile-sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .mobile-sidebar-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* Main content takes full width on mobile */
+            #main-content {
+                margin-top: 60px !important;
+                margin-left: 0 !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                padding: 0 !important;
+                flex: 1 !important;
+                overflow-x: hidden !important;
             }
             
+            /* RTL adjustments for mobile sidebar */
             [dir="rtl"] #sidebar {
-                left: auto;
-                right: -100%;
-                transition: right 0.3s ease;
-                transform: translateX(100%);
+                left: auto !important;
+                right: -100% !important;
+                transition: right 0.3s ease-in-out !important;
             }
             
             [dir="rtl"] #sidebar.open {
-                right: 0;
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0 !important;
-                width: 100% !important;
-            }
-            
-            .mobile-sidebar-overlay {
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 40;
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
+                right: 0 !important;
+                left: auto !important;
             }
             
             .mobile-sidebar-overlay.active {
@@ -149,19 +199,7 @@
                 pointer-events: all;
             }
             
-            .mobile-header {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                padding: 0.75rem 1rem;
-                background: white;
-                border-bottom: 1px solid #e2e8f0;
-                position: sticky;
-                top: 0;
-                z-index: 30;
-                height: 60px;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            }
+
             
             .mobile-hamburger {
                 display: flex;
@@ -188,39 +226,178 @@
             .mobile-hamburger:hover span {
                 background-color: #6366f1;
             }
+            
+            /* Mobile font size adjustments */
+            h1 { font-size: 1.25rem !important; }
+            h2 { font-size: 1.125rem !important; }
+            h3 { font-size: 1rem !important; }
+            h4 { font-size: 0.9rem !important; }
+            h5 { font-size: 0.8rem !important; }
+            h6 { font-size: 0.75rem !important; }
+            
+            .text-xl { font-size: 1rem !important; }
+            .text-2xl { font-size: 1.125rem !important; }
+            .text-3xl { font-size: 1.25rem !important; }
+            .text-4xl { font-size: 1.5rem !important; }
+            .text-5xl { font-size: 1.75rem !important; }
+            
+            /* Body text adjustments */
+            p, span, a, div { font-size: 0.85rem !important; }
+            .text-sm { font-size: 0.75rem !important; }
+            .text-xs { font-size: 0.7rem !important; }
         }
         
         @media (min-width: 769px) {
             .mobile-header {
-                display: none;
+                display: none !important;
             }
             
             .mobile-sidebar-toggle {
-                display: none;
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-header {
+                display: flex !important;
+            }
+            
+            .mobile-sidebar-toggle {
+                display: block !important;
             }
         }
         
-        /* Additional Mobile Styling */
+        /* Additional Mobile Styling - Updated for overlay */
         @media (max-width: 768px) {
             .main-content {
                 padding-top: 0 !important;
                 margin-top: 0 !important;
+                width: 100% !important;
             }
             
             /* Ensure header takes full width on mobile */
             header {
                 width: 100% !important;
+                max-width: none !important;
                 margin-left: 0 !important;
+                margin-right: 0 !important;
+                overflow-x: auto !important;
+                box-sizing: border-box !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
             
-            /* Mobile content padding */
+            /* Mobile content padding and overflow fixes */
             .p-4.md\\:p-8 {
                 padding: 1rem !important;
+                width: 100% !important;
+                max-width: none !important;
+                box-sizing: border-box !important;
+                overflow-x: auto !important;
+            }
+            
+            /* Fix dashboard content wrapper */
+            .p-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                box-sizing: border-box !important;
+                width: 100% !important;
+            }
+            
+            /* Fix all child containers - allow content to show */
+            .tab-content {
+                width: 100% !important;
+                max-width: none !important;
+                overflow-x: auto !important;
+                box-sizing: border-box !important;
+            }
+            
+            /* Fix grid layouts - remove restrictive overflow */
+            .grid {
+                width: 100% !important;
+                max-width: none !important;
+                overflow-x: auto !important;
+            }
+            
+            /* Fix cards and containers - allow content */
+            .glass, .bg-white {
+                max-width: none !important;
+                overflow-x: auto !important;
+                box-sizing: border-box !important;
             }
             
             /* Mobile responsive text */
             .text-xl.md\\:text-2xl {
                 font-size: 1.125rem !important;
+            }
+            
+            /* Prevent content from being pushed when sidebar opens */
+            #main-container {
+                overflow-x: hidden !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+            }
+            
+            #main-content {
+                transition: none !important;
+                transform: none !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+            
+            /* Fix dashboard tabs overflow */
+            .flex.gap-1, .flex.gap-2 {
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                padding-bottom: 4px !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            /* Hide scrollbar but keep functionality */
+            .flex.gap-1::-webkit-scrollbar, .flex.gap-2::-webkit-scrollbar {
+                height: 2px !important;
+            }
+            
+            .flex.gap-1::-webkit-scrollbar-thumb, .flex.gap-2::-webkit-scrollbar-thumb {
+                background-color: #cbd5e1 !important;
+                border-radius: 1px !important;
+            }
+            
+            /* Fix tab buttons */
+            .tab-button {
+                flex-shrink: 0 !important;
+                min-width: auto !important;
+                white-space: nowrap !important;
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Fix alert banners and cards */
+            .bg-green-50, .glass, .bg-white {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            /* Fix grid layouts */
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+                width: 100% !important;
+            }
+            
+            .md\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .lg\\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
             }
         }
         
@@ -296,9 +473,17 @@
         [dir="rtl"] header .flex {
             flex-direction: row-reverse;
         }
+        
+        [dir="ltr"] header .flex {
+            flex-direction: row;
+        }
 
         [dir="rtl"] .grid {
             direction: rtl;
+        }
+        
+        [dir="ltr"] .grid {
+            direction: ltr;
         }
 
         /* Button Groups */
@@ -307,10 +492,20 @@
         [dir="rtl"] .gap-4 {
             flex-direction: row-reverse;
         }
+        
+        [dir="ltr"] .gap-2,
+        [dir="ltr"] .gap-3,
+        [dir="ltr"] .gap-4 {
+            flex-direction: row;
+        }
 
         /* Ensure tab content alignment */
         [dir="rtl"] .tab-content {
             text-align: right;
+        }
+        
+        [dir="ltr"] .tab-content {
+            text-align: left;
         }
 
         [dir="rtl"] .space-x-3 > * + * {
@@ -318,9 +513,19 @@
             margin-right: 0.75rem;
         }
 
+        [dir="ltr"] .space-x-3 > * + * {
+            margin-right: 0;
+            margin-left: 0.75rem;
+        }
+
         [dir="rtl"] .space-x-4 > * + * {
             margin-left: 0;
             margin-right: 1rem;
+        }
+
+        [dir="ltr"] .space-x-4 > * + * {
+            margin-right: 0;
+            margin-left: 1rem;
         }
 
         [dir="rtl"] .ml-auto {
@@ -328,9 +533,19 @@
             margin-right: auto;
         }
 
+        [dir="ltr"] .ml-auto {
+            margin-right: 0;
+            margin-left: auto;
+        }
+
         [dir="rtl"] .mr-2 {
             margin-right: 0;
             margin-left: 0.5rem;
+        }
+
+        [dir="ltr"] .mr-2 {
+            margin-left: 0;
+            margin-right: 0.5rem;
         }
 
         [dir="rtl"] .border-r {
@@ -338,9 +553,19 @@
             border-left: 1px solid #e2e8f0;
         }
 
+        [dir="ltr"] .border-r {
+            border-left: none;
+            border-right: 1px solid #e2e8f0;
+        }
+
         [dir="rtl"] .border-l-4 {
             border-left: none;
             border-right: 4px solid;
+        }
+
+        [dir="ltr"] .border-l-4 {
+            border-right: none;
+            border-left: 4px solid;
         }
 
         [dir="rtl"] .rounded-l-lg {
@@ -349,10 +574,162 @@
             border-top-right-radius: 0.5rem;
             border-bottom-right-radius: 0.5rem;
         }
+
+        [dir="ltr"] .rounded-l-lg {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+
+        /* Main Container RTL Support - Enhanced */
+        [dir="rtl"] #main-container {
+            flex-direction: row-reverse !important;
+            direction: rtl !important;
+        }
+
+        /* LTR Main Container Support - Enhanced */
+        [dir="ltr"] #main-container {
+            flex-direction: row !important;
+            direction: ltr !important;
+        }
+
+        [dir="rtl"] #sidebar {
+            order: 2 !important;
+            border-right: none !important;
+            border-left: 1px solid #e2e8f0 !important;
+            /* Force positioning for RTL */
+            position: relative !important;
+        }
+        
+        [dir="ltr"] #sidebar {
+            order: 1 !important;
+            border-left: none !important;
+            border-right: 1px solid #e2e8f0 !important;
+            /* Force positioning for LTR */
+            position: relative !important;
+        }
+
+        [dir="rtl"] #main-content {
+            order: 1 !important;
+        }
+        
+        [dir="ltr"] #main-content {
+            order: 2 !important;
+        }
+
+        /* Desktop RTL positioning - Force sidebar to right */
+        @media (min-width: 769px) {
+            [dir="rtl"] #sidebar {
+                position: relative !important;
+                order: 2 !important;
+                left: auto !important;
+                right: auto !important;
+            }
+            
+            [dir="rtl"] #main-container {
+                flex-direction: row-reverse !important;
+            }
+            
+            /* LTR Desktop positioning - Force sidebar to left */
+            [dir="ltr"] #sidebar {
+                position: relative !important;
+                order: 1 !important;
+                left: auto !important;
+                right: auto !important;
+            }
+            
+            [dir="ltr"] #main-container {
+                flex-direction: row !important;
+            }
+            
+            /* Ensure sidebar stays in normal document flow on desktop */
+            #sidebar {
+                position: relative !important;
+                display: block !important;
+                flex-shrink: 0 !important;
+            }
+            
+            #main-content {
+                flex: 1 !important;
+            }
+        }
+
+        /* Sidebar positioning improvements */
+        [dir="rtl"] .sidebar-nav a {
+            flex-direction: row-reverse !important;
+            text-align: right !important;
+        }
+        
+        /* LTR Sidebar positioning */
+        [dir="ltr"] .sidebar-nav a {
+            flex-direction: row !important;
+            text-align: left !important;
+        }
+
+        [dir="rtl"] .sidebar-nav i {
+            margin-left: 0.75rem !important;
+            margin-right: 0 !important;
+        }
+        
+        [dir="ltr"] .sidebar-nav i {
+            margin-right: 0.75rem !important;
+            margin-left: 0 !important;
+        }
+
+        /* Mobile sidebar improvements - consolidated */
+        @media (max-width: 768px) {
+            [dir="rtl"] .mobile-sidebar-overlay {
+                right: auto !important;
+                left: auto !important;
+            }
+            
+            [dir="ltr"] .mobile-sidebar-overlay {
+                left: auto !important;
+                right: auto !important;
+            }
+        }
+
+        /* Space optimization - consolidated */
+        #sidebar {
+            width: 240px !important; /* Reduced from 264px for desktop */
+        }
+
+        @media (max-width: 768px) {
+            /* Sidebar completely hidden on mobile - no width allocation */
+            .desktop-sidebar {
+                display: none !important;
+            }
+        }
+
+        /* Enhanced mobile responsiveness */
+        @media (max-width: 480px) {
+            #sidebar {
+                width: 100vw !important; /* Full width on very small screens */
+            }
+            
+            .mobile-header {
+                padding: 0.75rem 1rem !important;
+                height: 60px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-start !important;
+            }
+            
+            .mobile-sidebar-toggle {
+                display: block !important;
+            }
+            
+            .sidebar-nav a {
+                padding: 0.875rem 1rem !important;
+                font-size: 0.9rem !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50">
     
+    <!-- Dashboard Content -->
     <div class="flex h-screen overflow-hidden" id="main-container">
         <!-- Mobile Header -->
         <div class="mobile-header">
@@ -369,7 +746,7 @@
         <div class="mobile-sidebar-overlay" onclick="closeMobileSidebar()"></div>
         
         <!-- Sidebar -->
-        <aside id="sidebar" class="w-64 bg-white border-r border-slate-200 flex-shrink-0">
+        <aside id="sidebar" class="w-60 bg-white border-r border-slate-200 flex-shrink-0 desktop-sidebar">
             <div class="p-6 border-b border-slate-200">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -415,7 +792,7 @@
                 </a>
             </nav>
             
-            <div class="absolute bottom-0 w-64 p-4 border-t border-slate-200">
+            <div class="absolute bottom-0 w-60 p-4 border-t border-slate-200">
                 <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
@@ -424,7 +801,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto main-content">
+        <main id="main-content" class="flex-1 overflow-y-auto main-content">
             <!-- Top Bar -->
             <header class="bg-white border-b border-slate-200 px-4 md:px-8 py-4">
                 <div class="flex items-center justify-between">
@@ -1423,10 +1800,19 @@ New York, NY 10001</textarea>
         </main>
     </div>
 
+    <!-- Include external RTL toggle script -->
     <script src="js/rtl-toggle.js"></script>
     <script>
+        // Use external RTL toggle script only
+
         // Initialize Charts
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize direction from localStorage first
+            const savedDirection = localStorage.getItem('textDirection') || 'ltr';
+            document.documentElement.setAttribute('dir', savedDirection);
+            document.documentElement.setAttribute('lang', savedDirection === 'rtl' ? 'ar' : 'en');
+            console.log('Initialized with direction:', savedDirection);
+            
             // Ensure default tab is visible
             const defaultTab = document.querySelector('[data-tab="overview"]');
             if (defaultTab && defaultTab.classList.contains('tab-content')) {
@@ -1500,7 +1886,7 @@ New York, NY 10001</textarea>
                 });
             }
 
-            // Main Tab Navigation
+            // Main Tab Navigation - Fixed mapping
             const mainTabMap = {
                 'My Case': 'overview',
                 'Billing': 'billing',
@@ -1510,23 +1896,49 @@ New York, NY 10001</textarea>
                 'Settings': 'settings'
             };
 
+            // Initialize main tab visibility
+            function initMainTabs() {
+                // Hide all main tab contents except overview
+                document.querySelectorAll('.tab-content[data-tab="billing"], .tab-content[data-tab="messages"], .tab-content[data-tab="documents-main"], .tab-content[data-tab="appointments"], .tab-content[data-tab="settings"]').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show overview tab by default
+                const overviewTab = document.querySelector('.tab-content[data-tab="overview"]');
+                if (overviewTab) {
+                    overviewTab.style.display = 'block';
+                }
+            }
+            
+            // Call initialization
+            initMainTabs();
+
             const sidebarLinks = document.querySelectorAll('#sidebar nav a');
-            sidebarLinks.forEach(link => {
+            console.log('Found sidebar links:', sidebarLinks.length);
+            
+            sidebarLinks.forEach((link, index) => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const tabName = this.querySelector('span').textContent.trim();
                     const targetTab = mainTabMap[tabName];
                     
+                    console.log('Sidebar link clicked:', tabName, 'Target:', targetTab);
+                    
                     if (targetTab) {
                         // Hide all main tab contents
                         document.querySelectorAll('.tab-content').forEach(content => {
                             content.style.display = 'none';
+                            content.classList.remove('active');
                         });
                         
                         // Show selected tab
                         const selectedTab = document.querySelector(`[data-tab="${targetTab}"]`);
                         if (selectedTab) {
                             selectedTab.style.display = 'block';
+                            selectedTab.classList.add('active');
+                            console.log('Showing tab:', targetTab);
+                        } else {
+                            console.error('Tab content not found for:', targetTab);
                         }
                         
                         // Update active sidebar link
@@ -1544,27 +1956,37 @@ New York, NY 10001</textarea>
                                 subTabsContainer.style.display = 'block';
                                 // If switching to My Case, show overview by default
                                 if (targetTab === 'overview') {
-                                    document.querySelector('[data-tab="overview"]').style.display = 'block';
+                                    const overviewContent = document.querySelector('[data-tab="overview"]');
+                                    if (overviewContent) {
+                                        overviewContent.style.display = 'block';
+                                    }
                                 }
                             } else {
                                 subTabsContainer.style.display = 'none';
                             }
                         }
+                    } else {
+                        console.error('No mapping found for tab:', tabName);
                     }
                 });
             });
 
-            // Sub-tab Navigation (for My Case tabs)
+            // Sub-tab Navigation (for My Case tabs) - Improved
             const subTabButtons = document.querySelectorAll('.tab-button');
-            subTabButtons.forEach(button => {
-                button.addEventListener('click', function() {
+            console.log('Found sub-tab buttons:', subTabButtons.length);
+            
+            subTabButtons.forEach((button, index) => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const targetTab = this.getAttribute('data-tab');
+                    console.log('Sub-tab clicked:', targetTab);
                     
                     // Hide all sub-tab contents
                     const subTabContents = document.querySelectorAll('[data-tab="overview"], [data-tab="timeline"], [data-tab="documents"], [data-tab="team"]');
                     subTabContents.forEach(content => {
-                        if (content.tagName !== 'BUTTON') {
+                        if (content.tagName !== 'BUTTON' && content.classList.contains('tab-content')) {
                             content.style.display = 'none';
+                            content.classList.remove('active');
                         }
                     });
                     
@@ -1572,6 +1994,10 @@ New York, NY 10001</textarea>
                     const selectedContent = document.querySelector(`.tab-content[data-tab="${targetTab}"]`);
                     if (selectedContent) {
                         selectedContent.style.display = 'block';
+                        selectedContent.classList.add('active');
+                        console.log('Showing sub-tab content:', targetTab);
+                    } else {
+                        console.error('Sub-tab content not found for:', targetTab);
                     }
                     
                     // Update active button
@@ -1584,21 +2010,30 @@ New York, NY 10001</textarea>
                 });
             });
 
-            // Settings Sub-tab Navigation
+            // Settings Sub-tab Navigation - Improved
             const settingsTabButtons = document.querySelectorAll('.settings-tab-button');
-            settingsTabButtons.forEach(button => {
-                button.addEventListener('click', function() {
+            console.log('Found settings tab buttons:', settingsTabButtons.length);
+            
+            settingsTabButtons.forEach((button, index) => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const targetTab = this.getAttribute('data-settings-tab');
+                    console.log('Settings tab clicked:', targetTab);
                     
                     // Hide all settings tab contents
                     document.querySelectorAll('.settings-tab-content').forEach(content => {
                         content.style.display = 'none';
+                        content.classList.remove('active');
                     });
                     
                     // Show selected settings tab
                     const selectedContent = document.querySelector(`.settings-tab-content[data-settings-tab="${targetTab}"]`);
                     if (selectedContent) {
                         selectedContent.style.display = 'block';
+                        selectedContent.classList.add('active');
+                        console.log('Showing settings tab content:', targetTab);
+                    } else {
+                        console.error('Settings tab content not found for:', targetTab);
                     }
                     
                     // Update active button
@@ -1611,35 +2046,91 @@ New York, NY 10001</textarea>
                 });
             });
 
-            // RTL Toggle - Enhanced initialization
-            window.alignmentManager = new AlignmentManager();
+            // RTL Toggle initialization - Use external script with fallback
+            console.log('RTL toggle will be handled by external script');
             
-            // Double-check RTL toggle button binding
+            // Fallback RTL toggle if external script fails
             setTimeout(() => {
                 const rtlBtn = document.getElementById('rtl-toggle-btn');
                 if (rtlBtn && !rtlBtn.hasAttribute('data-rtl-bound')) {
-                    rtlBtn.setAttribute('data-rtl-bound', 'true');
+                    console.log('Adding fallback RTL toggle handler');
                     rtlBtn.addEventListener('click', function(e) {
                         e.preventDefault();
-                        e.stopPropagation();
-                        console.log('RTL toggle clicked');
-                        window.alignmentManager.toggleAlignment();
-                        // Update navigation order after RTL toggle
-                        updateNavigationOrder();
+                        const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
+                        const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+                        
+                        // Set direction
+                        document.documentElement.setAttribute('dir', newDir);
+                        document.documentElement.setAttribute('lang', newDir === 'rtl' ? 'ar' : 'en');
+                        localStorage.setItem('textDirection', newDir);
+                        
+                        // Force layout reflow for sidebar positioning
+                        const mainContainer = document.getElementById('main-container');
+                        const sidebar = document.getElementById('sidebar');
+                        
+                        if (mainContainer && sidebar) {
+                            // Hide and show to trigger reflow
+                            mainContainer.style.opacity = '0';
+                            setTimeout(() => {
+                                mainContainer.style.display = 'none';
+                                mainContainer.offsetHeight; // Force reflow
+                                mainContainer.style.display = 'flex';
+                                mainContainer.style.opacity = '1';
+                            }, 10);
+                        }
+                        
+                        console.log('Direction changed to:', newDir, '- Layout updated');
                     });
+                    rtlBtn.setAttribute('data-rtl-bound', 'true');
                 }
-            }, 500);
+            }, 1000);
             
             // Initialize mobile sidebar
             initMobileSidebar();
         });
         
-        // Mobile Sidebar Functions
+        // Mobile Sidebar Functions - Enhanced
         function initMobileSidebar() {
             const toggleBtn = document.querySelector('.mobile-sidebar-toggle');
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', openMobileSidebar);
             }
+            
+            // Handle swipe gestures for mobile
+            let startX = 0;
+            let startY = 0;
+            
+            document.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+            
+            document.addEventListener('touchmove', function(e) {
+                if (!startX || !startY) return;
+                
+                const xDiff = startX - e.touches[0].clientX;
+                const yDiff = startY - e.touches[0].clientY;
+                const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+                
+                // Check if horizontal swipe is more significant than vertical
+                if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                    const sidebar = document.getElementById('sidebar');
+                    const isOpen = sidebar && sidebar.classList.contains('open');
+                    
+                    // For LTR: swipe left to close, swipe right to open
+                    // For RTL: swipe right to close, swipe left to open
+                    if (isRTL) {
+                        if (xDiff < -50 && !isOpen) openMobileSidebar(); // Swipe left to open
+                        if (xDiff > 50 && isOpen) closeMobileSidebar(); // Swipe right to close
+                    } else {
+                        if (xDiff > 50 && isOpen) closeMobileSidebar(); // Swipe left to close
+                        if (xDiff < -50 && !isOpen) openMobileSidebar(); // Swipe right to open
+                    }
+                }
+                
+                startX = 0;
+                startY = 0;
+            });
         }
         
         function openMobileSidebar() {
@@ -1650,6 +2141,9 @@ New York, NY 10001</textarea>
                 sidebar.classList.add('open');
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                
+                // Add escape key listener
+                document.addEventListener('keydown', handleEscapeKey);
             }
         }
         
@@ -1661,6 +2155,15 @@ New York, NY 10001</textarea>
                 sidebar.classList.remove('open');
                 overlay.classList.remove('active');
                 document.body.style.overflow = '';
+                
+                // Remove escape key listener
+                document.removeEventListener('keydown', handleEscapeKey);
+            }
+        }
+        
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') {
+                closeMobileSidebar();
             }
         }
         
@@ -1689,6 +2192,9 @@ New York, NY 10001</textarea>
             }
         }
     </script>
+    
+    <!-- Include main navigation scripts -->
+    <script src="js/main.js"></script>
     
 </body>
 </html>

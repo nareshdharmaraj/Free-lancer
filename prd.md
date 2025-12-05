@@ -144,34 +144,3 @@ B. Admin Dashboard (admin-dashboard.html)
     List of meetings. "Lunch with Judge Judy", "Deposition with Client X".
 
 ___________________________________________________________
-6. Prompt Instructions for GitHub Copilot
-Copy and paste these prompts sequentially into Copilot Chat:
-
-Phase 1: Setup & Design System
-"Create a file structure for a frontend website named 'Vanguard Legal'. Start with style.css and tailwind.config.js (or CDN link setup). Define a custom color palette: Navy (#0f172a) and Gold (#d97706). Set up the Google Fonts 'Playfair Display' and 'Plus Jakarta Sans'. Create a shared header and footer component in HTML that looks high-end and professional. The header must have a Globe icon for language toggling."
-
-Phase 2: The Logic (RTL Animation)
-"Write the js/language-mgr.js file. It needs to handle an LTR to RTL switch.
-Create a function toggleLanguage().
-When clicked, create a full-screen div (the curtain) that slides in from the left (0.4s).
-Once the screen is covered, switch the dir attribute on the HTML tag to 'rtl' and swap the text content of the Navbar links to Arabic (mock data).
-Then, slide the curtain out to the right (0.4s).
-Use LocalStorage to remember the choice."
-
-Phase 3: The Home Pages
-"Create index.html. It should be the 'Classic' version. Use a full-screen background image of a law library with a dark overlay. Center the text. Add a 'Stats Strip' at the bottom.
-Then create index2.html as the 'Modern' version. Use a split-screen layout (Text Left, Image Right) and a 'Bento Grid' for the features section. Make sure all buttons have a gold hover effect."
-
-Phase 4: Inner Pages
-"Create about.html with a vertical timeline animation using AOS library classes.
-Create services.html with alternating text/image rows.
-Create team.html featuring a grid of lawyers. Add a hover effect where the lawyer's image zooms in slightly and social icons appear."
-
-Phase 5: The Dashboards (Crucial)
-"Create user-dashboard.html. Use a sidebar layout. The main content should feature a 'Progress Timeline' with 5 steps (Discovery, Hearing, etc.) showing the current active step.
-Create admin-dashboard.html. This should be in Dark Mode. Create a data table using Tailwind for 'Active Cases' with status badges (Urgent/Pending). Add a mock 'Revenue Chart' using simple CSS bars."
-
-Phase 6: Login & Utilities
-"Create login.html with a split-screen design (Image on left, Form on right). Add a tab switcher for 'Client' vs 'Admin'.
-Create a humorous 404.html showing a judge's gavel and the text 'Objection! Page Overruled'.
-Create coming-soon.html with a countdown timer."

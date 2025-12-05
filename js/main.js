@@ -23,7 +23,6 @@ class LexIconUI {
     this.initModals();
     this.initNotifications();
     this.initTabs();
-    this.initButtonHandlers();
     this.highlightActiveNav();
   }
 
@@ -360,15 +359,84 @@ class LexIconUI {
     const menu = document.getElementById('mobile-menu');
     
     if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
+      // Initialize menu state - ensure it starts closed
+      menu.setAttribute('data-mobile-open', 'false');
+      menu.classList.add('hidden');
+      menu.classList.remove('show');
+      
+      // Ensure icon starts as hamburger
+      const icon = toggle.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+      
+      // Main toggle handler
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         
         const icon = toggle.querySelector('i');
-        if (icon) {
-          icon.classList.toggle('fa-bars');
-          icon.classList.toggle('fa-times');
+        // Use data attribute to reliably track menu state
+        const isMenuOpen = menu.getAttribute('data-mobile-open') === 'true';
+        
+        if (isMenuOpen) {
+          // Close menu
+          this.closeMobileMenu(menu, icon);
+        } else {
+          // Open menu
+          this.openMobileMenu(menu, icon);
         }
       });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+          const icon = toggle.querySelector('i');
+          this.closeMobileMenu(menu, icon);
+        }
+      });
+      
+      // Close menu when clicking menu items (except RTL toggle)
+      const menuItems = menu.querySelectorAll('a:not(#mobile-language-toggle)');
+      menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const icon = toggle.querySelector('i');
+          this.closeMobileMenu(menu, icon);
+        });
+      });
+    }
+  }
+  
+  openMobileMenu(menu, icon) {
+    // Ensure menu is shown
+    menu.classList.remove('hidden');
+    menu.classList.add('show');
+    
+    // Set data attribute to track state
+    menu.setAttribute('data-mobile-open', 'true');
+    
+    if (icon) {
+      // Remove all possible icon classes first
+      icon.classList.remove('fa-bars', 'fa-times');
+      // Add the times/cross icon
+      icon.classList.add('fa-times');
+    }
+  }
+  
+  closeMobileMenu(menu, icon) {
+    // Ensure menu is hidden
+    menu.classList.remove('show');
+    menu.classList.add('hidden');
+    
+    // Set data attribute to track state
+    menu.setAttribute('data-mobile-open', 'false');
+    
+    if (icon) {
+      // Remove all possible icon classes first  
+      icon.classList.remove('fa-bars', 'fa-times');
+      // Add the hamburger icon
+      icon.classList.add('fa-bars');
     }
   }
 
@@ -486,18 +554,6 @@ class LexIconUI {
           targetContent.style.animation = 'fadeInUp 0.5s ease';
         }
       });
-    });
-  }
-
-  // Button Handlers
-  initButtonHandlers() {
-    // Add click handlers to all buttons without href
-    document.querySelectorAll('button:not([type="submit"]):not(.carousel-prev):not(.carousel-next)').forEach(btn => {
-      if (!btn.onclick && !btn.hasAttribute('data-modal')) {
-        btn.addEventListener('click', () => {
-          this.showNotification('Feature coming soon!', 'info');
-        });
-      }
     });
   }
 }

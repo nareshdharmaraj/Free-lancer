@@ -55,6 +55,73 @@
         #mobile-language-toggle i {
             color: #d97706;
         }
+        
+        /* Mobile navbar height reduction and responsive text */
+        @media (max-width: 768px) {
+            .navbar {
+                min-height: 50px !important;
+                padding: 0.25rem 0 !important;
+            }
+            
+            .navbar .container,
+            .navbar .max-w-7xl {
+                padding: 0.5rem 1rem !important;
+            }
+            
+            /* Mobile font size adjustments */
+            h1 { font-size: 1.5rem !important; }
+            h2 { font-size: 1.25rem !important; }
+            h3 { font-size: 1.125rem !important; }
+            h4 { font-size: 1rem !important; }
+            h5 { font-size: 0.9rem !important; }
+            h6 { font-size: 0.8rem !important; }
+            
+            .text-xl { font-size: 1rem !important; }
+            .text-2xl { font-size: 1.25rem !important; }
+            .text-3xl { font-size: 1.5rem !important; }
+            .text-4xl { font-size: 1.75rem !important; }
+            .text-5xl { font-size: 2rem !important; }
+            .text-6xl { font-size: 2.25rem !important; }
+            
+            /* Body text adjustments */
+            p, span, a, div { font-size: 0.9rem !important; }
+            .text-sm { font-size: 0.8rem !important; }
+            .text-xs { font-size: 0.75rem !important; }
+            
+            #mobile-menu {
+                background: rgba(15, 23, 42, 0.98);
+                backdrop-filter: blur(10px);
+                border-radius: 0 0 1rem 1rem;
+                padding: 1rem !important;
+                margin-top: 0.5rem !important;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+            
+            #mobile-menu.show {
+                display: block !important;
+                animation: slideDown 0.3s ease;
+            }
+            
+            /* Mobile menu text sizes */
+            #mobile-menu a {
+                font-size: 0.9rem !important;
+                padding: 0.75rem 1rem !important;
+            }
+            
+            /* Ensure mobile RTL toggle is visible */
+            #mobile-language-toggle {
+                display: block !important;
+                width: 100%;
+                font-size: 0.9rem !important;
+                padding: 0.75rem 1rem !important;
+            }
+        }
+
+        /* Add slide down animation */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -67,7 +134,7 @@
                 <div class="flex items-center">
                     <a href="index.html" class="text-2xl font-bold flex items-center space-x-2 group">
                         <i class="fas fa-balance-scale text-cyan-300 group-hover:rotate-12 transition-transform duration-300"></i>
-                        <span class="gradient-text" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
+                        <span class="gradient-text" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
                     </a>
                 </div>
                 
@@ -202,7 +269,6 @@
                 <!-- 1985 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8" data-aos="fade-right">
                     <div class="text-right md:pr-12">
-                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">1985</div>
                         <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">The Foundation</h3>
                         <p class="text-slate-600 leading-relaxed">
                             Arthur Vanguard opens a modest practice in Brooklyn, specializing in corporate law. His first case: defending a small manufacturing company against an unjust patent claim. He wins, setting the tone for decades to come.
@@ -211,7 +277,7 @@
                     <div class="md:pl-12 flex items-center">
                         <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800" alt="1985" class="rounded-lg shadow-xl w-full">
                     </div>
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">1985</div>
                 </div>
 
                 <!-- 1995 -->
@@ -220,19 +286,17 @@
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800" alt="1995" class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="order-1 md:order-2 md:pl-12">
-                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">1995</div>
                         <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Expansion & Recognition</h3>
                         <p class="text-slate-600 leading-relaxed">
                             After winning a landmark $500M verdict in a securities fraud case, LexIcon attracts national attention. The firm expands to Manhattan, hiring 15 elite attorneys from top law schools.
                         </p>
                     </div>
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">1995</div>
                 </div>
 
                 <!-- 2005 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-right">
                     <div class="text-right md:pr-12">
-                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2005</div>
                         <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Global Reach</h3>
                         <p class="text-slate-600 leading-relaxed">
                             Opening offices in London and Hong Kong, LexIcon becomes a truly international firm. The firm now handles complex cross-border M&A transactions worth billions.
@@ -241,7 +305,7 @@
                     <div class="md:pl-12 flex items-center">
                         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="2005" class="rounded-lg shadow-xl w-full">
                     </div>
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">2005</div>
                 </div>
 
                 <!-- 2010 -->
@@ -250,19 +314,17 @@
                         <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800" alt="2010" class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="order-1 md:order-2 md:pl-12">
-                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2010</div>
                         <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">The Sterling Merger</h3>
                         <p class="text-slate-600 leading-relaxed">
                             LexIcon merges with Sterling Partners, a boutique litigation firm known for their trial excellence. The combined entity now boasts 50+ attorneys and wins 94% of cases taken to trial.
                         </p>
                     </div>
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">2010</div>
                 </div>
 
                 <!-- 2018 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-right">
                     <div class="text-right md:pr-12">
-                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2018</div>
                         <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Top 100 Recognition</h3>
                         <p class="text-slate-600 leading-relaxed">
                             The firm is ranked in the Global Top 100 Law Firms by Legal 500. LexIcon's IP practice wins three landmark cases that shape technology law for the next decade.
@@ -271,7 +333,7 @@
                     <div class="md:pl-12 flex items-center">
                         <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800" alt="2018" class="rounded-lg shadow-xl w-full">
                     </div>
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">2018</div>
                 </div>
 
                 <!-- 2024 -->
@@ -280,13 +342,12 @@
                         <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=800" alt="2024" class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="order-1 md:order-2 md:pl-12">
-                        <div class="inline-block bg-amber-600 text-white px-4 py-2 rounded-full font-bold mb-4">2024</div>
                         <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Middle East Expansion</h3>
                         <p class="text-slate-600 leading-relaxed">
                             Opening a state-of-the-art office in Dubai, LexIcon now serves clients across North America, Europe, Asia, and the Middle East. The firm handles over $5 billion in annual case value.
                         </p>
                     </div>
-                    <div class="timeline-dot"></div>
+                    <div class="timeline-dot">2024</div>
                 </div>
             </div>
         </div>

@@ -20,19 +20,76 @@
             flex-direction: row-reverse;
         }
         
-        /* Sidebar RTL positioning */
-        [dir="rtl"] .h-screen {
-            flex-direction: row-reverse;
+        /* Main container base styles */
+        #main-container {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* LTR Layout - Default */
+        #main-container {
+            flex-direction: row;
+        }
+        
+        #sidebar {
+            order: 1;
+            flex-shrink: 0;
+            width: 16rem; /* 64 * 4 = 256px */
+        }
+        
+        #main-content {
+            order: 2;
+            flex: 1;
+        }
+        
+        /* RTL Layout Override */
+        [dir="rtl"] #main-container {
+            flex-direction: row-reverse !important;
         }
         
         [dir="rtl"] #sidebar {
+            order: 1 !important; /* In row-reverse, order 1 appears on right */
             border-right: none !important;
-            border-left: 1px solid #1e293b !important;
+            border-left: 1px solid #334155 !important;
+        }
+        
+        [dir="rtl"] #main-content {
+            order: 2 !important; /* In row-reverse, order 2 appears on left */
+        }
+        
+        /* LTR explicit rules */
+        [dir="ltr"] #main-container {
+            flex-direction: row !important;
         }
         
         [dir="ltr"] #sidebar {
+            order: 1 !important;
+            border-left: none !important; 
+            border-right: 1px solid #334155 !important;
+        }
+        
+        [dir="ltr"] #main-content {
+            order: 2 !important;
+        }
+        
+        /* Additional class-based targeting for JavaScript control */
+        .rtl-layout {
+            flex-direction: row-reverse !important;
+        }
+        
+        .ltr-layout {
+            flex-direction: row !important;
+        }
+        
+        .rtl-positioned {
+            border-right: none !important;
+            border-left: 1px solid #334155 !important;
+        }
+        
+        .ltr-positioned {
             border-left: none !important;
-            border-right: 1px solid #1e293b !important;
+            border-right: 1px solid #334155 !important;
         }
         
         /* Navigation items RTL */
@@ -124,18 +181,178 @@
             margin-left: 0;
             margin-right: auto;
         }
+
+        /* Desktop sidebar styles */
+        @media (min-width: 769px) {
+            #sidebar {
+                position: relative;
+                left: 0 !important;
+                right: auto !important;
+                transform: none !important;
+            }
+
+            [dir="rtl"] #sidebar {
+                position: relative;
+                left: auto !important;
+                right: 0 !important;
+                transform: none !important;
+            }
+
+            .mobile-header {
+                display: none;
+            }
+
+            .mobile-sidebar-overlay {
+                display: none;
+            }
+        }
+        
+        /* Mobile header height reduction */
+        @media (max-width: 768px) {
+            .mobile-header {
+                height: 50px !important;
+                padding: 0.5rem 1rem !important;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid #334155;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            /* Hide sidebar by default on mobile */
+            #sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 100vh;
+                width: 280px !important;
+                transition: left 0.3s ease-in-out;
+                z-index: 1001;
+                overflow-y: auto;
+            }
+
+            /* Show sidebar when open */
+            #sidebar.open {
+                left: 0;
+            }
+
+            /* Mobile overlay */
+            .mobile-sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .mobile-sidebar-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* Adjust main content for mobile header */
+            #main-content {
+                margin-top: 60px;
+                margin-left: 0 !important;
+                width: 100% !important;
+            }
+
+            /* Mobile grid improvements */
+            .admin-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Compact mobile cards */
+            .glass-dark {
+                padding: 1rem !important;
+            }
+
+            .glass-dark h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            /* Mobile font size adjustments */
+            h1 { font-size: 1.25rem !important; }
+            h2 { font-size: 1.125rem !important; }
+            h3 { font-size: 1rem !important; }
+            h4 { font-size: 0.9rem !important; }
+            h5 { font-size: 0.8rem !important; }
+            h6 { font-size: 0.75rem !important; }
+            
+            .text-xl { font-size: 1rem !important; }
+            .text-2xl { font-size: 1.125rem !important; }
+            .text-3xl { font-size: 1.25rem !important; }
+            .text-4xl { font-size: 1.5rem !important; }
+            .text-5xl { font-size: 1.75rem !important; }
+            
+            /* Body text adjustments */
+            p, span, a, div { font-size: 0.85rem !important; }
+            .text-sm { font-size: 0.75rem !important; }
+            .text-xs { font-size: 0.7rem !important; }
+
+            /* Mobile hamburger menu styling */
+            .mobile-sidebar-toggle {
+                background: rgba(59, 130, 246, 0.1);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+                border-radius: 8px;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-sidebar-toggle:hover {
+                background: rgba(59, 130, 246, 0.2);
+                border-color: rgba(59, 130, 246, 0.5);
+            }
+
+            /* RTL adjustments for mobile sidebar */
+            [dir="rtl"] #sidebar {
+                left: auto !important;
+                right: -100% !important;
+                transform: none !important;
+            }
+
+            [dir="rtl"] #sidebar.open {
+                left: auto !important;
+                right: 0 !important;
+                transform: none !important;
+            }
+
+            /* RTL mobile header */
+            [dir="rtl"] .mobile-header {
+                flex-direction: row-reverse;
+            }
+
+            /* RTL main content adjustments */
+            [dir="rtl"] #main-content {
+                margin-right: 0 !important;
+                margin-left: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-950 dark-mode">
     
-    <div class="flex h-screen overflow-hidden" id="main-container">
+    <div id="main-container">
         <!-- Mobile Header -->
         <div class="mobile-header">
             <button class="mobile-sidebar-toggle p-2 text-white hover:text-amber-400">
                 <i class="fas fa-bars text-xl"></i>
             </button>
             <h1 class="text-lg font-bold" style="font-family: 'Playfair Display', serif;">LexIcon Admin</h1>
-            <div class="w-8"></div> <!-- Spacer -->
+            <button id="rtl-toggle-btn" class="p-2 text-white hover:text-amber-400 md:hidden">
+                <i class="fas fa-language text-lg"></i>
+            </button>
         </div>
         
         <!-- Mobile Sidebar Overlay -->
@@ -153,7 +370,7 @@
                             LexIcon
                         </h2>
                     </div>
-                    <button class="mobile-sidebar-close md:hidden p-1 text-slate-400 hover:text-white" onclick="closeAdminMobileSidebar()">
+                    <button class="mobile-sidebar-close md:hidden p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-all" onclick="closeAdminMobileSidebar()">
                         <i class="fas fa-times text-lg"></i>
                     </button>
                 </div>
@@ -193,6 +410,10 @@
             </nav>
             
             <div class="absolute bottom-0 w-64 p-4 border-t border-slate-800">
+                <button id="rtl-toggle-btn-sidebar" class="hidden md:flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg w-full mb-2">
+                    <i class="fas fa-language"></i>
+                    <span>RTL/LTR Toggle</span>
+                </button>
                 <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
@@ -201,7 +422,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto bg-slate-950 admin-main-content">
+        <main id="main-content" class="flex-1 overflow-y-auto bg-slate-950 admin-main-content">
             <!-- Top Bar -->
             <header class="bg-slate-900 border-b border-slate-800 px-4 md:px-8 py-4 hidden md:block">
                 <div class="flex items-center justify-between" id="admin-header-content">
@@ -1429,6 +1650,34 @@
         
         // Initialize tab functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Load saved RTL preference
+            const savedDirection = localStorage.getItem('textDirection') || 'ltr';
+            
+            // Apply direction attributes
+            document.documentElement.setAttribute('dir', savedDirection);
+            document.body.setAttribute('dir', savedDirection);
+            
+            // Apply layout classes
+            const mainContainer = document.getElementById('main-container');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+            
+            if (mainContainer) {
+                mainContainer.classList.add(savedDirection + '-layout');
+            }
+            if (sidebar) {
+                sidebar.classList.add(savedDirection + '-positioned');
+            }
+            if (mainContent) {
+                mainContent.classList.add(savedDirection + '-content');
+            }
+            
+            if (savedDirection !== 'ltr') {
+                updateAdminNavigationOrder();
+            }
+            
+            console.log('Initialized with direction:', savedDirection); // Debug log
+            
             // Sidebar navigation event listeners
             document.querySelectorAll('.tab-nav-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -1626,8 +1875,17 @@
             
             // RTL Toggle functionality for admin
             const adminRtlBtn = document.getElementById('rtl-toggle-btn');
+            const adminRtlSidebarBtn = document.getElementById('rtl-toggle-btn-sidebar');
+            
             if (adminRtlBtn) {
                 adminRtlBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    toggleAdminRTL();
+                });
+            }
+            
+            if (adminRtlSidebarBtn) {
+                adminRtlSidebarBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     toggleAdminRTL();
                 });
@@ -1669,14 +1927,60 @@
             const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
             const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
             
+            // Close mobile sidebar if open during direction change
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && sidebar.classList.contains('open')) {
+                closeAdminMobileSidebar();
+            }
+            
+            // Apply direction to all relevant elements
             document.documentElement.setAttribute('dir', newDir);
             document.body.setAttribute('dir', newDir);
+            
+            // Force immediate layout update
+            const mainContainer = document.getElementById('main-container');
+            if (mainContainer) {
+                // Remove and re-add CSS classes to force reflow
+                mainContainer.style.display = 'block';
+                void mainContainer.offsetHeight; // Force reflow
+                mainContainer.style.display = 'flex';
+                
+                // Add specific direction class for additional CSS targeting
+                mainContainer.classList.remove('rtl-layout', 'ltr-layout');
+                mainContainer.classList.add(newDir + '-layout');
+            }
+            
+            // Update sidebar positioning
+            if (sidebar) {
+                sidebar.classList.remove('rtl-positioned', 'ltr-positioned');
+                sidebar.classList.add(newDir + '-positioned');
+            }
+            
+            // Update main content
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.classList.remove('rtl-content', 'ltr-content');
+                mainContent.classList.add(newDir + '-content');
+            }
             
             // Update admin navigation order
             updateAdminNavigationOrder();
             
             // Save preference
             localStorage.setItem('textDirection', newDir);
+            
+            // Update RTL toggle button text/icon if needed
+            const rtlButtons = document.querySelectorAll('#rtl-toggle-btn, #rtl-toggle-btn-sidebar');
+            rtlButtons.forEach(btn => {
+                if (btn) {
+                    const span = btn.querySelector('span');
+                    if (span) {
+                        span.textContent = newDir === 'rtl' ? 'Switch to LTR' : 'Switch to RTL';
+                    }
+                }
+            });
+            
+            console.log('Direction changed to:', newDir); // Debug log
         }
         
         // Admin RTL Navigation Order Function
@@ -1701,6 +2005,10 @@
             }
         }
     </script>
+    
+    <!-- Include main navigation scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
     
 </body>
 </html>
