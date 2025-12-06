@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - TasteIT</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Add padding to body for fixed navbar */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Mobile Menu Behavior */
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: block !important;
+        }
+
+        /* Desktop Menu Visibility */
+        @media (min-width: 769px) {
+            #desktopMenu {
+                display: flex !important;
+            }
+
+            #mobileMenuButton {
+                display: none !important;
+            }
+        }
+
+        /* Mobile Menu Button Visibility */
+        @media (max-width: 768px) {
+            #mobileMenuButton {
+                display: block !important;
+            }
+
+            #desktopMenu {
+                display: none !important;
+            }
+        }
+
+        .menu-hero {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.9), rgba(44, 62, 80, 0.9)),
+                url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .menu-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .menu-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .menu-section {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-primary);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-4xl);
+        }
+
+        .menu-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .menu-card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: var(--secondary-dark);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 0.875rem;
+            box-shadow: var(--shadow-md);
+            z-index: 1;
+        }
+
+        .menu-card-body {
+            padding: var(--spacing-lg);
+            position: relative;
+        }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-sm);
+            gap: var(--spacing-md);
+        }
+
+        .menu-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .menu-card-price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .menu-card-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .menu-card-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-md);
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .btn-add-cart:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .menu-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-title {
+                font-size: 1.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="flex justify-between items-center" style="padding: 1rem 0;">
+                <div class="navbar-brand">
+                    <i class="fas fa-utensils"></i>
+                    TasteIT
+                </div>
+
+                <!-- Desktop Menu -->
+                <ul class="navbar-nav" style="display: none;" id="desktopMenu">
+                    <li class="dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">
+                            Home
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="index2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </li>
+                    <li><a href="menu.html" class="navbar-link">Menu</a></li>
+                    <li><a href="order.html" class="navbar-link">Order</a></li>
+                    <li><a href="contact.html" class="navbar-link">Contact</a></li>
+                    <li><a href="blog.html" class="navbar-link">Blog</a></li>
+                    <li><a href="faq.html" class="navbar-link">FAQ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">
+                            Dashboard
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item">User Dashboard</a>
+                            <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center gap-md">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme"
+                        style="width: 50px; height: 26px; background: var(--border-color); border-radius: 13px; border: none; cursor: pointer; position: relative;">
+                        <span class="theme-toggle-slider"
+                            style="position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s;"></span>
+                    </button>
+
+                    <!-- RTL Toggle -->
+                    <button id="rtlToggle" class="btn-sm"
+                        style="background: transparent; border: 2px solid var(--border-color); border-radius: var(--radius-full); padding: 0.5rem; cursor: pointer;">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+
+                    <!-- Login Button -->
+                    <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuButton" class="btn-sm"
+                        style="background: transparent; border: 2px solid var(--border-color); border-radius: var(--radius-md); padding: 0.5rem; cursor: pointer; display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden"
+            style="background: var(--bg-primary); border-top: 1px solid var(--border-color); padding: var(--spacing-lg); display: none;">
+            <ul style="list-style: none;">
+                <li style="margin-bottom: var(--spacing-sm);"><a href="index.html" class="navbar-link">Home 1</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="index2.html" class="navbar-link">Home 2</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="menu.html" class="navbar-link">Menu</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="order.html" class="navbar-link">Order</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="contact.html" class="navbar-link">Contact</a>
+                </li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="blog.html" class="navbar-link">Blog</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="faq.html" class="navbar-link">FAQ</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="user-dashboard.html" class="navbar-link">User
+                        Dashboard</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="admin-dashboard.html" class="navbar-link">Admin
+                        Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="menu-hero">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Explore our delicious selection of Indian and Chinese cuisine</p>
+        </div>
+    </section>
+
+    <!-- Menu Content -->
+    <section class="menu-section">
+        <div class="container">
+            <!-- Morning - Main Course -->
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h2 class="category-title">🌅 Morning - Main Course</h2>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Popular</span>
+                        <img src="https://images.unsplash.com/photo-1630383249896-424e482df921?w=600&q=80" alt="Masala Dosa" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Masala Dosa</h3>
+                            <div class="menu-card-price">$12</div>
+                        </div>
+                        <p class="menu-card-description">Crispy rice crepe filled with spiced potato, served with sambar and chutney</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Masala Dosa', 12)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Healthy</span>
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&q=80" alt="Idli Sambar" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Idli Sambar</h3>
+                            <div class="menu-card-price">$8</div>
+                        </div>
+                        <p class="menu-card-description">Steamed rice cakes with lentil soup and coconut chutney</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Idli Sambar', 8)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Light</span>
+                        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&q=80" alt="Poha" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Poha</h3>
+                            <div class="menu-card-price">$7</div>
+                        </div>
+                        <p class="menu-card-description">Flattened rice with peanuts, curry leaves, and spices</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Poha', 7)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Upma" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Upma</h3>
+                            <div class="menu-card-price">$7</div>
+                        </div>
+                        <p class="menu-card-description">Semolina porridge with vegetables and cashews</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Upma', 7)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Comfort Food</span>
+                        <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" alt="Congee" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Congee</h3>
+                            <div class="menu-card-price">$10</div>
+                        </div>
+                        <p class="menu-card-description">Rice porridge with chicken and ginger</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Congee', 10)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Chef's Pick</span>
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80" alt="Dim Sum Platter" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Dim Sum Platter</h3>
+                            <div class="menu-card-price">$15</div>
+                        </div>
+                        <p class="menu-card-description">Assorted steamed dumplings with soy dipping sauce</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Dim Sum Platter', 15)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Afternoon - Main Course -->
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h2 class="category-title">☀️ Afternoon - Main Course</h2>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Signature</span>
+                        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&q=80" alt="Butter Chicken" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Butter Chicken</h3>
+                            <div class="menu-card-price">$18</div>
+                        </div>
+                        <p class="menu-card-description">Tender chicken in creamy tomato sauce with butter</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Butter Chicken', 18)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Vegetarian</span>
+                        <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&q=80" alt="Paneer Tikka Masala" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Paneer Tikka Masala</h3>
+                            <div class="menu-card-price">$16</div>
+                        </div>
+                        <p class="menu-card-description">Grilled cottage cheese in spiced tomato gravy</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Paneer Tikka Masala', 16)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Popular</span>
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" alt="Biryani" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Biryani</h3>
+                            <div class="menu-card-price">$20</div>
+                        </div>
+                        <p class="menu-card-description">Fragrant basmati rice with marinated chicken and spices</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️🌶️ Spicy Level 3</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Biryani', 20)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Comfort</span>
+                        <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600&q=80" alt="Dal Makhani" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Dal Makhani</h3>
+                            <div class="menu-card-price">$14</div>
+                        </div>
+                        <p class="menu-card-description">Black lentils slow-cooked with butter and cream</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Dal Makhani', 14)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Spicy</span>
+                        <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?w=600&q=80" alt="Kung Pao Chicken" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Kung Pao Chicken</h3>
+                            <div class="menu-card-price">$17</div>
+                        </div>
+                        <p class="menu-card-description">Spicy stir-fried chicken with peanuts and vegetables</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                            <span class="meta-tag">🌶️🌶️🌶️ Spicy Level 3</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Kung Pao Chicken', 17)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Classic</span>
+                        <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="Sweet & Sour Pork" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Sweet & Sour Pork</h3>
+                            <div class="menu-card-price">$19</div>
+                        </div>
+                        <p class="menu-card-description">Crispy pork with bell peppers in tangy sauce</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Sweet & Sour Pork', 19)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evening - Main Course -->
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h2 class="category-title">🌆 Evening - Main Course</h2>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Signature</span>
+                        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600&q=80" alt="Tandoori Chicken" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Tandoori Chicken</h3>
+                            <div class="menu-card-price">$24</div>
+                        </div>
+                        <p class="menu-card-description">Clay oven-roasted chicken with aromatic spices</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Tandoori Chicken', 24)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Extra Spicy</span>
+                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&q=80" alt="Lamb Vindaloo" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Lamb Vindaloo</h3>
+                            <div class="menu-card-price">$26</div>
+                        </div>
+                        <p class="menu-card-description">Fiery Goan curry with tender lamb</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️🌶️🌶️ Spicy Level 4</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Lamb Vindaloo', 26)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Coastal</span>
+                        <img src="https://images.unsplash.com/photo-1580959375944-0b7b9f3e3a8f?w=600&q=80" alt="Fish Curry" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Fish Curry</h3>
+                            <div class="menu-card-price">$22</div>
+                        </div>
+                        <p class="menu-card-description">Fresh fish in coconut and tamarind gravy</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Fish Curry', 22)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Premium</span>
+                        <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&q=80" alt="Peking Duck" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Peking Duck</h3>
+                            <div class="menu-card-price">$35</div>
+                        </div>
+                        <p class="menu-card-description">Crispy duck with pancakes and hoisin sauce</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Peking Duck', 35)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Spicy</span>
+                        <img src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600&q=80" alt="Szechuan Beef" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Szechuan Beef</h3>
+                            <div class="menu-card-price">$23</div>
+                        </div>
+                        <p class="menu-card-description">Tender beef in spicy Szechuan peppercorn sauce</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                            <span class="meta-tag">🌶️🌶️🌶️🌶️ Spicy Level 4</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Szechuan Beef', 23)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Sweet</span>
+                        <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&q=80" alt="Honey Walnut Shrimp" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Honey Walnut Shrimp</h3>
+                            <div class="menu-card-price">$25</div>
+                        </div>
+                        <p class="menu-card-description">Crispy shrimp with candied walnuts in honey mayo</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Honey Walnut Shrimp', 25)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Night - Snacks -->
+            <div class="category-header">
+                <div class="category-icon">
+                    <i class="fas fa-cookie-bite"></i>
+                </div>
+                <h2 class="category-title">🌙 Night - Snacks</h2>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Item 1 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Bestseller</span>
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Samosa" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Samosa</h3>
+                            <div class="menu-card-price">$5</div>
+                        </div>
+                        <p class="menu-card-description">Crispy pastry filled with spiced potatoes and peas</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Samosa', 5)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&q=80" alt="Vada" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Vada</h3>
+                            <div class="menu-card-price">$6</div>
+                        </div>
+                        <p class="menu-card-description">Crispy lentil fritters served with chutney</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Vada', 6)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Crispy</span>
+                        <img src="https://images.unsplash.com/photo-1619895092538-128341789043?w=600&q=80" alt="Spring Rolls" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Spring Rolls</h3>
+                            <div class="menu-card-price">$8</div>
+                        </div>
+                        <p class="menu-card-description">Crispy vegetable rolls with sweet chili sauce</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Spring Rolls', 8)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Sharing</span>
+                        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600&q=80" alt="Kebab Platter" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Kebab Platter</h3>
+                            <div class="menu-card-price">$16</div>
+                        </div>
+                        <p class="menu-card-description">Assorted grilled kebabs with mint chutney</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇮🇳 Indian</span>
+                            <span class="meta-tag">🌶️🌶️ Spicy Level 2</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Kebab Platter', 16)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Popular</span>
+                        <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&q=80" alt="Pot Stickers" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Pot Stickers</h3>
+                            <div class="menu-card-price">$11</div>
+                        </div>
+                        <p class="menu-card-description">Pan-fried dumplings with soy-ginger sauce</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                            <span class="meta-tag">🌶️ Spicy Level 1</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Pot Stickers', 11)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="menu-card">
+                    <div style="position: relative;">
+                        <span class="menu-card-badge">Dessert</span>
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80" alt="Sesame Balls" class="menu-card-image">
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3 class="menu-card-title">Sesame Balls</h3>
+                            <div class="menu-card-price">$7</div>
+                        </div>
+                        <p class="menu-card-description">Sweet glutinous rice balls with sesame coating</p>
+                        <div class="menu-card-meta">
+                            <span class="meta-tag">🇨🇳 Chinese</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Sesame Balls', 7)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-utensils"></i> TasteIT</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.8;">Experience culinary excellence with
+                        our carefully crafted dishes made from the finest ingredients.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="order.html">Order Online</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Opening Hours</h4>
+                    <ul>
+                        <li>Monday - Friday: 9AM - 11PM</li>
+                        <li>Saturday: 10AM - 12AM</li>
+                        <li>Sunday: 10AM - 10PM</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@tasteit.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Restaurant St, Food City</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TasteIT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
+    <script>
+        function addToCart(itemName, price) {
+            if (window.TasteIT && window.TasteIT.showToast) {
+                window.TasteIT.showToast(`Added ${itemName} ($${price}) to cart!`, 'success');
+            } else {
+                alert(`Added ${itemName} ($${price}) to cart!`);
+            }
+        }
+    </script>
+</body>
+
+</html>

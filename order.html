@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Online - TasteIT</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Mobile Menu Behavior */
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: block !important;
+        }
+
+        /* Desktop Menu Visibility */
+        @media (min-width: 769px) {
+            #desktopMenu {
+                display: flex !important;
+            }
+
+            #mobileMenuButton {
+                display: none !important;
+            }
+        }
+
+        /* Mobile Menu Button Visibility */
+        @media (max-width: 768px) {
+            #mobileMenuButton {
+                display: block !important;
+            }
+
+            #desktopMenu {
+                display: none !important;
+            }
+        }
+
+        .order-hero {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.95), rgba(44, 62, 80, 0.95)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .order-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .order-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-2xl);
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .saved-items-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .saved-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .saved-item-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .saved-item-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .saved-item-card.selected {
+            border-color: var(--primary-color);
+            background: var(--bg-primary);
+        }
+
+        .saved-item-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .saved-item-body {
+            padding: var(--spacing-md);
+        }
+
+        .saved-item-name {
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.1rem;
+        }
+
+        .saved-item-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .select-btn {
+            width: 100%;
+            padding: var(--spacing-sm);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .select-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .cart-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .cart-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            transition: background var(--transition-fast);
+        }
+
+        .cart-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-sm);
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .quantity-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .quantity-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .remove-btn {
+            color: var(--error-color);
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            transition: color var(--transition-fast);
+        }
+
+        .remove-btn:hover {
+            color: var(--error-dark);
+        }
+
+        .cart-summary {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .summary-row.total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            padding-top: var(--spacing-md);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .payment-section {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .payment-method {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+            background: var(--bg-primary);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background: var(--bg-primary);
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            font-size: 1.5rem;
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .payment-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--text-secondary);
+        }
+
+        .empty-cart i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.5;
+        }
+
+        .quick-add-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .quick-add-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .quick-add-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+        }
+
+        .quick-add-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .quick-add-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .quick-add-content {
+            padding: var(--spacing-lg);
+        }
+
+        .quick-add-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .quick-add-price {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+
+        @media (max-width: 968px) {
+            .order-container {
+                grid-template-columns: 1fr;
+            }
+
+            .saved-items-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-section {
+                position: static;
+                order: -1;
+                max-height: none;
+            }
+
+            .order-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] .order-container {
+            direction: rtl;
+        }
+
+        [dir="rtl"] .cart-item {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .payment-method {
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="flex justify-between items-center" style="padding: 1rem 0;">
+                <div class="navbar-brand">
+                    <i class="fas fa-utensils"></i>
+                    TasteIT
+                </div>
+
+                <ul class="navbar-nav" style="display: none;" id="desktopMenu">
+                    <li class="dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">
+                            Home
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="index2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </li>
+                    <li><a href="menu.html" class="navbar-link">Menu</a></li>
+                    <li><a href="order.html" class="navbar-link">Order</a></li>
+                    <li><a href="contact.html" class="navbar-link">Contact</a></li>
+                    <li><a href="blog.html" class="navbar-link">Blog</a></li>
+                    <li><a href="faq.html" class="navbar-link">FAQ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">
+                            Dashboard
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item">User Dashboard</a>
+                            <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center gap-md">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme"
+                        style="width: 50px; height: 26px; background: var(--border-color); border-radius: 13px; border: none; cursor: pointer; position: relative;">
+                        <span class="theme-toggle-slider"
+                            style="position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s;"></span>
+                    </button>
+
+                    <!-- RTL Toggle -->
+                    <button id="rtlToggle" class="btn-sm"
+                        style="background: transparent; border: 2px solid var(--border-color); border-radius: var(--radius-full); padding: 0.5rem; cursor: pointer;">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+
+                    <!-- Login Button -->
+                    <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuButton" class="btn-sm"
+                        style="background: transparent; border: 2px solid var(--border-color); border-radius: var(--radius-md); padding: 0.5rem; cursor: pointer; display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden"
+            style="background: var(--bg-primary); border-top: 1px solid var(--border-color); padding: var(--spacing-lg); display: none;">
+            <ul style="list-style: none;">
+                <li style="margin-bottom: var(--spacing-sm);"><a href="index.html" class="navbar-link">Home 1</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="index2.html" class="navbar-link">Home 2</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="menu.html" class="navbar-link">Menu</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="order.html" class="navbar-link">Order</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="contact.html" class="navbar-link">Contact</a>
+                </li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="blog.html" class="navbar-link">Blog</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="faq.html" class="navbar-link">FAQ</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="user-dashboard.html" class="navbar-link">User
+                        Dashboard</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="admin-dashboard.html" class="navbar-link">Admin
+                        Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="order-hero">
+        <div class="container">
+            <h1>Order Online</h1>
+            <p style="font-size: 1.3rem; opacity: 0.95;">Fresh food delivered to your doorstep</p>
+        </div>
+    </section>
+
+    <!-- Order Content -->
+    <section style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="order-container">
+                <!-- Saved Items Section (Left) -->
+                <div class="saved-items-section">
+                    <h2><i class="fas fa-heart"></i> Saved Items</h2>
+                    <div class="saved-items-grid" id="savedItemsGrid">
+                        <!-- Saved items will be loaded here -->
+                    </div>
+                    <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                        <a href="menu.html" class="btn btn-outline btn-lg">
+                            <i class="fas fa-book-open"></i> Browse Full Menu
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cart & Payment Section (Right) -->
+                <div class="cart-section">
+                    <div class="cart-header">
+                        <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+                        <span id="cartCount" class="badge badge-primary">0</span>
+                    </div>
+
+                    <div id="cartItems"></div>
+
+                    <div id="cartSummary">
+                        <div class="cart-summary">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Delivery Fee:</span>
+                                <span id="deliveryFee">$5.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax (10%):</span>
+                                <span id="tax">$0.00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="total">$0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Payment Methods -->
+                        <div class="payment-section">
+                            <h4 style="margin-bottom: var(--spacing-md);"><i class="fas fa-credit-card"></i> Payment Method</h4>
+                            
+                            <div class="payment-method selected" onclick="selectPayment('card')">
+                                <div class="payment-icon" style="color: var(--primary-color);">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <div class="payment-name">Credit/Debit Card</div>
+                                    <div class="payment-desc">Visa, Mastercard, Amex</div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem; display: block;"></i>
+                            </div>
+
+                            <div class="payment-method" onclick="selectPayment('paypal')">
+                                <div class="payment-icon" style="color: #003087;">
+                                    <i class="fab fa-paypal"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <div class="payment-name">PayPal</div>
+                                    <div class="payment-desc">Fast & secure payment</div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem; display: none;"></i>
+                            </div>
+
+                            <div class="payment-method" onclick="selectPayment('cash')">
+                                <div class="payment-icon" style="color: var(--success-color);">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <div class="payment-name">Cash on Delivery</div>
+                                    <div class="payment-desc">Pay when you receive</div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem; display: none;"></i>
+                            </div>
+
+                            <div class="payment-method" onclick="selectPayment('wallet')">
+                                <div class="payment-icon" style="color: var(--accent-color);">
+                                    <i class="fas fa-wallet"></i>
+                                </div>
+                                <div class="payment-details">
+                                    <div class="payment-name">Digital Wallet</div>
+                                    <div class="payment-desc">Apple Pay, Google Pay</div>
+                                </div>
+                                <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem; display: none;"></i>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-lg);"
+                            onclick="checkout()">
+                            <i class="fas fa-lock"></i> Place Order Securely
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-utensils"></i> TasteIT</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7); line-height: 1.8;">Experience culinary excellence with
+                        our carefully crafted dishes.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="order.html">Order Online</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Opening Hours</h3>
+                    <ul class="footer-links">
+                        <li style="display: flex; justify-content: space-between; color: rgba(255, 255, 255, 0.7);">
+                            <span>Monday - Thursday</span>
+                            <span>11am - 10pm</span>
+                        </li>
+                        <li style="display: flex; justify-content: space-between; color: rgba(255, 255, 255, 0.7);">
+                            <span>Friday - Saturday</span>
+                            <span>11am - 11pm</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li style="color: rgba(255, 255, 255, 0.7);"><i class="fas fa-map-marker-alt"
+                                style="margin-right: 10px; color: var(--primary-color);"></i>123 Gourmet Street</li>
+                        <li style="color: rgba(255, 255, 255, 0.7);"><i class="fas fa-phone"
+                                style="margin-right: 10px; color: var(--primary-color);"></i>+1 (555) 123-4567</li>
+                        <li style="color: rgba(255, 255, 255, 0.7);"><i class="fas fa-envelope"
+                                style="margin-right: 10px; color: var(--primary-color);"></i>info@tasteit.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 TasteIT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
+
+
+    <script>
+        // Cart management with sample data
+        let cart = JSON.parse(localStorage.getItem('tasteit_cart')) || [
+            { name: "Butter Chicken", price: 18, quantity: 2, image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&q=80" },
+            { name: "Biryani", price: 20, quantity: 1, image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" },
+            { name: "Paneer Tikka Masala", price: 16, quantity: 3, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&q=80" }
+        ];
+
+        // Popular items to display
+        const popularItems = [
+            { name: "Butter Chicken", price: 18, image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&q=80", description: "Tender chicken in creamy tomato sauce" },
+            { name: "Biryani", price: 20, image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80", description: "Fragrant basmati rice with spices" },
+            { name: "Paneer Tikka Masala", price: 16, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600&q=80", description: "Grilled cottage cheese in spiced gravy" },
+            { name: "Kung Pao Chicken", price: 17, image: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=600&q=80", description: "Spicy stir-fried chicken with peanuts" },
+            { name: "Sweet & Sour Pork", price: 19, image: "https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80", description: "Crispy pork in tangy sauce" },
+            { name: "Tandoori Chicken", price: 24, image: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600&q=80", description: "Clay oven-roasted chicken" }
+        ];
+
+        // Initialize
+        let selectedPayment = 'card';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSavedItems();
+            renderCart();
+        });
+
+        // Render saved items
+        function renderSavedItems() {
+            const grid = document.getElementById('savedItemsGrid');
+            grid.innerHTML = popularItems.map(item => `
+                <div class="saved-item-card">
+                    <img src="${item.image}" alt="${item.name}" class="saved-item-image">
+                    <div class="saved-item-body">
+                        <div class="saved-item-name">${item.name}</div>
+                        <div class="saved-item-price">$${item.price}</div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: var(--spacing-md);">${item.description}</p>
+                        <button class="select-btn" onclick='addToCart(${JSON.stringify(item)})'>
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Payment selection
+        function selectPayment(method) {
+            selectedPayment = method;
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('.fa-check-circle').style.display = 'none';
+            });
+            event.currentTarget.classList.add('selected');
+            event.currentTarget.querySelector('.fa-check-circle').style.display = 'block';
+        }
+
+        // Add to cart
+        function addToCart(item) {
+            const existingItem = cart.find(i => i.name === item.name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            saveCart();
+            renderCart();
+            if (window.TasteIT) {
+                window.TasteIT.showToast(`${item.name} added to cart!`, 'success');
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+            renderCart();
+            if (window.TasteIT) {
+                window.TasteIT.showToast('Item removed from cart', 'info');
+            }
+        }
+
+        // Update quantity
+        function updateQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                removeFromCart(index);
+            } else {
+                saveCart();
+                renderCart();
+            }
+        }
+
+        // Render cart
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartSummary = document.getElementById('cartSummary');
+
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some delicious items to get started!</p>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price}</div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span class="quantity-value">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const deliveryFee = 5;
+            const tax = subtotal * 0.1;
+            const total = subtotal + deliveryFee + tax;
+
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('deliveryFee').textContent = `$${deliveryFee.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+
+            cartSummary.style.display = 'block';
+        }
+
+        // Save cart
+        function saveCart() {
+            localStorage.setItem('tasteit_cart', JSON.stringify(cart));
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                if (window.TasteIT) {
+                    window.TasteIT.showToast('Your cart is empty!', 'error');
+                }
+                return;
+            }
+
+            const paymentMethod = selectedPayment || 'card';
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (window.TasteIT) {
+                window.TasteIT.showToast(`Processing ${paymentMethod} payment of $${total.toFixed(2)}...`, 'success');
+            }
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - TasteIT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .coming-soon-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.95), rgba(44, 62, 80, 0.95)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: var(--spacing-2xl);
+        }
+
+        .coming-soon-content {
+            max-width: 700px;
+        }
+
+        .logo {
+            font-size: 5rem;
+            margin-bottom: var(--spacing-lg);
+            animation: pulse 2s infinite;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            margin: var(--spacing-3xl) 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+        }
+
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 900;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: var(--spacing-md);
+            max-width: 500px;
+            margin: var(--spacing-2xl) auto 0;
+        }
+
+        .notify-input {
+            flex: 1;
+            padding: var(--spacing-md);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius-lg);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .notify-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .notify-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="coming-soon-container">
+        <div class="coming-soon-content">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h1 style="font-size: 3.5rem; margin-bottom: var(--spacing-md);">TasteIT</h1>
+            <h2 style="font-size: 2rem; margin-bottom: var(--spacing-lg); font-weight: 400;">Something Delicious is
+                Coming</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: var(--spacing-2xl);">
+                We're cooking up something special! Our new feature will be ready soon.
+            </p>
+
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+
+            <form class="notify-form" onsubmit="notifyMe(event)">
+                <input type="email" class="notify-input" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-lg" style="background: white; color: var(--primary-color);">
+                    <i class="fas fa-bell"></i> Notify Me
+                </button>
+            </form>
+
+            <div style="margin-top: var(--spacing-3xl);">
+                <a href="index.html" class="btn btn-outline btn-lg" style="border-color: white; color: white;">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer (set to 7 days from now)
+        const countdownDate = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        function notifyMe(e) {
+            e.preventDefault();
+            alert('Thank you! We\'ll notify you when we launch.');
+            e.target.reset();
+        }
+    </script>
+</body>
+
+</html>

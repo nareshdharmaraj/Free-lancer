@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - TasteIT</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background: var(--bg-secondary);
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: var(--spacing-xl);
+            position: fixed;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            z-index: 1001;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        [dir="rtl"] .sidebar {
+            left: auto;
+            right: 0;
+        }
+
+        .sidebar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-2xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-fast);
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .main-dashboard {
+            margin-left: 250px;
+            padding: var(--spacing-md) var(--spacing-lg);
+            width: calc(100% - 250px);
+            min-height: 100vh;
+        }
+
+        [dir="rtl"] .main-dashboard {
+            margin-left: 0;
+            margin-right: 250px;
+        }
+
+        .dashboard-header {
+            background: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        @media (max-width: 1024px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .chart-card {
+            background: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            height: 100%;
+        }
+
+        .table-container {
+            background: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        [dir="rtl"] th,
+        [dir="rtl"] td {
+            text-align: right;
+        }
+
+        th {
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-dashboard {
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+                padding: var(--spacing-md);
+                padding-top: 60px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-header > div {
+                flex-direction: column;
+                align-items: flex-start !important;
+            }
+
+            .dashboard-header > div > div:last-child {
+                width: 100%;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-utensils"></i>
+                TasteIT
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="#" class="sidebar-link active"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+                <li><a href="menu.html" class="sidebar-link"><i class="fas fa-utensils"></i> Menu</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-dollar-sign"></i> Revenue</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-star"></i> Reviews</a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a></li>
+                <li style="margin-top: var(--spacing-2xl);"><a href="user-dashboard.html" class="sidebar-link"><i
+                            class="fas fa-user"></i> User View</a></li>
+                <li><a href="index.html" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-dashboard">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md);">
+                    <div>
+                        <h1 style="margin-bottom: var(--spacing-xs);">Admin Dashboard</h1>
+                        <p style="color: var(--text-secondary); margin: 0;">Manage your restaurant operations</p>
+                    </div>
+                    <div style="display: flex; gap: var(--spacing-md); align-items: center;">
+                        <button id="themeToggle" class="btn btn-outline">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button id="rtlToggle" class="btn btn-outline">
+                            <i class="fas fa-align-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #4cc9f0, #4895ef); color: white;">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-value">156</div>
+                    <div style="color: var(--text-secondary);">Total Orders Today</div>
+                    <div style="color: var(--success-color); margin-top: var(--spacing-xs); font-size: 0.875rem;">
+                        <i class="fas fa-arrow-up"></i> 23% from yesterday
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon"
+                        style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white;">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-value">$4,280</div>
+                    <div style="color: var(--text-secondary);">Revenue Today</div>
+                    <div style="color: var(--success-color); margin-top: var(--spacing-xs); font-size: 0.875rem;">
+                        <i class="fas fa-arrow-up"></i> 18% from yesterday
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #27AE60, #2ecc71); color: white;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-value">1,842</div>
+                    <div style="color: var(--text-secondary);">Total Customers</div>
+                    <div style="color: var(--success-color); margin-top: var(--spacing-xs); font-size: 0.875rem;">
+                        <i class="fas fa-arrow-up"></i> 45 new today
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #e63946, #f77f00); color: white;">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-value">4.8</div>
+                    <div style="color: var(--text-secondary);">Average Rating</div>
+                    <div style="color: var(--text-secondary); margin-top: var(--spacing-xs); font-size: 0.875rem;">
+                        Based on 342 reviews
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3 style="margin-bottom: var(--spacing-md); font-size: 1.1rem;">Revenue Overview</h3>
+                    <div style="height: 200px;">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 style="margin-bottom: var(--spacing-md); font-size: 1.1rem;">Popular Dishes</h3>
+                    <div style="height: 200px;">
+                        <canvas id="dishesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="table-container">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <h3 style="margin: 0;">Recent Orders</h3>
+                    <button class="btn btn-outline btn-sm">View All</button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#ORD-7842</td>
+                            <td>John Doe</td>
+                            <td>Butter Chicken, Naan</td>
+                            <td>$42.50</td>
+                            <td><span class="badge"
+                                    style="background: var(--warning-color); color: white; padding: 4px 12px; border-radius: 12px;">Preparing</span>
+                            </td>
+                            <td>5 mins ago</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-7841</td>
+                            <td>Jane Smith</td>
+                            <td>Kung Pao Chicken</td>
+                            <td>$28.00</td>
+                            <td><span class="badge"
+                                    style="background: var(--info-color); color: white; padding: 4px 12px; border-radius: 12px;">On
+                                    the Way</span></td>
+                            <td>12 mins ago</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-7840</td>
+                            <td>Mike Johnson</td>
+                            <td>Tandoori Chicken</td>
+                            <td>$38.00</td>
+                            <td><span class="badge"
+                                    style="background: var(--success-color); color: white; padding: 4px 12px; border-radius: 12px;">Delivered</span>
+                            </td>
+                            <td>25 mins ago</td>
+                        </tr>
+                        <tr>
+                            <td>#ORD-7839</td>
+                            <td>Sarah Williams</td>
+                            <td>Biryani, Raita</td>
+                            <td>$32.00</td>
+                            <td><span class="badge"
+                                    style="background: var(--success-color); color: white; padding: 4px 12px; border-radius: 12px;">Delivered</span>
+                            </td>
+                            <td>45 mins ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleMobileMenu() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        }
+
+        mobileMenuToggle?.addEventListener('click', toggleMobileMenu);
+        sidebarOverlay?.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                }
+            });
+        });
+
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [3200, 4100, 3800, 4500, 5200, 6100, 5800],
+                    backgroundColor: 'rgba(255, 107, 53, 0.8)',
+                    borderColor: '#FF6B35',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Popular Dishes Chart
+        const dishesCtx = document.getElementById('dishesChart').getContext('2d');
+        new Chart(dishesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Butter Chicken', 'Biryani', 'Kung Pao', 'Tandoori', 'Others'],
+                datasets: [{
+                    data: [28, 22, 18, 15, 17],
+                    backgroundColor: ['#FF6B35', '#2C3E50', '#FFD700', '#27AE60', '#4895ef']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TasteIT</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Mobile Menu Behavior */
+        #mobileMenu {
+            display: none;
+        }
+
+        #mobileMenu.show {
+            display: block !important;
+        }
+
+        /* Desktop Menu Visibility */
+        @media (min-width: 769px) {
+            #desktopMenu {
+                display: flex !important;
+            }
+
+            #mobileMenuButton {
+                display: none !important;
+            }
+        }
+
+        /* Mobile Menu Button Visibility */
+        @media (max-width: 768px) {
+            #mobileMenuButton {
+                display: block !important;
+            }
+
+            #desktopMenu {
+                display: none !important;
+            }
+        }
+
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.95), rgba(44, 62, 80, 0.95)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .blog-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: var(--spacing-xl);
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="flex justify-between items-center" style="padding: 1rem 0;">
+                <div class="navbar-brand">
+                    <i class="fas fa-utensils"></i>
+                    TasteIT
+                </div>
+
+                <!-- Desktop Menu -->
+                <ul class="navbar-nav" style="display: none;" id="desktopMenu">
+                    <li class="dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">
+                            Home
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="index2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </li>
+                    <li><a href="menu.html" class="navbar-link">Menu</a></li>
+                    <li><a href="order.html" class="navbar-link">Order</a></li>
+                    <li><a href="contact.html" class="navbar-link">Contact</a></li>
+                    <li><a href="blog.html" class="navbar-link">Blog</a></li>
+                    <li><a href="faq.html" class="navbar-link">FAQ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="navbar-link dropdown-toggle">
+                            Dashboard
+                            <i class="fas fa-chevron-down dropdown-icon"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item">User Dashboard</a>
+                            <a href="admin-dashboard.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center gap-md">
+                    <!-- Theme Toggle -->
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme"
+                        style="width: 50px; height: 26px; background: var(--border-color); border-radius: 13px; border: none; cursor: pointer; position: relative;">
+                        <span class="theme-toggle-slider"
+                            style="position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: white; border-radius: 50%; transition: transform 0.3s;"></span>
+                    </button>
+
+                    <!-- RTL Toggle -->
+                    <button id="rtlToggle" class="btn-sm"
+                        style="background: transparent; border: 2px solid var(--border-color); border-radius: var(--radius-full); padding: 0.5rem; cursor: pointer;">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+
+                    <!-- Login Button -->
+                    <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuButton" class="btn-sm"
+                        style="background: transparent; border: 2px solid var(--border-color); border-radius: var(--radius-md); padding: 0.5rem; cursor: pointer; display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden"
+            style="background: var(--bg-primary); border-top: 1px solid var(--border-color); padding: var(--spacing-lg); display: none;">
+            <ul style="list-style: none;">
+                <li style="margin-bottom: var(--spacing-sm);"><a href="index.html" class="navbar-link">Home 1</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="index2.html" class="navbar-link">Home 2</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="menu.html" class="navbar-link">Menu</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="order.html" class="navbar-link">Order</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="contact.html" class="navbar-link">Contact</a>
+                </li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="blog.html" class="navbar-link">Blog</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="faq.html" class="navbar-link">FAQ</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="user-dashboard.html" class="navbar-link">User
+                        Dashboard</a></li>
+                <li style="margin-bottom: var(--spacing-sm);"><a href="admin-dashboard.html" class="navbar-link">Admin
+                        Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="blog-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: var(--spacing-md);">Our Blog</h1>
+            <p style="font-size: 1.3rem;">Food stories, recipes, and culinary insights</p>
+        </div>
+    </section>
+
+    <section style="padding: var(--spacing-3xl) 0; background: var(--bg-secondary);">
+        <div class="container">
+            <div class="blog-grid">
+                <article class="blog-card scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80" alt="Blog"
+                        class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Dec 5, 2024</span>
+                            <span><i class="fas fa-user"></i> Chef Marco</span>
+                        </div>
+                        <h2 class="blog-title">The Art of Perfect Biryani</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">Discover the secrets
+                            behind making authentic, aromatic biryani that will transport you to the streets of
+                            Hyderabad...</p>
+                        <a href="#" class="btn btn-outline">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Blog"
+                        class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Dec 3, 2024</span>
+                            <span><i class="fas fa-user"></i> Chef Sarah</span>
+                        </div>
+                        <h2 class="blog-title">5 Chinese Cooking Techniques</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">Master the
+                            fundamental techniques that make Chinese cuisine so special, from wok hei to proper
+                            steaming...</p>
+                        <a href="#" class="btn btn-outline">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="Blog"
+                        class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Dec 1, 2024</span>
+                            <span><i class="fas fa-user"></i> Chef James</span>
+                        </div>
+                        <h2 class="blog-title">Spice Guide for Beginners</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">Learn about essential
+                            spices used in Indian and Chinese cooking, and how to use them effectively...</p>
+                        <a href="#" class="btn btn-outline">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600&q=80" alt="Blog"
+                        class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Nov 28, 2024</span>
+                            <span><i class="fas fa-user"></i> Chef Marco</span>
+                        </div>
+                        <h2 class="blog-title">Healthy Indian Breakfast Ideas</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">Start your day right
+                            with these nutritious and delicious Indian breakfast recipes...</p>
+                        <a href="#" class="btn btn-outline">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" alt="Blog"
+                        class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Nov 25, 2024</span>
+                            <span><i class="fas fa-user"></i> Chef Sarah</span>
+                        </div>
+                        <h2 class="blog-title">Dim Sum: A Complete Guide</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">Everything you need
+                            to know about dim sum, from history to the best dishes to try...</p>
+                        <a href="#" class="btn btn-outline">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card scroll-reveal">
+                    <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&q=80" alt="Blog"
+                        class="blog-image">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fas fa-calendar"></i> Nov 22, 2024</span>
+                            <span><i class="fas fa-user"></i> Chef James</span>
+                        </div>
+                        <h2 class="blog-title">Farm to Table Philosophy</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">Why we source locally
+                            and how it makes our dishes taste better and support our community...</p>
+                        <a href="#" class="btn btn-outline">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3><i class="fas fa-utensils"></i> TasteIT</h3>
+                    <p style="color: rgba(255, 255, 255, 0.7);">Experience culinary excellence.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TasteIT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/rtl-toggle.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>
