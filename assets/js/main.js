@@ -38,6 +38,23 @@ class EducationWebsite {
         this.currentDir = this.currentDir === 'ltr' ? 'rtl' : 'ltr';
         document.documentElement.setAttribute('dir', this.currentDir);
         localStorage.setItem('direction', this.currentDir);
+        
+        // Update mobile menu position when direction changes
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) {
+            const isOpen = mobileMenu.style.transform === 'translateX(0px)';
+            if (!isOpen) {
+                // Update closed state based on new direction
+                if (this.currentDir === 'rtl') {
+                    mobileMenu.classList.remove('-translate-x-full');
+                    mobileMenu.classList.add('translate-x-full');
+                } else {
+                    mobileMenu.classList.remove('translate-x-full');
+                    mobileMenu.classList.add('-translate-x-full');
+                }
+            }
+            // If menu is open, it stays open with inline style, no action needed
+        }
     }
 
     // Navigation
@@ -85,27 +102,58 @@ class EducationWebsite {
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuClose = document.getElementById('mobile-menu-close');
 
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('-translate-x-full');
+        const openMobileMenu = () => {
+            if (mobileMenu) {
+                const currentDir = document.documentElement.getAttribute('dir');
+                // Remove closed state
+                mobileMenu.classList.remove('-translate-x-full', 'translate-x-full');
+                // In RTL, menu is on right, so no translation needed (already at right:0)
+                // In LTR, menu is on left, so no translation needed (already at left:0)
+                // Just remove the hiding transform to show it
+                mobileMenu.style.transform = 'translateX(0)';
                 document.body.style.overflow = 'hidden';
+            }
+        };
+
+        const closeMobileMenu = () => {
+            if (mobileMenu) {
+                const currentDir = document.documentElement.getAttribute('dir');
+                // Reset inline style
+                mobileMenu.style.transform = '';
+                // Add appropriate closed state based on direction
+                if (currentDir === 'rtl') {
+                    mobileMenu.classList.remove('-translate-x-full');
+                    mobileMenu.classList.add('translate-x-full');
+                } else {
+                    mobileMenu.classList.remove('translate-x-full');
+                    mobileMenu.classList.add('-translate-x-full');
+                }
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        const isMobileMenuOpen = () => {
+            return mobileMenu && mobileMenu.style.transform === 'translateX(0px)';
+        };
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                openMobileMenu();
             });
         }
 
-        if (mobileMenuClose && mobileMenu) {
+        if (mobileMenuClose) {
             mobileMenuClose.addEventListener('click', () => {
-                mobileMenu.classList.add('-translate-x-full');
-                document.body.style.overflow = 'auto';
+                closeMobileMenu();
             });
         }
 
         // Close mobile menu on outside click
         document.addEventListener('click', (e) => {
-            if (mobileMenu && !mobileMenu.classList.contains('-translate-x-full') &&
+            if (isMobileMenuOpen() &&
                 !mobileMenu.contains(e.target) &&
-                !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.add('-translate-x-full');
-                document.body.style.overflow = 'auto';
+                mobileMenuBtn && !mobileMenuBtn.contains(e.target)) {
+                closeMobileMenu();
             }
         });
 

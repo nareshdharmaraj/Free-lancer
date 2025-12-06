@@ -136,19 +136,10 @@ html {
   transition: transform 0.3s ease-in-out;
 }
 
-#mobile-menu.active {
-  transform: translateX(0);
-}
-
 /* RTL Support for Mobile Menu */
 [dir="rtl"] #mobile-menu {
   left: auto;
   right: 0;
-  transform: translateX(100%);
-}
-
-[dir="rtl"] #mobile-menu.active {
-  transform: translateX(0);
 }
 
 /* RTL Support for Icons */
