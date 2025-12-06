@@ -324,7 +324,68 @@
         </div>
     </section>
 
-    <!-- Menu Content -->
+    <!-- Filter Section -->
+    <section style="background: var(--bg-secondary); padding: var(--spacing-xl) 0; position: sticky; top: 80px; z-index: 100; box-shadow: var(--shadow-md);">
+        <div class="container">
+            <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-lg); justify-content: center; align-items: center;">
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap;">
+                    <span style="font-weight: 700; color: var(--text-primary); display: flex; align-items: center;">
+                        <i class="fas fa-filter" style="margin-right: var(--spacing-xs);"></i> Filter by:
+                    </span>
+                </div>
+                
+                <!-- Time Filters -->
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; align-items: center;">
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">Time:</span>
+                    <button class="filter-btn active" data-filter="all" data-type="time" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--primary-color); background: var(--primary-color); color: white; border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        All Day
+                    </button>
+                    <button class="filter-btn" data-filter="breakfast" data-type="time" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        Breakfast
+                    </button>
+                    <button class="filter-btn" data-filter="lunch" data-type="time" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        Lunch
+                    </button>
+                    <button class="filter-btn" data-filter="dinner" data-type="time" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        Dinner
+                    </button>
+                </div>
+
+                <!-- Type Filters -->
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; align-items: center;">
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">Type:</span>
+                    <button class="filter-btn" data-filter="veg" data-type="type" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🌱 Vegetarian
+                    </button>
+                    <button class="filter-btn" data-filter="nonveg" data-type="type" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🍖 Non-Veg
+                    </button>
+                    <button class="filter-btn" data-filter="seafood" data-type="type" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🐟 Seafood
+                    </button>
+                </div>
+
+                <!-- Tradition Filters -->
+                <div style="display: flex; gap: var(--spacing-sm); flex-wrap: wrap; align-items: center;">
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">Cuisine:</span>
+                    <button class="filter-btn" data-filter="indian" data-type="tradition" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🇮🇳 Indian
+                    </button>
+                    <button class="filter-btn" data-filter="italian" data-type="tradition" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🇮🇹 Italian
+                    </button>
+                    <button class="filter-btn" data-filter="asian" data-type="tradition" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🥢 Asian
+                    </button>
+                    <button class="filter-btn" data-filter="american" data-type="tradition" style="padding: var(--spacing-sm) var(--spacing-md); border: 2px solid var(--border-color); background: transparent; color: var(--text-primary); border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; font-weight: 600;">
+                        🇺🇸 American
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
     <section class="menu-section">
         <div class="container">
             <!-- Morning - Main Course -->
@@ -953,6 +1014,111 @@
                 alert(`Added ${itemName} ($${price}) to cart!`);
             }
         }
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            let activeFilters = {
+                time: 'all',
+                type: null,
+                tradition: null
+            };
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filterType = btn.dataset.type;
+                    const filterValue = btn.dataset.filter;
+
+                    // Update active filters
+                    if (filterType === 'time') {
+                        // Remove active from all time buttons
+                        document.querySelectorAll('[data-type="time"]').forEach(b => {
+                            b.classList.remove('active');
+                            b.style.background = 'transparent';
+                            b.style.color = 'var(--text-primary)';
+                            b.style.borderColor = 'var(--border-color)';
+                        });
+                        activeFilters.time = filterValue;
+                    } else {
+                        // Toggle for type and tradition
+                        if (activeFilters[filterType] === filterValue) {
+                            activeFilters[filterType] = null;
+                            btn.classList.remove('active');
+                            btn.style.background = 'transparent';
+                            btn.style.color = 'var(--text-primary)';
+                            btn.style.borderColor = 'var(--border-color)';
+                        } else {
+                            // Remove active from other buttons of same type
+                            document.querySelectorAll(`[data-type="${filterType}"]`).forEach(b => {
+                                b.classList.remove('active');
+                                b.style.background = 'transparent';
+                                b.style.color = 'var(--text-primary)';
+                                b.style.borderColor = 'var(--border-color)';
+                            });
+                            activeFilters[filterType] = filterValue;
+                        }
+                    }
+
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    btn.style.background = 'var(--primary-color)';
+                    btn.style.color = 'white';
+                    btn.style.borderColor = 'var(--primary-color)';
+
+                    // Apply filters
+                    filterMenuItems();
+                });
+            });
+
+            function filterMenuItems() {
+                const menuCards = document.querySelectorAll('.menu-card');
+                
+                menuCards.forEach(card => {
+                    let show = true;
+                    const cardText = card.textContent.toLowerCase();
+                    
+                    // Time filter
+                    if (activeFilters.time !== 'all') {
+                        const section = card.closest('.menu-section');
+                        const categoryTitle = section?.querySelector('.category-title')?.textContent.toLowerCase() || '';
+                        
+                        if (activeFilters.time === 'breakfast' && !categoryTitle.includes('morning')) {
+                            show = false;
+                        } else if (activeFilters.time === 'lunch' && !categoryTitle.includes('afternoon')) {
+                            show = false;
+                        } else if (activeFilters.time === 'dinner' && !categoryTitle.includes('evening')) {
+                            show = false;
+                        }
+                    }
+                    
+                    // Type filter
+                    if (activeFilters.type) {
+                        if (activeFilters.type === 'veg' && cardText.includes('chicken') || cardText.includes('steak') || cardText.includes('pork') || cardText.includes('beef')) {
+                            show = false;
+                        } else if (activeFilters.type === 'nonveg' && !(cardText.includes('chicken') || cardText.includes('steak') || cardText.includes('pork') || cardText.includes('beef'))) {
+                            show = false;
+                        } else if (activeFilters.type === 'seafood' && !(cardText.includes('fish') || cardText.includes('salmon') || cardText.includes('prawn') || cardText.includes('seafood'))) {
+                            show = false;
+                        }
+                    }
+                    
+                    // Tradition filter
+                    if (activeFilters.tradition) {
+                        if (activeFilters.tradition === 'indian' && !cardText.includes('indian')) {
+                            show = false;
+                        } else if (activeFilters.tradition === 'italian' && !cardText.includes('italian')) {
+                            show = false;
+                        } else if (activeFilters.tradition === 'asian' && !(cardText.includes('chinese') || cardText.includes('thai') || cardText.includes('japanese'))) {
+                            show = false;
+                        } else if (activeFilters.tradition === 'american' && !cardText.includes('american')) {
+                            show = false;
+                        }
+                    }
+                    
+                    card.style.display = show ? 'block' : 'none';
+                });
+            }
+        });
     </script>
 </body>
 

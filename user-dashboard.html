@@ -24,7 +24,7 @@
         .sidebar {
             background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: var(--spacing-xl);
+            padding: var(--spacing-md);
             position: fixed;
             width: 250px;
             height: 100vh;
@@ -33,6 +33,11 @@
             top: 0;
             z-index: 1000;
             transition: transform 0.3s ease;
+        }
+
+        [dir="rtl"] .mobile-menu-toggle {
+            left: auto;
+            right: var(--spacing-md);
         }
 
         .mobile-menu-toggle {
@@ -63,12 +68,12 @@
         }
 
         .sidebar-brand {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: var(--spacing-2xl);
+            margin-bottom: var(--spacing-md);
             display: flex;
             align-items: center;
-            gap: var(--spacing-md);
+            gap: var(--spacing-sm);
         }
 
         .sidebar-nav {
@@ -83,12 +88,13 @@
         .sidebar-link {
             display: flex;
             align-items: center;
-            gap: var(--spacing-md);
-            padding: var(--spacing-md);
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             border-radius: var(--radius-lg);
             transition: all var(--transition-fast);
+            font-size: 0.95rem;
         }
 
         .sidebar-link:hover,
@@ -116,17 +122,17 @@
 
         .dashboard-header {
             background: var(--bg-primary);
-            padding: var(--spacing-lg);
+            padding: var(--spacing-md);
             border-radius: var(--radius-lg);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
             box-shadow: var(--shadow-lg);
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
         }
 
         @media (max-width: 1200px) {
@@ -137,7 +143,7 @@
 
         .stat-card {
             background: var(--bg-primary);
-            padding: var(--spacing-lg);
+            padding: var(--spacing-md);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
             transition: all var(--transition-base);
@@ -149,27 +155,27 @@
         }
 
         .stat-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
         }
 
         .stat-value {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: 0;
         }
 
         .charts-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
         }
 
         @media (max-width: 1024px) {
@@ -180,7 +186,7 @@
 
         .chart-card {
             background: var(--bg-primary);
-            padding: var(--spacing-lg);
+            padding: var(--spacing-md);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-md);
             height: 100%;
@@ -286,7 +292,7 @@
 
         .order-card {
             background: var(--bg-primary);
-            padding: var(--spacing-md) var(--spacing-lg);
+            padding: var(--spacing-sm) var(--spacing-md);
             border-radius: var(--radius-lg);
             margin-bottom: var(--spacing-sm);
             box-shadow: var(--shadow-md);
@@ -295,6 +301,16 @@
 
         .order-card:hover {
             box-shadow: var(--shadow-lg);
+        }
+
+        .chart-card h3,
+        .chart-card h4,
+        .chart-card h5 {
+            line-height: 1.3;
+        }
+
+        .chart-card p {
+            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
@@ -364,6 +380,9 @@
             <div class="sidebar-brand">
                 <i class="fas fa-utensils"></i>
                 TasteIT
+            </div>
+            <div style="text-align: center; padding: var(--spacing-sm) var(--spacing-md); background: rgba(255, 255, 255, 0.1); border-radius: var(--radius-md); margin-bottom: var(--spacing-lg); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">
+                USER DASHBOARD
             </div>
 
             <ul class="sidebar-nav">
@@ -471,6 +490,87 @@
                         <canvas id="spendingChart"></canvas>
                     </div>
                 </div>
+            </div>
+
+            <!-- Order Tracking -->
+            <div class="chart-card" style="grid-column: 1 / -1;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                    <h3 style="margin: 0;"><i class="fas fa-shipping-fast"></i> Live Order Tracking</h3>
+                    <span class="badge" style="background: var(--warning-color); color: white; padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); font-size: 0.85rem;">In Transit</span>
+                </div>
+
+                <div style="background: var(--bg-secondary); padding: var(--spacing-md); border-radius: var(--radius-lg);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md); flex-wrap: wrap; gap: var(--spacing-md);">
+                        <div>
+                            <h4 style="margin: 0; margin-bottom: 4px; font-size: 1.1rem;">Order #ORD-7842</h4>
+                            <p style="color: var(--text-secondary); margin: 0; font-size: 0.85rem;">Estimated arrival: 15-20 min</p>
+                        </div>
+                        <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">$42.50</div>
+                    </div>
+                    
+                    <!-- Tracking Timeline - Horizontal -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); position: relative; margin-top: var(--spacing-md);">
+                        <!-- Connector Line -->
+                        <div style="position: absolute; top: 20px; left: 10%; right: 10%; height: 3px; background: linear-gradient(to right, var(--success-color) 0%, var(--success-color) 66%, var(--border-color) 66%, var(--border-color) 100%); z-index: 0;"></div>
+                        
+                        <!-- Order Placed -->
+                        <div style="text-align: center; position: relative; z-index: 1;">
+                            <div style="width: 40px; height: 40px; background: var(--success-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; margin: 0 auto var(--spacing-xs); box-shadow: 0 0 0 4px var(--bg-secondary);">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h5 style="margin: 0 0 4px 0; font-size: 0.9rem;">Order Placed</h5>
+                            <p style="color: var(--text-secondary); margin: 0; font-size: 0.75rem;">Dec 5, 7:30 PM</p>
+                        </div>
+
+                        <!-- Preparing -->
+                        <div style="text-align: center; position: relative; z-index: 1;">
+                            <div style="width: 40px; height: 40px; background: var(--success-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; margin: 0 auto var(--spacing-xs); box-shadow: 0 0 0 4px var(--bg-secondary);">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <h5 style="margin: 0 0 4px 0; font-size: 0.9rem;">Preparing</h5>
+                            <p style="color: var(--text-secondary); margin: 0; font-size: 0.75rem;">Dec 5, 7:35 PM</p>
+                        </div>
+
+                        <!-- Out for Delivery -->
+                        <div style="text-align: center; position: relative; z-index: 1;">
+                            <div style="width: 40px; height: 40px; background: var(--warning-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; margin: 0 auto var(--spacing-xs); box-shadow: 0 0 0 4px var(--bg-secondary), 0 0 0 8px rgba(255, 193, 7, 0.3); animation: pulse 2s infinite;">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <h5 style="margin: 0 0 4px 0; font-size: 0.9rem; color: var(--warning-color);">Out for Delivery</h5>
+                            <p style="color: var(--text-secondary); margin: 0; font-size: 0.75rem;">Dec 5, 7:50 PM</p>
+                        </div>
+
+                        <!-- Delivered -->
+                        <div style="text-align: center; position: relative; z-index: 1;">
+                            <div style="width: 40px; height: 40px; background: var(--bg-secondary); border: 3px solid var(--border-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 1rem; margin: 0 auto var(--spacing-xs);">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <h5 style="margin: 0 0 4px 0; font-size: 0.9rem; color: var(--text-secondary);">Delivered</h5>
+                            <p style="color: var(--text-secondary); margin: 0; font-size: 0.75rem;">Pending</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm); background: rgba(255, 193, 7, 0.1); border-left: 3px solid var(--warning-color); border-radius: var(--radius-md);">
+                        <p style="margin: 0; font-size: 0.85rem;"><strong>Delivery Partner:</strong> John Doe • <a href="tel:5551234567" style="color: var(--primary-color);">(555) 123-4567</a></p>
+                    </div>
+                </div>
+
+                <style>
+                    @keyframes pulse {
+                        0%, 100% {
+                            box-shadow: 0 0 0 4px var(--bg-secondary), 0 0 0 8px rgba(255, 193, 7, 0.3);
+                        }
+                        50% {
+                            box-shadow: 0 0 0 4px var(--bg-secondary), 0 0 0 12px rgba(255, 193, 7, 0.1);
+                        }
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .chart-card[style*="grid-column"] > div > div:first-child {
+                            grid-template-columns: repeat(2, 1fr) !important;
+                        }
+                    }
+                </style>
             </div>
 
             <!-- Recent Orders -->
