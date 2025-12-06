@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Urcourse</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                            950: '#4a044e',
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans overflow-x-hidden">
+
+    <!-- Navigation (Same as index.html) -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 transition-all duration-300 glass border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300">
+                        <span class="text-white font-heading font-bold text-xl">U</span>
+                    </div>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-gray-900 dark:text-white">
+                        Urcourse<span class="text-primary-600">.</span>
+                    </span>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <!-- Home Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 transition-colors">
+                            Home
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-48 pt-4 hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Home
+                                    Style 1</a>
+                                <a href="index2.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Home
+                                    Style 2</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="courses.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Courses</a>
+                    <a href="about.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                    <a href="pricing.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pricing</a>
+                    <a href="contact.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+                    <a href="faq.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">FAQ</a>
+
+                    <!-- Dashboard Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            Dashboard
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-48 pt-4 hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                                <a href="user-dashboard.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Student
+                                    Dashboard</a>
+                                <a href="admin-dashboard.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Admin
+                                    Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="hidden lg:flex items-center gap-4">
+                    <button id="direction-toggle"
+                        class="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <span id="direction-icon" class="text-xl">🌐</span>
+                    </button>
+                    <button id="theme-toggle"
+                        class="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="h-8 w-px bg-gray-200 dark:bg-gray-700"></div>
+                    <a href="login.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Log
+                        in</a>
+                    <a href="login.html?mode=register"
+                        class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold shadow-lg shadow-primary-500/30 transition-all hover:scale-105 active:scale-95">Sign
+                        up</a>
+                </div>
+
+                <button id="mobile-menu-btn"
+                    class="lg:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Same as index.html) -->
+    <div id="mobile-menu"
+        class="fixed inset-y-0 left-0 w-80 bg-white dark:bg-dark-card shadow-2xl z-[60] transform -translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="flex flex-col h-full">
+            <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg">
+                        <span class="text-white font-heading font-bold">U</span>
+                    </div>
+                    <span class="font-heading font-bold text-xl text-gray-900 dark:text-white">Urcourse</span>
+                </div>
+                <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 space-y-2">
+                <!-- Home Dropdown -->
+                <div>
+                    <button
+                        class="mobile-dropdown-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">
+                        Home
+                        <svg class="dropdown-icon w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-1">
+                        <a href="index.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home
+                            Style 1</a>
+                        <a href="index2.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home
+                            Style 2</a>
+                    </div>
+                </div>
+
+                <a href="courses.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Courses</a>
+                <a href="about.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">About</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Pricing</a>
+                <a href="contact.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Contact</a>
+                <a href="faq.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">FAQ</a>
+
+                <!-- Dashboard Dropdown -->
+                <div>
+                    <button
+                        class="mobile-dropdown-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">
+                        Dashboard
+                        <svg class="dropdown-icon w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-1">
+                        <a href="user-dashboard.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Student
+                            Dashboard</a>
+                        <a href="admin-dashboard.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Admin
+                            Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-100 dark:border-gray-800 space-y-4">
+                <button id="mobile-direction-toggle"
+                    class="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center gap-2">
+                    <span>🌐</span>
+                    <span class="text-sm font-medium">RTL/LTR</span>
+                </button>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="login.html"
+                        class="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-center font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Log
+                        in</a>
+                    <a href="login.html?mode=register"
+                        class="px-4 py-3 rounded-xl bg-primary-600 text-white text-center font-semibold hover:bg-primary-700 transition-colors">Sign
+                        up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="About Background" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="font-heading font-bold text-4xl md:text-6xl text-white mb-6" data-aos="fade-up">About Urcourse
+            </h1>
+            
+            <!-- Vision Section -->
+            <div class="mb-8" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="text-2xl font-bold text-primary-400 mb-3">Our Vision</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">To become the world's most accessible and impactful online learning platform, empowering millions to achieve their career goals.</p>
+            </div>
+            
+            <!-- Mission Section -->
+            <div class="h-24 flex flex-col items-center justify-center" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-2xl font-bold text-secondary-400 mb-3">Our Mission</h2>
+                <p id="typewriter-text" class="text-xl text-gray-300 max-w-2xl mx-auto font-mono"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-20 bg-white dark:bg-dark-card">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">Our Story</h2>
+                    <div class="space-y-6 text-lg text-gray-600 dark:text-gray-300">
+                        <p>Founded in 2025, Urcourse began with a simple yet ambitious goal: to bridge the gap between
+                            traditional education and the rapidly evolving demands of the modern workforce.</p>
+                        <p>What started as a small team of passionate educators has grown into a global community of
+                            over 50,000 learners. We believe that quality education should be accessible to everyone,
+                            everywhere.</p>
+                        <p>Today, we partner with industry leaders to create curriculum that is not just theoretical,
+                            but deeply practical and career-focused.</p>
+                    </div>
+                </div>
+                <div class="relative" data-aos="fade-left">
+                    <div
+                        class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Our Team" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary-500/20 rounded-full blur-3xl -z-10">
+                    </div>
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-secondary-500/20 rounded-full blur-3xl -z-10">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats (Same as index.html) -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div data-aos="fade-up">
+                    <div class="text-5xl font-bold mb-2"><span class="counter">50000</span>+</div>
+                    <div class="text-xl opacity-90">Students</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl font-bold mb-2"><span class="counter">1200</span>+</div>
+                    <div class="text-xl opacity-90">Courses</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl font-bold mb-2"><span class="counter">150</span>+</div>
+                    <div class="text-xl opacity-90">Countries</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl font-bold mb-2"><span class="counter">100</span>+</div>
+                    <div class="text-xl opacity-90">Partners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 bg-gray-50 dark:bg-dark-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4">Meet Our Team</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">The people behind the platform</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="group bg-white dark:bg-dark-card rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary-100 dark:border-primary-900">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="CEO"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-1">David Chen</h3>
+                    <p class="text-primary-600 font-medium mb-3">CEO & Founder</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Visionary leader with 15+ years in EdTech.</p>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="group bg-white dark:bg-dark-card rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-secondary-100 dark:border-secondary-900">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="CTO"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-1">Sarah Johnson</h3>
+                    <p class="text-secondary-600 font-medium mb-3">Chief Technology Officer</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Tech innovator ensuring seamless learning.</p>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="group bg-white dark:bg-dark-card rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-100 dark:border-blue-900">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Head of Content"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-1">Michael Brown</h3>
+                    <p class="text-blue-600 font-medium mb-3">Head of Content</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Curating the world's best learning materials.
+                    </p>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="group bg-white dark:bg-dark-card rounded-3xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-pink-100 dark:border-pink-900">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Head of Design"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-1">Emily Davis</h3>
+                    <p class="text-pink-600 font-medium mb-3">Head of Design</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Crafting beautiful and intuitive experiences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-6">
+                        <div
+                            class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg">
+                            <span class="text-white font-heading font-bold text-lg">U</span>
+                        </div>
+                        <span class="font-heading font-bold text-xl text-white">Urcourse</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Transform your career with expert-led courses.</p>
+                    <div class="flex items-center gap-2 text-gray-400">
+                        <span>📞</span>
+                        <a href="tel:7200754566" class="hover:text-white transition-colors">7200754566</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html" class="hover:text-primary-500 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-primary-500 transition-colors">Contact</a></li>
+                        <li><a href="faq.html" class="hover:text-primary-500 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="courses.html" class="hover:text-primary-500 transition-colors">Courses</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary-500 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Newsletter</h4>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="Enter your email"
+                            class="bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-primary-500 transition-colors">
+                        <button type="submit"
+                            class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-xl font-semibold transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Urcourse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Typewriter Effect
+        const text = "We are on a mission to democratize education and empower learners worldwide.";
+        const typewriterElement = document.getElementById('typewriter-text');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < text.length) {
+                typewriterElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        // Start typing when element is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    typeWriter();
+                    observer.disconnect();
+                }
+            });
+        });
+
+        if (typewriterElement) {
+            observer.observe(typewriterElement);
+        }
+    </script>
+</body>
+
+</html>

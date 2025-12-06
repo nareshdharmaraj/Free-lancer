@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Urcourse</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                            950: '#4a044e',
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 transition-all duration-300 glass border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300">
+                        <span class="text-white font-heading font-bold text-xl">U</span>
+                    </div>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-gray-900 dark:text-white">
+                        Urcourse<span class="text-primary-600">.</span>
+                    </span>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <!-- Home Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            Home
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-48 pt-4 hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Home
+                                    Style 1</a>
+                                <a href="index2.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Home
+                                    Style 2</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="courses.html"
+                        class="text-sm font-semibold text-primary-600 dark:text-primary-400 transition-colors">Courses</a>
+                    <a href="about.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                    <a href="pricing.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pricing</a>
+                    <a href="contact.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+                    <a href="faq.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">FAQ</a>
+
+                    <!-- Dashboard Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            Dashboard
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-48 pt-4 hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                                <a href="user-dashboard.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Student
+                                    Dashboard</a>
+                                <a href="admin-dashboard.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Admin
+                                    Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-4">
+                    <button id="direction-toggle"
+                        class="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <span id="direction-icon" class="text-xl">🌐</span>
+                    </button>
+                    <button id="theme-toggle"
+                        class="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="h-8 w-px bg-gray-200 dark:bg-gray-700"></div>
+                    <a href="login.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Log
+                        in</a>
+                    <a href="login.html?mode=register"
+                        class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold shadow-lg shadow-primary-500/30 transition-all hover:scale-105 active:scale-95">Sign
+                        up</a>
+                </div>
+
+                <button id="mobile-menu-btn"
+                    class="lg:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-y-0 left-0 w-80 bg-white dark:bg-dark-card shadow-2xl z-[60] transform -translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="flex flex-col h-full">
+            <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg">
+                        <span class="text-white font-heading font-bold">U</span>
+                    </div>
+                    <span class="font-heading font-bold text-xl text-gray-900 dark:text-white">Urcourse</span>
+                </div>
+                <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 space-y-2">
+                <!-- Home Dropdown -->
+                <div>
+                    <button
+                        class="mobile-dropdown-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">
+                        Home
+                        <svg class="dropdown-icon w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-1">
+                        <a href="index.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home
+                            Style 1</a>
+                        <a href="index2.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home
+                            Style 2</a>
+                    </div>
+                </div>
+
+                <a href="courses.html"
+                    class="block px-4 py-3 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium">Courses</a>
+                <a href="about.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">About</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Pricing</a>
+                <a href="contact.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Contact</a>
+                <a href="faq.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">FAQ</a>
+
+                <!-- Dashboard Dropdown -->
+                <div>
+                    <button
+                        class="mobile-dropdown-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">
+                        Dashboard
+                        <svg class="dropdown-icon w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-1">
+                        <a href="user-dashboard.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Student
+                            Dashboard</a>
+                        <a href="admin-dashboard.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Admin
+                            Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-100 dark:border-gray-800 space-y-4">
+                <button id="mobile-direction-toggle"
+                    class="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center gap-2">
+                    <span>🌐</span>
+                    <span class="text-sm font-medium">RTL/LTR</span>
+                </button>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="login.html"
+                        class="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-center font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Log
+                        in</a>
+                    <a href="login.html?mode=register"
+                        class="px-4 py-3 rounded-xl bg-primary-600 text-white text-center font-semibold hover:bg-primary-700 transition-colors">Sign
+                        up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <section class="pt-32 pb-20 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="Courses Background" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="font-heading font-bold text-4xl md:text-6xl text-white mb-6" data-aos="fade-up">Explore Our
+                Courses</h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Discover a wide
+                range of courses designed to help you master new skills and advance your career.</p>
+        </div>
+    </section>
+
+    <!-- Filters & Search -->
+    <section
+        class="sticky top-20 z-40 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 py-4">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <!-- Categories -->
+                <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 no-scrollbar"
+                    id="category-filters">
+                    <button data-filter="all"
+                        class="filter-btn active px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-semibold whitespace-nowrap transition-colors">All</button>
+                    <button data-filter="Development"
+                        class="filter-btn px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-semibold whitespace-nowrap transition-colors">Development</button>
+                    <button data-filter="Business"
+                        class="filter-btn px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-semibold whitespace-nowrap transition-colors">Business</button>
+                    <button data-filter="Design"
+                        class="filter-btn px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-semibold whitespace-nowrap transition-colors">Design</button>
+                    <button data-filter="Marketing"
+                        class="filter-btn px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-semibold whitespace-nowrap transition-colors">Marketing</button>
+                    <button data-filter="Technology"
+                        class="filter-btn px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-semibold whitespace-nowrap transition-colors">Technology</button>
+                </div>
+
+                <!-- Search -->
+                <div class="relative w-full md:w-72">
+                    <input type="text" id="course-search" placeholder="Search courses..."
+                        class="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section class="py-12 bg-white dark:bg-dark-card border-b border-gray-100 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-8">Featured Learning Paths</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="learning-paths-container">
+                <!-- Path 1: Data Scientist -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-ds')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center text-primary-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full">Best
+                            Seller</span>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Data Scientist</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Master Python, Stats, ML & Viz.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">6</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">8</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$499</span>
+                    </div>
+                </div>
+
+                <!-- Path 2: Full Stack Developer -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-fs')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-secondary-100 dark:bg-secondary-900/50 flex items-center justify-center text-secondary-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Full Stack Developer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">From HTML to Backend Deployment.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">8</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">10</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$599</span>
+                    </div>
+                </div>
+
+                <!-- Path 3: UI/UX Designer -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-ui')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center text-pink-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        UI/UX Designer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Design stunning digital experiences.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">5</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">6</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$399</span>
+                    </div>
+                </div>
+
+                <!-- Path 4: Digital Marketer -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-dm')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center text-orange-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Digital Marketer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">SEO, Social Media, & Content Strategy.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">4</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">5</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$349</span>
+                    </div>
+                </div>
+
+                <!-- Path 5: Cloud Architect -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-cloud')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Cloud Architect</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Master AWS, Azure, and Google Cloud.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">7</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">9</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$699</span>
+                    </div>
+                </div>
+
+                <!-- Path 6: Cybersecurity Analyst -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-cyber')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-900/50 flex items-center justify-center text-red-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Cybersecurity Analyst</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Protect systems from digital attacks.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">6</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">7</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$549</span>
+                    </div>
+                </div>
+
+                <!-- Path 7: Product Manager -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-pm')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center text-purple-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Product Manager</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Lead products from concept to launch.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">5</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">6</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$449</span>
+                    </div>
+                </div>
+
+                <!-- Path 8: Mobile Developer -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-mobile')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center text-teal-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Mobile Developer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Build apps for iOS and Android.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">7</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">8</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$599</span>
+                    </div>
+                </div>
+
+                <!-- Path 9: Game Developer -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-game')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        Game Developer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Create immersive games with Unity.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">6</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">7</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$499</span>
+                    </div>
+                </div>
+
+                <!-- Path 10: AI Engineer -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 hover:border-primary-500 transition-colors cursor-pointer group"
+                    onclick="openModal('path-ai')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div
+                            class="w-12 h-12 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 flex items-center justify-center text-cyan-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3
+                        class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors">
+                        AI Engineer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Build intelligent systems & agents.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-500">
+                            <span class="font-bold text-gray-900 dark:text-white">8</span> Courses • <span
+                                class="font-bold text-gray-900 dark:text-white">10</span> Months
+                        </div>
+                        <span class="font-bold text-lg text-primary-600">$799</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Grid Placeholder -->
+    <section class="py-12 bg-gray-50 dark:bg-dark-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="courses-container">
+                <!-- Course 1: Python -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Development">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Python"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Development
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.8)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Complete Python Bootcamp: Go from zero to hero in Python 3
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Master Python by building
+                            100 projects in 100 days. Learn data science, automation, and web development.</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Dr. Angela Yu</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$19.99</span>
+                        </div>
+                        <button onclick="openModal('course-python')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 2: Web Development -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Development">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Web Dev"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Development
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.9)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            The Complete 2024 Web Development Bootcamp
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Become a full-stack web
+                            developer with just one course. HTML, CSS, Javascript, Node, React, MongoDB and more!</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Jose Portilla</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$24.99</span>
+                        </div>
+                        <button onclick="openModal('course-web')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 3: Machine Learning -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Technology">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="ML"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Technology
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.5)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Machine Learning A-Z™: Hands-On Python & R In Data Science
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Learn to create Machine
+                            Learning Algorithms in Python and R from two Data Science experts.</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Kirill
+                                    Eremenko</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$14.99</span>
+                        </div>
+                        <button onclick="openModal('course-ml')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 4: React -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Development">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="React"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Development
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.7)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            React - The Complete Guide 2024 (incl. React Router & Redux)
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Dive in and learn React.js
+                            from scratch! Learn Reactjs, Hooks, Redux, React Routing, Animations, Next.js and way more!
+                        </p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Maximilian</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$29.99</span>
+                        </div>
+                        <button onclick="openModal('course-react')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 5: Java -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Development">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Java"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Development
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.6)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Java Programming Masterclass covering Java 11 & Java 17
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Learn Java In This Course
+                            And Become a Computer Programmer. Obtain valuable Core Java Skills And Java Certification.
+                        </p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Tim Buchalka</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$19.99</span>
+                        </div>
+                        <button onclick="openModal('course-java')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <!-- Course 6: Digital Marketing -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Marketing">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Marketing"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Marketing
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.8)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            The Complete Digital Marketing Course - 12 Courses in 1
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Master Digital Marketing
+                            Strategy, Social Media Marketing, SEO, YouTube, Email, Facebook Marketing, Analytics & More!
+                        </p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Rob Percival</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$22.99</span>
+                        </div>
+                        <button onclick="openModal('course-marketing')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 7: AWS -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Technology">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="AWS"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Technology
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.9)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Ultimate AWS Certified Solutions Architect Associate 2024
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Full Practice Exam | Learn
+                            Cloud Computing | Pass the AWS Certified Solutions Architect Associate Certification
+                            SAA-C03!</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Stephane
+                                    Maarek</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$34.99</span>
+                        </div>
+                        <button onclick="openModal('course-aws')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 8: Flutter -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Development">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Flutter"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Development
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.6)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Flutter & Dart - The Complete Guide [2024 Edition]
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">A Complete Guide to the
+                            Flutter SDK & Flutter Framework for building native iOS and Android apps.</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Maximilian</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$18.99</span>
+                        </div>
+                        <button onclick="openModal('course-flutter')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 9: Game Dev -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Design">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556438050-95d90c412bc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Game Dev"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Design
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.8)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Complete C# Unity Game Developer 2D
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Learn Unity in C# & Code
+                            Your First Seven 2D Video Games for Web, Mac & PC. The TileVania Game Included!</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Ben Tristem</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$21.99</span>
+                        </div>
+                        <button onclick="openModal('course-game')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 10: AI -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Technology">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="AI"
+                            class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Technology
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.5)</span>
+                        </div>
+                        <h3
+                            class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Artificial Intelligence A-Z™: Learn How To Build An AI
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Combine the power of Data
+                            Science, Machine Learning and Deep Learning to create powerful AI for Real World
+                            applications!</p>
+                        <div
+                            class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Hadelin de
+                                    Ponteves</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$25.99</span>
+                        </div>
+                        <button onclick="openModal('course-ai')"
+                            class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <!-- Course 11: MBA Essentials -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Business">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="MBA" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Business
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.7)</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            MBA Essentials: Complete Business Administration Course
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Master business fundamentals including finance, marketing, operations, and strategy. Perfect for aspiring entrepreneurs.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Chris Haroun</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$39.99</span>
+                        </div>
+                        <button onclick="openModal('course-mba')" class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 12: Financial Analysis -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Business">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Finance" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Business
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.8)</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Financial Analysis & Modeling: Build Complete Financial Models
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Learn financial statement analysis, valuation, and Excel modeling used by investment bankers and analysts.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">365 Careers</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$27.99</span>
+                        </div>
+                        <button onclick="openModal('course-finance')" class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 13: Project Management -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Business">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project Management" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Business
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.6)</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Complete Project Management Professional (PMP) Certification
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Master project management methodologies including Agile, Scrum, and Waterfall. Prepare for PMP certification.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Andrew Ramdayal</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$32.99</span>
+                        </div>
+                        <button onclick="openModal('course-pmp')" class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 14: Entrepreneurship -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Business">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Entrepreneurship" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Business
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.9)</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            The Complete Entrepreneurship Course: Start Your Business
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Learn how to start, grow, and scale a successful business from idea to launch and beyond.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Chris Benjamin</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$29.99</span>
+                        </div>
+                        <button onclick="openModal('course-entrepreneur')" class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course 15: Business Strategy -->
+                <div class="course-card bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                    data-category="Business">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Strategy" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 dark:text-white">
+                            Business
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <div class="flex text-yellow-400 text-sm">★★★★☆</div>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">(4.5)</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 transition-colors line-clamp-2">
+                            Business Strategy: Competitive Advantage & Corporate Strategy
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">Learn strategic thinking, competitive analysis, and how to develop winning business strategies.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                            <div class="flex items-center gap-2">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                    alt="Instructor" class="w-8 h-8 rounded-full object-cover">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Paul Kearns</span>
+                            </div>
+                            <span class="font-bold text-lg text-primary-600">$24.99</span>
+                        </div>
+                        <button onclick="openModal('course-strategy')" class="w-full mt-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white font-semibold hover:bg-primary-600 hover:text-white transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Mentors -->
+    <section class="py-20 bg-white dark:bg-dark-card">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4">Learn from the Best</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">Our mentors are industry experts with years of
+                    experience.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Mentor 1 -->
+                <div class="text-center" data-aos="fade-up">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-primary-100 dark:border-primary-900">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Mentor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white">Dr. Angela Yu</h3>
+                    <p class="text-primary-600 text-sm font-semibold mb-2">Lead Instructor, App Brewery</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">10+ Years Experience • Ex-NHS Doctor</p>
+                    <button class="text-sm font-semibold text-primary-600 hover:text-primary-700">View Profile</button>
+                </div>
+                <!-- Mentor 2 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-secondary-100 dark:border-secondary-900">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Mentor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white">Jose Portilla</h3>
+                    <p class="text-secondary-600 text-sm font-semibold mb-2">Head of Data Science</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">15+ Years Experience • Data Scientist</p>
+                    <button class="text-sm font-semibold text-primary-600 hover:text-primary-700">View Profile</button>
+                </div>
+                <!-- Mentor 3 -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-pink-100 dark:border-pink-900">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Mentor" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white">Sarah Smith</h3>
+                    <p class="text-pink-600 text-sm font-semibold mb-2">Senior Product Designer</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">8+ Years Experience • Google</p>
+                    <button class="text-sm font-semibold text-primary-600 hover:text-primary-700">View Profile</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-6">
+                        <div
+                            class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg">
+                            <span class="text-white font-heading font-bold text-lg">U</span>
+                        </div>
+                        <span class="font-heading font-bold text-xl text-white">Urcourse</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Transform your career with expert-led courses.</p>
+                    <div class="flex items-center gap-2 text-gray-400">
+                        <span>📞</span>
+                        <a href="tel:7200754566" class="hover:text-white transition-colors">7200754566</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html" class="hover:text-primary-500 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-primary-500 transition-colors">Contact</a></li>
+                        <li><a href="faq.html" class="hover:text-primary-500 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="courses.html" class="hover:text-primary-500 transition-colors">Courses</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary-500 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Newsletter</h4>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="Enter your email"
+                            class="bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-primary-500 transition-colors">
+                        <button type="submit"
+                            class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-xl font-semibold transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Urcourse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Course Details Modal -->
+    <div id="course-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title"
+        role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900/75 transition-opacity" aria-hidden="true" onclick="closeModal()">
+            </div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div
+                class="inline-block align-bottom bg-white dark:bg-dark-card rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full border border-gray-200 dark:border-gray-700">
+                <div class="relative">
+                    <img id="modal-image" src="" alt="Course" class="w-full h-64 object-cover">
+                    <button onclick="closeModal()"
+                        class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span id="modal-category"
+                            class="px-3 py-1 rounded-full text-xs font-bold bg-primary-100 dark:bg-primary-900/50 text-primary-600">Development</span>
+                        <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                    </div>
+                    <h3 id="modal-title" class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">
+                        Course Title</h3>
+                    <p id="modal-description" class="text-gray-600 dark:text-gray-300 mb-6">Course description goes
+                        here.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Duration</p>
+                            <p class="font-bold text-gray-900 dark:text-white">12 Weeks</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Lectures</p>
+                            <p class="font-bold text-gray-900 dark:text-white">45 Lessons</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Level</p>
+                            <p class="font-bold text-gray-900 dark:text-white">Beginner</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-gray-50 dark:bg-gray-800">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Certificate</p>
+                            <p class="font-bold text-gray-900 dark:text-white">Yes</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <span id="modal-price" class="font-bold text-3xl text-primary-600">$99</span>
+                        <button
+                            class="px-8 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold shadow-lg shadow-primary-500/30 transition-all hover:scale-105">Enroll
+                            Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Course Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const courseCards = document.querySelectorAll('.course-card');
+        const searchInput = document.getElementById('course-search');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Update active button
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-primary-600', 'text-white');
+                    b.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300');
+                });
+                btn.classList.add('active', 'bg-primary-600', 'text-white');
+                btn.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-600', 'dark:text-gray-300');
+
+                // Filter courses
+                courseCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Course Search
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                courseCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        // Modal Functions
+        function openModal(courseId) {
+            const modal = document.getElementById('course-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('course-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>

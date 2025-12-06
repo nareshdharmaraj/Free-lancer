@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Urcourse</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom CSS for Sliding Animation */
+        .container-custom {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1000px;
+            min-height: 600px;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        /* LTR Styles */
+        html[dir="ltr"] .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        html[dir="ltr"] .sign-up-container {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        html[dir="ltr"] .container-custom.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+        }
+
+        html[dir="ltr"] .container-custom.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: show 0.6s;
+        }
+
+        /* RTL Styles */
+        html[dir="rtl"] .sign-in-container {
+            right: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        html[dir="rtl"] .sign-up-container {
+            right: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        html[dir="rtl"] .container-custom.right-panel-active .sign-in-container {
+            transform: translateX(-100%);
+        }
+
+        html[dir="rtl"] .container-custom.right-panel-active .sign-up-container {
+            transform: translateX(-100%);
+            opacity: 1;
+            z-index: 5;
+            animation: show 0.6s;
+        }
+
+        @keyframes show {
+
+            0%,
+            49.99% {
+                opacity: 0;
+                z-index: 1;
+            }
+
+            50%,
+            100% {
+                opacity: 1;
+                z-index: 5;
+            }
+        }
+
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+
+        /* LTR Overlay */
+        html[dir="ltr"] .overlay-container {
+            left: 50%;
+        }
+
+        html[dir="ltr"] .container-custom.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+
+        /* RTL Overlay */
+        html[dir="rtl"] .overlay-container {
+            right: 50%;
+        }
+
+        html[dir="rtl"] .container-custom.right-panel-active .overlay-container {
+            transform: translateX(100%);
+        }
+
+        .overlay {
+            background: linear-gradient(to right, #4f46e5, #c026d3);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            color: #FFFFFF;
+            position: relative;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        /* LTR Overlay Inner */
+        html[dir="ltr"] .overlay {
+            left: -100%;
+        }
+
+        html[dir="ltr"] .container-custom.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        /* RTL Overlay Inner */
+        html[dir="rtl"] .overlay {
+            right: -100%;
+        }
+
+        html[dir="rtl"] .container-custom.right-panel-active .overlay {
+            transform: translateX(-50%);
+        }
+
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        /* LTR Panels */
+        html[dir="ltr"] .overlay-left {
+            transform: translateX(-20%);
+        }
+
+        html[dir="ltr"] .container-custom.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        html[dir="ltr"] .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        html[dir="ltr"] .container-custom.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        /* RTL Panels */
+        html[dir="rtl"] .overlay-left {
+            transform: translateX(20%);
+        }
+
+        html[dir="rtl"] .container-custom.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        html[dir="rtl"] .overlay-right {
+            left: 0;
+            transform: translateX(0);
+        }
+
+        html[dir="rtl"] .container-custom.right-panel-active .overlay-right {
+            transform: translateX(-20%);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container-custom {
+                min-height: 800px;
+                max-width: 100%;
+            }
+
+            .form-container {
+                width: 100% !important;
+                height: 50%;
+                position: relative;
+                top: auto;
+                left: auto !important;
+                right: auto !important;
+                transform: none !important;
+            }
+
+            .sign-in-container {
+                order: 1;
+            }
+
+            .sign-up-container {
+                order: 2;
+                opacity: 1 !important;
+                z-index: 1 !important;
+                animation: none !important;
+            }
+
+            .overlay-container {
+                display: none;
+            }
+
+            /* Hide the overlay logic on mobile and just stack them */
+            .container-custom.right-panel-active .sign-in-container {
+                transform: none !important;
+            }
+
+            .container-custom.right-panel-active .sign-up-container {
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gray-100 dark:bg-dark-bg flex items-center justify-center min-h-screen p-4 font-sans transition-colors duration-300">
+
+    <!-- Theme & Direction Toggles (Absolute) -->
+    <div class="absolute top-6 right-6 flex items-center gap-4 z-50">
+        <button id="direction-toggle"
+            class="p-2.5 rounded-xl bg-white dark:bg-dark-card shadow-lg text-gray-500 hover:text-primary-600 transition-colors">
+            <span id="direction-icon" class="text-xl">🌐</span>
+        </button>
+        <button id="theme-toggle"
+            class="p-2.5 rounded-xl bg-white dark:bg-dark-card shadow-lg text-gray-500 hover:text-primary-600 transition-colors">
+            <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+            </svg>
+            <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707M12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Home Link -->
+    <a href="index.html"
+        class="absolute top-6 left-6 flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors z-50">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+            </path>
+        </svg>
+        <span class="font-semibold">Back to Home</span>
+    </a>
+
+    <div class="container-custom bg-white dark:bg-dark-card rounded-3xl shadow-2xl" id="container">
+
+        <!-- Sign Up Form -->
+        <div class="form-container sign-up-container">
+            <form action="#"
+                class="flex flex-col items-center justify-center h-full px-12 bg-white dark:bg-dark-card text-center">
+                <h1 class="font-heading font-bold text-3xl mb-4 text-gray-900 dark:text-white">Create Account</h1>
+                <div class="flex gap-4 mb-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.457z" />
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+                        </svg>
+                    </a>
+                </div>
+                <span class="text-sm text-gray-500 mb-4">or use your email for registration</span>
+                <input type="text" placeholder="Name"
+                    class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg px-4 py-3 mb-3 text-sm focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-white" />
+                <input type="email" placeholder="Email"
+                    class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg px-4 py-3 mb-3 text-sm focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-white" />
+                <input type="password" placeholder="Password"
+                    class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg px-4 py-3 mb-4 text-sm focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-white" />
+                <button
+                    class="px-8 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm uppercase tracking-wider transition-transform active:scale-95 shadow-lg shadow-primary-500/30">Sign
+                    Up</button>
+            </form>
+        </div>
+
+        <!-- Sign In Form -->
+        <div class="form-container sign-in-container">
+            <form action="#"
+                class="flex flex-col items-center justify-center h-full px-12 bg-white dark:bg-dark-card text-center">
+                <h1 class="font-heading font-bold text-3xl mb-4 text-gray-900 dark:text-white">Sign in</h1>
+                <div class="flex gap-4 mb-4">
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.457z" />
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+                        </svg>
+                    </a>
+                </div>
+                <span class="text-sm text-gray-500 mb-4">or use your account</span>
+                <input type="email" placeholder="Email"
+                    class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg px-4 py-3 mb-3 text-sm focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-white" />
+                <input type="password" placeholder="Password"
+                    class="w-full bg-gray-100 dark:bg-gray-800 border-none rounded-lg px-4 py-3 mb-4 text-sm focus:ring-2 focus:ring-primary-500 outline-none text-gray-900 dark:text-white" />
+                <a href="#" class="text-xs text-gray-500 mb-6 hover:text-primary-600">Forgot your password?</a>
+                <button
+                    class="px-8 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm uppercase tracking-wider transition-transform active:scale-95 shadow-lg shadow-primary-500/30">Sign
+                    In</button>
+            </form>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="font-heading font-bold text-3xl mb-4">Welcome Back!</h1>
+                    <p class="mb-8 text-white/90">To keep connected with us please login with your personal info</p>
+                    <button
+                        class="px-8 py-3 rounded-xl border-2 border-white text-white font-bold text-sm uppercase tracking-wider transition-colors hover:bg-white hover:text-primary-600"
+                        id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1 class="font-heading font-bold text-3xl mb-4">Hello, Friend!</h1>
+                    <p class="mb-8 text-white/90">Enter your personal details and start your journey with us</p>
+                    <button
+                        class="px-8 py-3 rounded-xl border-2 border-white text-white font-bold text-sm uppercase tracking-wider transition-colors hover:bg-white hover:text-primary-600"
+                        id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check local storage
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            if (html.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        });
+
+        // Direction Toggle
+        const directionToggle = document.getElementById('direction-toggle');
+
+        // Check local storage
+        if (localStorage.dir === 'rtl') {
+            html.setAttribute('dir', 'rtl');
+        } else {
+            html.setAttribute('dir', 'ltr');
+        }
+
+        directionToggle.addEventListener('click', () => {
+            const currentDir = html.getAttribute('dir');
+            const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', newDir);
+            localStorage.dir = newDir;
+        });
+
+        // Check URL for mode
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'register') {
+            container.classList.add("right-panel-active");
+        }
+    </script>
+</body>
+
+</html>

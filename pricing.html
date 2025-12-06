@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Urcourse</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75',
+                            950: '#4a044e',
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 transition-all duration-300 glass border-b border-gray-200/50 dark:border-gray-800/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div
+                        class="relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl shadow-lg group-hover:shadow-primary-500/50 transition-all duration-300">
+                        <span class="text-white font-heading font-bold text-xl">U</span>
+                    </div>
+                    <span class="font-heading font-bold text-2xl tracking-tight text-gray-900 dark:text-white">
+                        Urcourse<span class="text-primary-600">.</span>
+                    </span>
+                </a>
+
+                <div class="hidden lg:flex items-center gap-8">
+                    <!-- Home Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold text-primary-600 dark:text-primary-400 transition-colors">
+                            Home
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-48 pt-4 hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                                <a href="index.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Home
+                                    Style 1</a>
+                                <a href="index2.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Home
+                                    Style 2</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="courses.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Courses</a>
+                    <a href="about.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
+                    <a href="pricing.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pricing</a>
+                    <a href="contact.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+                    <a href="faq.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">FAQ</a>
+
+                    <!-- Dashboard Dropdown -->
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            Dashboard
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full left-0 w-48 pt-4 hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <div
+                                class="bg-white dark:bg-dark-card rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                                <a href="user-dashboard.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Student
+                                    Dashboard</a>
+                                <a href="admin-dashboard.html"
+                                    class="block px-4 py-3 text-sm text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 dark:hover:text-primary-400">Admin
+                                    Dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="hidden lg:flex items-center gap-4">
+                    <button id="direction-toggle"
+                        class="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <span id="direction-icon" class="text-xl">🌐</span>
+                    </button>
+                    <button id="theme-toggle"
+                        class="p-2.5 rounded-xl text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="h-8 w-px bg-gray-200 dark:bg-gray-700"></div>
+                    <a href="login.html"
+                        class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Log
+                        in</a>
+                    <a href="login.html?mode=register"
+                        class="px-5 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold shadow-lg shadow-primary-500/30 transition-all hover:scale-105 active:scale-95">Sign
+                        up</a>
+                </div>
+
+                <button id="mobile-menu-btn"
+                    class="lg:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-y-0 left-0 w-80 bg-white dark:bg-dark-card shadow-2xl z-[60] transform -translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="flex flex-col h-full">
+            <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg">
+                        <span class="text-white font-heading font-bold">U</span>
+                    </div>
+                    <span class="font-heading font-bold text-xl text-gray-900 dark:text-white">Urcourse</span>
+                </div>
+                <button id="mobile-menu-close" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6 space-y-2">
+                <!-- Home Dropdown -->
+                <div>
+                    <button
+                        class="mobile-dropdown-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">
+                        Home
+                        <svg class="dropdown-icon w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-1">
+                        <a href="index.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home
+                            Style 1</a>
+                        <a href="index2.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Home
+                            Style 2</a>
+                    </div>
+                </div>
+
+                <a href="courses.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Courses</a>
+                <a href="about.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">About</a>
+                <a href="pricing.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Pricing</a>
+                <a href="contact.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">Contact</a>
+                <a href="faq.html"
+                    class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">FAQ</a>
+
+                <!-- Dashboard Dropdown -->
+                <div>
+                    <button
+                        class="mobile-dropdown-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-medium">
+                        Dashboard
+                        <svg class="dropdown-icon w-4 h-4 transition-transform" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="hidden pl-4 space-y-1">
+                        <a href="user-dashboard.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Student
+                            Dashboard</a>
+                        <a href="admin-dashboard.html"
+                            class="block px-4 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400">Admin
+                            Dashboard</a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-100 dark:border-gray-800 space-y-4">
+                <button id="mobile-direction-toggle"
+                    class="w-full p-3 rounded-xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center gap-2">
+                    <span>🌐</span>
+                    <span class="text-sm font-medium">RTL/LTR</span>
+                </button>
+                <div class="grid grid-cols-2 gap-4">
+                    <a href="login.html"
+                        class="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 text-center font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Log
+                        in</a>
+                    <a href="login.html?mode=register"
+                        class="px-4 py-3 rounded-xl bg-primary-600 text-white text-center font-semibold hover:bg-primary-700 transition-colors">Sign
+                        up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <section class="pt-32 pb-20 bg-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                alt="Pricing Background" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="font-heading font-bold text-4xl md:text-6xl text-white mb-6" data-aos="fade-up">Simple Pricing
+            </h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Choose the
+                perfect plan for your learning journey. No hidden fees, cancel anytime.</p>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="py-20 bg-white dark:bg-dark-card border-b border-gray-100 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-4 text-gray-900 dark:text-white">Calculate
+                    Your ROI</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">See how much you can increase your salary by
+                    learning new skills.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Calculator Form -->
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700"
+                    data-aos="fade-right">
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-6">Select Your Courses</h3>
+                    <div class="space-y-4">
+                        <label
+                            class="flex items-center justify-between p-4 bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-primary-500 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox"
+                                    class="w-5 h-5 text-primary-600 rounded focus:ring-primary-500 roi-checkbox"
+                                    data-cost="99" data-return="18000">
+                                <div>
+                                    <p class="font-bold text-gray-900 dark:text-white">Web Development</p>
+                                    <p class="text-sm text-gray-500">Avg. Salary Increase: +$18,000</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-primary-600">$99</span>
+                        </label>
+
+                        <label
+                            class="flex items-center justify-between p-4 bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-primary-500 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox"
+                                    class="w-5 h-5 text-primary-600 rounded focus:ring-primary-500 roi-checkbox"
+                                    data-cost="129" data-return="25000">
+                                <div>
+                                    <p class="font-bold text-gray-900 dark:text-white">Data Science</p>
+                                    <p class="text-sm text-gray-500">Avg. Salary Increase: +$25,000</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-primary-600">$129</span>
+                        </label>
+
+                        <label
+                            class="flex items-center justify-between p-4 bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-primary-500 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox"
+                                    class="w-5 h-5 text-primary-600 rounded focus:ring-primary-500 roi-checkbox"
+                                    data-cost="79" data-return="12000">
+                                <div>
+                                    <p class="font-bold text-gray-900 dark:text-white">Digital Marketing</p>
+                                    <p class="text-sm text-gray-500">Avg. Salary Increase: +$12,000</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-primary-600">$79</span>
+                        </label>
+
+                        <label
+                            class="flex items-center justify-between p-4 bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-primary-500 transition-colors">
+                            <div class="flex items-center gap-4">
+                                <input type="checkbox"
+                                    class="w-5 h-5 text-primary-600 rounded focus:ring-primary-500 roi-checkbox"
+                                    data-cost="99" data-return="16000">
+                                <div>
+                                    <p class="font-bold text-gray-900 dark:text-white">UI/UX Design</p>
+                                    <p class="text-sm text-gray-500">Avg. Salary Increase: +$16,000</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-primary-600">$99</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="space-y-8" data-aos="fade-left">
+                    <div
+                        class="bg-gradient-to-br from-primary-600 to-secondary-600 rounded-3xl p-8 text-white shadow-xl">
+                        <h3 class="font-bold text-2xl mb-8">Investment vs. Returns</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between pb-4 border-b border-white/20">
+                                <span class="text-lg opacity-90">Total Investment</span>
+                                <span id="total-cost" class="text-3xl font-bold">$0</span>
+                            </div>
+
+                            <div class="flex items-center justify-between pb-4 border-b border-white/20">
+                                <span class="text-lg opacity-90">Salary Increase</span>
+                                <span id="total-return" class="text-3xl font-bold text-green-300">+$0</span>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg opacity-90">Your ROI</span>
+                                <span id="roi-percent" class="text-4xl font-bold text-yellow-300">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-500 dark:text-gray-400 text-center italic">* Estimates based on industry
+                        averages. Actual results may vary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="py-20 bg-gray-50 dark:bg-dark-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl p-8 border border-gray-100 dark:border-gray-800 hover:border-primary-500/30 transition-all hover:shadow-2xl hover:-translate-y-1"
+                    data-aos="fade-up">
+                    <div class="text-center mb-8">
+                        <h3 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">Basic</h3>
+                        <div class="flex items-center justify-center gap-1 mb-4">
+                            <span class="text-4xl font-bold text-gray-900 dark:text-white">$9</span>
+                            <span class="text-gray-500 dark:text-gray-400">/month</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Perfect for getting started</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Access to 50+ courses
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Certificate of completion
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Mobile app access
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full py-3 rounded-xl border-2 border-primary-600 text-primary-600 dark:text-primary-400 font-bold hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">Get
+                        Started</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl p-8 border-2 border-primary-500 relative transform md:-translate-y-4"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span
+                            class="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">Most
+                            Popular</span>
+                    </div>
+                    <div class="text-center mb-8">
+                        <h3 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">Pro</h3>
+                        <div class="flex items-center justify-center gap-1 mb-4">
+                            <span
+                                class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">$29</span>
+                            <span class="text-gray-500 dark:text-gray-400">/month</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Best for serious learners</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Access to all courses
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            1-on-1 mentoring
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority support
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Downloadable resources
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full py-4 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transition-all hover:scale-[1.02] active:scale-[0.98]">Get
+                        Started</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="bg-white dark:bg-dark-card rounded-3xl shadow-xl p-8 border border-gray-100 dark:border-gray-800 hover:border-primary-500/30 transition-all hover:shadow-2xl hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center mb-8">
+                        <h3 class="font-heading font-bold text-2xl text-gray-900 dark:text-white mb-4">Enterprise</h3>
+                        <div class="flex items-center justify-center gap-1 mb-4">
+                            <span class="text-4xl font-bold text-gray-900 dark:text-white">$99</span>
+                            <span class="text-gray-500 dark:text-gray-400">/month</span>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">For teams and organizations</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Unlimited team members
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Custom learning paths
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Analytics & reporting
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                            <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Dedicated account manager
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Contact
+                        Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison & Guarantee -->
+    <section class="py-20 bg-white dark:bg-dark-card">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Guarantee -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto mb-20"
+                data-aos="fade-up">
+                <div
+                    class="w-20 h-20 bg-yellow-100 dark:bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h2 class="font-heading font-bold text-3xl text-gray-900 dark:text-white mb-4">30-Day Money-Back
+                    Guarantee</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">We are confident that you
+                    will love our courses. If you are not satisfied for any reason, we will refund your full payment
+                    within the first 30 days. No questions asked.</p>
+                <a href="contact.html"
+                    class="inline-block px-8 py-3 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold hover:opacity-90 transition-opacity">Contact
+                    Support</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as index.html) -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-6">
+                        <div
+                            class="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg">
+                            <span class="text-white font-heading font-bold text-lg">U</span>
+                        </div>
+                        <span class="font-heading font-bold text-xl text-white">Urcourse</span>
+                    </a>
+                    <p class="text-gray-400 mb-4">Transform your career with expert-led courses.</p>
+                    <div class="flex items-center gap-2 text-gray-400">
+                        <span>📞</span>
+                        <a href="tel:7200754566" class="hover:text-white transition-colors">7200754566</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="about.html" class="hover:text-primary-500 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-primary-500 transition-colors">Contact</a></li>
+                        <li><a href="faq.html" class="hover:text-primary-500 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="courses.html" class="hover:text-primary-500 transition-colors">Courses</a></li>
+                        <li><a href="pricing.html" class="hover:text-primary-500 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg text-white mb-6">Newsletter</h4>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="Enter your email"
+                            class="bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-primary-500 transition-colors">
+                        <button type="submit"
+                            class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-xl font-semibold transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Urcourse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // ROI Calculator
+        const checkboxes = document.querySelectorAll('.roi-checkbox');
+        const totalCostEl = document.getElementById('total-cost');
+        const totalReturnEl = document.getElementById('total-return');
+        const roiPercentEl = document.getElementById('roi-percent');
+
+        function calculateROI() {
+            let cost = 0;
+            let returns = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    cost += parseInt(cb.dataset.cost);
+                    returns += parseInt(cb.dataset.return);
+                }
+            });
+
+            totalCostEl.innerText = '$' + cost.toLocaleString();
+            totalReturnEl.innerText = '+$' + returns.toLocaleString();
+
+            if (cost > 0) {
+                const roi = ((returns - cost) / cost) * 100;
+                roiPercentEl.innerText = Math.round(roi).toLocaleString() + '%';
+            } else {
+                roiPercentEl.innerText = '0%';
+            }
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', calculateROI);
+        });
+    </script>
+</body>
+
+</html>
