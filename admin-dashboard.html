@@ -1,182 +1,169 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attorney Portal - LexIcon</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    
+
     <style>
         /* RTL Support for Admin Dashboard */
         [dir="rtl"] {
             text-align: right;
         }
-        
-        [dir="rtl"] .flex {
-            flex-direction: row-reverse;
-        }
-        
+
+
+
         /* Main container base styles */
         #main-container {
             display: flex;
             height: 100vh;
             overflow: hidden;
         }
-        
+
         /* LTR Layout - Default */
         #main-container {
             flex-direction: row;
         }
-        
+
         #sidebar {
             order: 1;
             flex-shrink: 0;
-            width: 16rem; /* 64 * 4 = 256px */
+            width: 16rem;
+            /* 64 * 4 = 256px */
         }
-        
+
         #main-content {
             order: 2;
             flex: 1;
         }
-        
+
         /* RTL Layout Override */
-        [dir="rtl"] #main-container {
-            flex-direction: row-reverse !important;
-        }
-        
+
+
         [dir="rtl"] #sidebar {
-            order: 1 !important; /* In row-reverse, order 1 appears on right */
+            order: 1 !important;
+            /* In row-reverse, order 1 appears on right */
             border-right: none !important;
             border-left: 1px solid #334155 !important;
         }
-        
+
         [dir="rtl"] #main-content {
-            order: 2 !important; /* In row-reverse, order 2 appears on left */
+            order: 2 !important;
+            /* In row-reverse, order 2 appears on left */
         }
-        
+
         /* LTR explicit rules */
         [dir="ltr"] #main-container {
             flex-direction: row !important;
         }
-        
+
         [dir="ltr"] #sidebar {
             order: 1 !important;
-            border-left: none !important; 
+            border-left: none !important;
             border-right: 1px solid #334155 !important;
         }
-        
+
         [dir="ltr"] #main-content {
             order: 2 !important;
         }
-        
+
         /* Additional class-based targeting for JavaScript control */
-        .rtl-layout {
-            flex-direction: row-reverse !important;
-        }
-        
+
+
         .ltr-layout {
             flex-direction: row !important;
         }
-        
+
         .rtl-positioned {
             border-right: none !important;
             border-left: 1px solid #334155 !important;
         }
-        
+
         .ltr-positioned {
             border-left: none !important;
             border-right: 1px solid #334155 !important;
         }
-        
+
         /* Navigation items RTL */
-        [dir="rtl"] nav a {
-            flex-direction: row-reverse;
-        }
-        
+
+
         /* Tab navigation RTL */
-        [dir="rtl"] .border-b {
-            flex-direction: row-reverse;
-        }
-        
+
+
         [dir="rtl"] .tab-button {
             text-align: right;
         }
-        
+
         /* Grid and layout RTL */
         [dir="rtl"] .grid {
             direction: rtl;
         }
-        
+
         /* Button groups and gaps */
-        [dir="rtl"] .gap-2,
-        [dir="rtl"] .gap-3,
-        [dir="rtl"] .gap-4,
-        [dir="rtl"] .gap-6,
-        [dir="rtl"] .gap-8 {
-            flex-direction: row-reverse;
-        }
-        
+
+
         /* Table RTL */
         [dir="rtl"] table {
             direction: rtl;
         }
-        
+
         [dir="rtl"] th,
         [dir="rtl"] td {
             text-align: right;
         }
-        
+
         [dir="rtl"] .text-right {
             text-align: left;
         }
-        
+
         /* Form elements RTL */
         [dir="rtl"] input,
         [dir="rtl"] textarea,
         [dir="rtl"] select {
             text-align: right;
         }
-        
+
         /* Calendar RTL */
         [dir="rtl"] .grid-cols-7 {
             direction: rtl;
         }
-        
+
         /* Badge and status indicators */
-        [dir="rtl"] .justify-between {
-            flex-direction: row-reverse;
-        }
-        
+
+
         /* Chart containers */
         [dir="rtl"] .chart-container {
-            direction: ltr; /* Keep charts in LTR for readability */
+            direction: ltr;
+            /* Keep charts in LTR for readability */
         }
-        
+
         /* Icon positioning */
         [dir="rtl"] .mr-2 {
             margin-right: 0;
             margin-left: 0.5rem;
         }
-        
+
         [dir="rtl"] .ml-2 {
             margin-left: 0;
             margin-right: 0.5rem;
         }
-        
+
         [dir="rtl"] .mr-3 {
             margin-right: 0;
             margin-left: 0.75rem;
         }
-        
+
         [dir="rtl"] .ml-3 {
             margin-left: 0;
             margin-right: 0.75rem;
         }
-        
+
         [dir="rtl"] .ml-auto {
             margin-left: 0;
             margin-right: auto;
@@ -206,9 +193,14 @@
                 display: none;
             }
         }
-        
+
         /* Mobile header height reduction */
         @media (max-width: 768px) {
+            body, html {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+            
             .mobile-header {
                 height: 50px !important;
                 padding: 0.5rem 1rem !important;
@@ -216,6 +208,7 @@
                 top: 0;
                 left: 0;
                 right: 0;
+                width: 100% !important;
                 z-index: 1000;
                 background: rgba(15, 23, 42, 0.95);
                 backdrop-filter: blur(10px);
@@ -282,25 +275,67 @@
             .glass-dark h3 {
                 font-size: 1.5rem !important;
             }
-            
+
             /* Mobile font size adjustments */
-            h1 { font-size: 1.25rem !important; }
-            h2 { font-size: 1.125rem !important; }
-            h3 { font-size: 1rem !important; }
-            h4 { font-size: 0.9rem !important; }
-            h5 { font-size: 0.8rem !important; }
-            h6 { font-size: 0.75rem !important; }
-            
-            .text-xl { font-size: 1rem !important; }
-            .text-2xl { font-size: 1.125rem !important; }
-            .text-3xl { font-size: 1.25rem !important; }
-            .text-4xl { font-size: 1.5rem !important; }
-            .text-5xl { font-size: 1.75rem !important; }
-            
+            h1 {
+                font-size: 1.25rem !important;
+            }
+
+            h2 {
+                font-size: 1.125rem !important;
+            }
+
+            h3 {
+                font-size: 1rem !important;
+            }
+
+            h4 {
+                font-size: 0.9rem !important;
+            }
+
+            h5 {
+                font-size: 0.8rem !important;
+            }
+
+            h6 {
+                font-size: 0.75rem !important;
+            }
+
+            .text-xl {
+                font-size: 1rem !important;
+            }
+
+            .text-2xl {
+                font-size: 1.125rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.25rem !important;
+            }
+
+            .text-4xl {
+                font-size: 1.5rem !important;
+            }
+
+            .text-5xl {
+                font-size: 1.75rem !important;
+            }
+
             /* Body text adjustments */
-            p, span, a, div { font-size: 0.85rem !important; }
-            .text-sm { font-size: 0.75rem !important; }
-            .text-xs { font-size: 0.7rem !important; }
+            p,
+            span,
+            a,
+            div {
+                font-size: 0.85rem !important;
+            }
+
+            .text-sm {
+                font-size: 0.75rem !important;
+            }
+
+            .text-xs {
+                font-size: 0.7rem !important;
+            }
 
             /* Mobile hamburger menu styling */
             .mobile-sidebar-toggle {
@@ -329,9 +364,7 @@
             }
 
             /* RTL mobile header */
-            [dir="rtl"] .mobile-header {
-                flex-direction: row-reverse;
-            }
+
 
             /* RTL main content adjustments */
             [dir="rtl"] #main-content {
@@ -341,8 +374,9 @@
         }
     </style>
 </head>
+
 <body class="bg-slate-950 dark-mode">
-    
+
     <div id="main-container">
         <!-- Mobile Header -->
         <div class="mobile-header">
@@ -354,67 +388,87 @@
                 <i class="fas fa-language text-lg"></i>
             </button>
         </div>
-        
+
         <!-- Mobile Sidebar Overlay -->
         <div class="mobile-sidebar-overlay" onclick="closeAdminMobileSidebar()"></div>
-        
+
         <!-- Sidebar -->
         <aside id="sidebar" class="w-64 bg-slate-900 border-r border-slate-800 flex-shrink-0">
             <div class="p-6 border-b border-slate-800">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
                             <i class="fas fa-balance-scale text-white text-lg"></i>
                         </div>
-                        <h2 class="text-2xl font-bold gradient-text" style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <h2 class="text-2xl font-bold gradient-text"
+                            style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                             LexIcon
                         </h2>
                     </div>
-                    <button class="mobile-sidebar-close md:hidden p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-all" onclick="closeAdminMobileSidebar()">
+                    <button
+                        class="mobile-sidebar-close md:hidden p-2 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-all"
+                        onclick="closeAdminMobileSidebar()">
                         <i class="fas fa-times text-lg"></i>
                     </button>
                 </div>
                 <p class="text-slate-400 text-xs mt-2 ml-13">Attorney Portal</p>
             </div>
-            
+
             <nav class="p-4 admin-sidebar-nav">
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-amber-600 bg-slate-800 rounded-lg mb-2 font-semibold" data-tab="overview">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-amber-600 bg-slate-800 rounded-lg mb-2 font-semibold"
+                    data-tab="overview">
                     <i class="fas fa-chart-line"></i>
                     <span>Overview</span>
                 </a>
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2" data-tab="cases">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2"
+                    data-tab="cases">
                     <i class="fas fa-briefcase"></i>
                     <span>Active Cases</span>
                     <span class="ml-auto bg-amber-600 text-white text-xs rounded-full px-2 py-1">12</span>
                 </a>
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2" data-tab="calendar">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2"
+                    data-tab="calendar">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Court Calendar</span>
                 </a>
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2" data-tab="clients">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2"
+                    data-tab="clients">
                     <i class="fas fa-users"></i>
                     <span>Clients</span>
                 </a>
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2" data-tab="revenue">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2"
+                    data-tab="revenue">
                     <i class="fas fa-dollar-sign"></i>
                     <span>Revenue</span>
                 </a>
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2" data-tab="documents">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2"
+                    data-tab="documents">
                     <i class="fas fa-file-alt"></i>
                     <span>Documents</span>
                 </a>
-                <a href="#" class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2" data-tab="settings">
+                <a href="#"
+                    class="tab-nav-btn flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg mb-2"
+                    data-tab="settings">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
                 </a>
             </nav>
-            
+
             <div class="absolute bottom-0 w-64 p-4 border-t border-slate-800">
-                <button id="rtl-toggle-btn-sidebar" class="hidden md:flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg w-full mb-2">
+                <button id="rtl-toggle-btn-sidebar"
+                    class="hidden md:flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg w-full mb-2">
                     <i class="fas fa-language"></i>
                     <span>RTL/LTR Toggle</span>
                 </button>
-                <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg">
+                <a href="login.html"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 rounded-lg">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
@@ -431,15 +485,18 @@
                         <p class="text-slate-400 text-sm">Here's what's happening with your cases today</p>
                     </div>
                     <div class="flex items-center gap-2 md:gap-4">
-                        <button id="rtl-toggle-btn" class="text-slate-400 hover:text-indigo-400 transition-colors" title="Toggle Text Direction (LTR/RTL)">
+                        <button id="rtl-toggle-btn" class="text-slate-400 hover:text-indigo-400 transition-colors"
+                            title="Toggle Text Direction (LTR/RTL)">
                             <i class="fas fa-language text-xl md:text-2xl"></i>
                         </button>
                         <button class="relative">
                             <i class="fas fa-bell text-xl md:text-2xl text-slate-400"></i>
-                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">8</span>
+                            <span
+                                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">8</span>
                         </button>
                         <div class="hidden md:flex items-center gap-3">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Profile" class="w-10 h-10 rounded-full">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100"
+                                alt="Profile" class="w-10 h-10 rounded-full">
                             <div>
                                 <div class="font-semibold text-white">Alexander Specter</div>
                                 <div class="text-xs text-slate-400">Managing Partner</div>
@@ -458,7 +515,8 @@
                                 <p class="text-slate-400 text-sm uppercase tracking-wide mb-2">Billable Hours</p>
                                 <h3 class="text-4xl font-bold text-white">142<span class="text-2xl">h</span></h3>
                             </div>
-                            <div class="w-12 h-12 bg-amber-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-amber-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-clock text-2xl text-amber-600"></i>
                             </div>
                         </div>
@@ -476,7 +534,8 @@
                                 <p class="text-slate-400 text-sm uppercase tracking-wide mb-2">Win Rate</p>
                                 <h3 class="text-4xl font-bold text-white">94<span class="text-2xl">%</span></h3>
                             </div>
-                            <div class="w-12 h-12 bg-green-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-green-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-trophy text-2xl text-green-400"></i>
                             </div>
                         </div>
@@ -494,7 +553,8 @@
                                 <p class="text-slate-400 text-sm uppercase tracking-wide mb-2">Pending Invoices</p>
                                 <h3 class="text-4xl font-bold text-white">$450K</h3>
                             </div>
-                            <div class="w-12 h-12 bg-blue-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-blue-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-file-invoice-dollar text-2xl text-blue-400"></i>
                             </div>
                         </div>
@@ -509,7 +569,8 @@
                                 <p class="text-slate-400 text-sm uppercase tracking-wide mb-2">Active Cases</p>
                                 <h3 class="text-4xl font-bold text-white">12</h3>
                             </div>
-                            <div class="w-12 h-12 bg-purple-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-purple-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                 <i class="fas fa-briefcase text-2xl text-purple-400"></i>
                             </div>
                         </div>
@@ -550,7 +611,8 @@
                                     <span class="text-sm font-bold text-emerald-400">142h / 160h</span>
                                 </div>
                                 <div class="h-3 bg-slate-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full animate-slideInLeft" style="width: 89%;"></div>
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full animate-slideInLeft"
+                                        style="width: 89%;"></div>
                                 </div>
                             </div>
                             <div>
@@ -559,7 +621,8 @@
                                     <span class="text-sm font-bold text-blue-400">96%</span>
                                 </div>
                                 <div class="h-3 bg-slate-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-slideInLeft" style="width: 96%; animation-delay: 0.2s;"></div>
+                                    <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-slideInLeft"
+                                        style="width: 96%; animation-delay: 0.2s;"></div>
                                 </div>
                             </div>
                             <div>
@@ -568,7 +631,8 @@
                                     <span class="text-sm font-bold text-purple-400">85%</span>
                                 </div>
                                 <div class="h-3 bg-slate-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-slideInLeft" style="width: 85%; animation-delay: 0.4s;"></div>
+                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-slideInLeft"
+                                        style="width: 85%; animation-delay: 0.4s;"></div>
                                 </div>
                             </div>
                         </div>
@@ -577,112 +641,118 @@
 
                 <!-- Tab Content: Active Cases -->
                 <div class="tab-content" data-tab="cases" style="display: none;">
-                <!-- The War Room - Active Cases Table -->
-                <div class="glass-dark rounded-lg p-8 mb-8">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-3xl font-bold text-white" style="font-family: 'Playfair Display', serif;">The War Room</h2>
-                        <button class="btn-gold text-sm">
-                            <i class="fas fa-plus mr-2"></i>New Case
-                        </button>
+                    <!-- The War Room - Active Cases Table -->
+                    <div class="glass-dark rounded-lg p-8 mb-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-3xl font-bold text-white" style="font-family: 'Playfair Display', serif;">
+                                The War Room</h2>
+                            <button class="btn-gold text-sm">
+                                <i class="fas fa-plus mr-2"></i>New Case
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="border-b border-slate-700">
+                                    <tr>
+                                        <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Case ID
+                                        </th>
+                                        <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Client</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Opposing
+                                            Counsel</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Status</th>
+                                        <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Next Action
+                                        </th>
+                                        <th class="text-right py-4 px-4 font-semibold text-slate-300 text-sm">Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800">
+                                    <tr class="hover:bg-slate-900 transition-colors">
+                                        <td class="py-4 px-4 text-white font-semibold">#2024-089</td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-white font-semibold">State of NY vs. Jones</div>
+                                            <div class="text-slate-400 text-sm">Criminal Defense</div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">Hamlin McGill LLP</td>
+                                        <td class="py-4 px-4">
+                                            <span class="badge-urgent">Urgent</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">File Motion to Dismiss</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900 transition-colors">
+                                        <td class="py-4 px-4 text-white font-semibold">#2024-076</td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-white font-semibold">Wayne Enterprises v. Stark Industries
+                                            </div>
+                                            <div class="text-slate-400 text-sm">Corporate Litigation</div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">Pearson Hardman</td>
+                                        <td class="py-4 px-4">
+                                            <span class="badge-pending">Pending</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">Discovery Phase</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900 transition-colors">
+                                        <td class="py-4 px-4 text-white font-semibold">#2024-103</td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-white font-semibold">Johnson v. Tech Corp</div>
+                                            <div class="text-slate-400 text-sm">IP Litigation</div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">Gold & Associates</td>
+                                        <td class="py-4 px-4">
+                                            <span class="badge-completed">Settled</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">Finalize Agreement</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-900 transition-colors">
+                                        <td class="py-4 px-4 text-white font-semibold">#2024-098</td>
+                                        <td class="py-4 px-4">
+                                            <div class="text-white font-semibold">SEC Investigation - Alpha Corp</div>
+                                            <div class="text-slate-400 text-sm">White Collar Defense</div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">DOJ/SEC</td>
+                                        <td class="py-4 px-4">
+                                            <span class="badge-urgent">Urgent</span>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-300">Respond to Subpoena</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-400 mx-1">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="border-b border-slate-700">
-                                <tr>
-                                    <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Case ID</th>
-                                    <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Client</th>
-                                    <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Opposing Counsel</th>
-                                    <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Status</th>
-                                    <th class="text-left py-4 px-4 font-semibold text-slate-300 text-sm">Next Action</th>
-                                    <th class="text-right py-4 px-4 font-semibold text-slate-300 text-sm">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-800">
-                                <tr class="hover:bg-slate-900 transition-colors">
-                                    <td class="py-4 px-4 text-white font-semibold">#2024-089</td>
-                                    <td class="py-4 px-4">
-                                        <div class="text-white font-semibold">State of NY vs. Jones</div>
-                                        <div class="text-slate-400 text-sm">Criminal Defense</div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">Hamlin McGill LLP</td>
-                                    <td class="py-4 px-4">
-                                        <span class="badge-urgent">Urgent</span>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">File Motion to Dismiss</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-900 transition-colors">
-                                    <td class="py-4 px-4 text-white font-semibold">#2024-076</td>
-                                    <td class="py-4 px-4">
-                                        <div class="text-white font-semibold">Wayne Enterprises v. Stark Industries</div>
-                                        <div class="text-slate-400 text-sm">Corporate Litigation</div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">Pearson Hardman</td>
-                                    <td class="py-4 px-4">
-                                        <span class="badge-pending">Pending</span>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">Discovery Phase</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-900 transition-colors">
-                                    <td class="py-4 px-4 text-white font-semibold">#2024-103</td>
-                                    <td class="py-4 px-4">
-                                        <div class="text-white font-semibold">Johnson v. Tech Corp</div>
-                                        <div class="text-slate-400 text-sm">IP Litigation</div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">Gold & Associates</td>
-                                    <td class="py-4 px-4">
-                                        <span class="badge-completed">Settled</span>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">Finalize Agreement</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-900 transition-colors">
-                                    <td class="py-4 px-4 text-white font-semibold">#2024-098</td>
-                                    <td class="py-4 px-4">
-                                        <div class="text-white font-semibold">SEC Investigation - Alpha Corp</div>
-                                        <div class="text-slate-400 text-sm">White Collar Defense</div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">DOJ/SEC</td>
-                                    <td class="py-4 px-4">
-                                        <span class="badge-urgent">Urgent</span>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-300">Respond to Subpoena</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-400 mx-1">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
                 </div>
 
                 <!-- Tab Content: Analytics -->
@@ -713,7 +783,8 @@
                                     <span class="text-white font-semibold">$1.8M</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full animate-slideInLeft" style="width: 60%"></div>
+                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full animate-slideInLeft"
+                                        style="width: 60%"></div>
                                 </div>
                             </div>
                             <div>
@@ -722,7 +793,8 @@
                                     <span class="text-white font-semibold">$2.1M</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full animate-slideInLeft" style="width: 70%; animation-delay: 0.2s;"></div>
+                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full animate-slideInLeft"
+                                        style="width: 70%; animation-delay: 0.2s;"></div>
                                 </div>
                             </div>
                             <div>
@@ -731,7 +803,8 @@
                                     <span class="text-white font-semibold">$2.3M</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full animate-slideInLeft" style="width: 77%; animation-delay: 0.4s;"></div>
+                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full animate-slideInLeft"
+                                        style="width: 77%; animation-delay: 0.4s;"></div>
                                 </div>
                             </div>
                             <div>
@@ -740,7 +813,8 @@
                                     <span class="text-white font-semibold">$2.2M</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-3 rounded-full animate-slideInLeft" style="width: 73%; animation-delay: 0.6s;"></div>
+                                    <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-3 rounded-full animate-slideInLeft"
+                                        style="width: 73%; animation-delay: 0.6s;"></div>
                                 </div>
                             </div>
                         </div>
@@ -750,108 +824,113 @@
                 <!-- Tab Content: Calendar -->
                 <div class="tab-content" data-tab="calendar" style="display: none;">
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Court Calendar -->
-                    <div class="glass-dark rounded-lg p-6 md:col-span-2">
-                        <h3 class="text-2xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;">Court Calendar</h3>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border-l-4 border-red-500">
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-white">05</div>
-                                    <div class="text-xs text-slate-400 uppercase">Dec</div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <h4 class="font-bold text-white">State of NY vs. Jones - Hearing</h4>
-                                        <span class="text-red-400 text-sm font-semibold">Tomorrow</span>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Court Calendar -->
+                        <div class="glass-dark rounded-lg p-6 md:col-span-2">
+                            <h3 class="text-2xl font-bold text-white mb-6"
+                                style="font-family: 'Playfair Display', serif;">Court Calendar</h3>
+
+                            <div class="space-y-4">
+                                <div
+                                    class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border-l-4 border-red-500">
+                                    <div class="text-center">
+                                        <div class="text-3xl font-bold text-white">05</div>
+                                        <div class="text-xs text-slate-400 uppercase">Dec</div>
                                     </div>
-                                    <p class="text-slate-400 text-sm mb-2">Courtroom 5B, 09:00 AM</p>
-                                    <p class="text-slate-500 text-xs">Motion to Dismiss Arguments</p>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="font-bold text-white">State of NY vs. Jones - Hearing</h4>
+                                            <span class="text-red-400 text-sm font-semibold">Tomorrow</span>
+                                        </div>
+                                        <p class="text-slate-400 text-sm mb-2">Courtroom 5B, 09:00 AM</p>
+                                        <p class="text-slate-500 text-xs">Motion to Dismiss Arguments</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border-l-4 border-amber-600">
+                                    <div class="text-center">
+                                        <div class="text-3xl font-bold text-white">08</div>
+                                        <div class="text-xs text-slate-400 uppercase">Dec</div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="font-bold text-white">Lunch with Judge Judy</h4>
+                                            <span class="text-amber-400 text-sm font-semibold">This Week</span>
+                                        </div>
+                                        <p class="text-slate-400 text-sm mb-2">The Oak Room, 12:30 PM</p>
+                                        <p class="text-slate-500 text-xs">Informal discussion</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border-l-4 border-blue-500">
+                                    <div class="text-center">
+                                        <div class="text-3xl font-bold text-white">12</div>
+                                        <div class="text-xs text-slate-400 uppercase">Dec</div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="font-bold text-white">Deposition - Client X</h4>
+                                            <span class="text-blue-400 text-sm font-semibold">Next Week</span>
+                                        </div>
+                                        <p class="text-slate-400 text-sm mb-2">Conference Room A, 02:00 PM</p>
+                                        <p class="text-slate-500 text-xs">Wayne Enterprises case</p>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border-l-4 border-amber-600">
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-white">08</div>
-                                    <div class="text-xs text-slate-400 uppercase">Dec</div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <h4 class="font-bold text-white">Lunch with Judge Judy</h4>
-                                        <span class="text-amber-400 text-sm font-semibold">This Week</span>
-                                    </div>
-                                    <p class="text-slate-400 text-sm mb-2">The Oak Room, 12:30 PM</p>
-                                    <p class="text-slate-500 text-xs">Informal discussion</p>
-                                </div>
+                        <!-- Revenue Chart Placeholder -->
+                        <div class="glass-dark rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-white mb-6"
+                                style="font-family: 'Playfair Display', serif;">Revenue (YTD)</h3>
+
+                            <div class="text-center mb-6">
+                                <div class="text-4xl font-bold text-amber-600 mb-2">$8.4M</div>
+                                <div class="text-slate-400 text-sm">+23% vs 2024</div>
                             </div>
 
-                            <div class="flex items-start gap-4 p-4 bg-slate-900 rounded-lg border-l-4 border-blue-500">
-                                <div class="text-center">
-                                    <div class="text-3xl font-bold text-white">12</div>
-                                    <div class="text-xs text-slate-400 uppercase">Dec</div>
-                                </div>
-                                <div class="flex-1">
-                                    <div class="flex items-center justify-between mb-2">
-                                        <h4 class="font-bold text-white">Deposition - Client X</h4>
-                                        <span class="text-blue-400 text-sm font-semibold">Next Week</span>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-slate-300">Q1</span>
+                                        <span class="text-white font-semibold">$1.8M</span>
                                     </div>
-                                    <p class="text-slate-400 text-sm mb-2">Conference Room A, 02:00 PM</p>
-                                    <p class="text-slate-500 text-xs">Wayne Enterprises case</p>
+                                    <div class="w-full bg-slate-800 rounded-full h-2">
+                                        <div class="bg-amber-600 h-2 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-slate-300">Q2</span>
+                                        <span class="text-white font-semibold">$2.1M</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2">
+                                        <div class="bg-amber-600 h-2 rounded-full" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-slate-300">Q3</span>
+                                        <span class="text-white font-semibold">$2.3M</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2">
+                                        <div class="bg-amber-600 h-2 rounded-full" style="width: 77%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm mb-2">
+                                        <span class="text-slate-300">Q4</span>
+                                        <span class="text-white font-semibold">$2.2M</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 rounded-full h-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 73%"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Revenue Chart Placeholder -->
-                    <div class="glass-dark rounded-lg p-6">
-                        <h3 class="text-xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;">Revenue (YTD)</h3>
-                        
-                        <div class="text-center mb-6">
-                            <div class="text-4xl font-bold text-amber-600 mb-2">$8.4M</div>
-                            <div class="text-slate-400 text-sm">+23% vs 2024</div>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between text-sm mb-2">
-                                    <span class="text-slate-300">Q1</span>
-                                    <span class="text-white font-semibold">$1.8M</span>
-                                </div>
-                                <div class="w-full bg-slate-800 rounded-full h-2">
-                                    <div class="bg-amber-600 h-2 rounded-full" style="width: 60%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-sm mb-2">
-                                    <span class="text-slate-300">Q2</span>
-                                    <span class="text-white font-semibold">$2.1M</span>
-                                </div>
-                                <div class="w-full bg-slate-800 rounded-full h-2">
-                                    <div class="bg-amber-600 h-2 rounded-full" style="width: 70%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-sm mb-2">
-                                    <span class="text-slate-300">Q3</span>
-                                    <span class="text-white font-semibold">$2.3M</span>
-                                </div>
-                                <div class="w-full bg-slate-800 rounded-full h-2">
-                                    <div class="bg-amber-600 h-2 rounded-full" style="width: 77%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-sm mb-2">
-                                    <span class="text-slate-300">Q4</span>
-                                    <span class="text-white font-semibold">$2.2M</span>
-                                </div>
-                                <div class="w-full bg-slate-800 rounded-full h-2">
-                                    <div class="bg-green-500 h-2 rounded-full" style="width: 73%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
 
                 <!-- Tab Content: Clients -->
@@ -862,16 +941,19 @@
                             <div class="flex items-center justify-between mb-6">
                                 <h3 class="text-xl font-bold text-white">Client Portfolio</h3>
                                 <div class="flex items-center gap-2">
-                                    <input type="text" placeholder="Search clients..." class="bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500 text-sm">
+                                    <input type="text" placeholder="Search clients..."
+                                        class="bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500 text-sm">
                                     <button class="btn-gold text-sm">
                                         <i class="fas fa-plus mr-2"></i>Add Client
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <div class="space-y-4">
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100" alt="Client" class="w-12 h-12 rounded-full">
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100"
+                                        alt="Client" class="w-12 h-12 rounded-full">
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
                                             <h4 class="text-white font-semibold">Wayne Enterprises</h4>
@@ -887,9 +969,11 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
                                 </div>
-                                
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b714?q=80&w=100" alt="Client" class="w-12 h-12 rounded-full">
+
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b714?q=80&w=100"
+                                        alt="Client" class="w-12 h-12 rounded-full">
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
                                             <h4 class="text-white font-semibold">Stark Industries</h4>
@@ -905,9 +989,11 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
                                 </div>
-                                
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100" alt="Client" class="w-12 h-12 rounded-full">
+
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100"
+                                        alt="Client" class="w-12 h-12 rounded-full">
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
                                             <h4 class="text-white font-semibold">Johnson & Associates</h4>
@@ -923,9 +1009,11 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </button>
                                 </div>
-                                
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100" alt="Client" class="w-12 h-12 rounded-full">
+
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100"
+                                        alt="Client" class="w-12 h-12 rounded-full">
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
                                             <h4 class="text-white font-semibold">Alpha Corporation</h4>
@@ -943,7 +1031,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Client Stats -->
                         <div class="space-y-6">
                             <div class="glass-dark rounded-xl p-6">
@@ -967,7 +1055,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="glass-dark rounded-xl p-6">
                                 <h3 class="text-lg font-bold text-white mb-4">Client Types</h3>
                                 <div class="space-y-3">
@@ -1018,7 +1106,7 @@
                                         <i class="fas fa-arrow-up mr-1"></i>+23% vs 2024
                                     </div>
                                 </div>
-                                
+
                                 <div class="grid grid-cols-2 gap-4">
                                     <div class="text-center p-4 bg-slate-900 rounded-lg">
                                         <div class="text-2xl font-bold text-white mb-1">$450K</div>
@@ -1031,28 +1119,31 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Payment Status -->
                         <div class="glass-dark rounded-xl p-6">
                             <h3 class="text-xl font-bold text-white mb-6">Payment Status</h3>
                             <div class="space-y-4">
-                                <div class="flex items-center justify-between p-4 bg-green-600 bg-opacity-10 border border-green-600 border-opacity-30 rounded-lg">
+                                <div
+                                    class="flex items-center justify-between p-4 bg-green-600 bg-opacity-10 border border-green-600 border-opacity-30 rounded-lg">
                                     <div>
                                         <div class="text-white font-semibold">Paid Invoices</div>
                                         <div class="text-green-400 text-sm">25 invoices</div>
                                     </div>
                                     <div class="text-2xl font-bold text-green-400">$7.95M</div>
                                 </div>
-                                
-                                <div class="flex items-center justify-between p-4 bg-amber-600 bg-opacity-10 border border-amber-600 border-opacity-30 rounded-lg">
+
+                                <div
+                                    class="flex items-center justify-between p-4 bg-amber-600 bg-opacity-10 border border-amber-600 border-opacity-30 rounded-lg">
                                     <div>
                                         <div class="text-white font-semibold">Pending Invoices</div>
                                         <div class="text-amber-400 text-sm">8 invoices</div>
                                     </div>
                                     <div class="text-2xl font-bold text-amber-400">$450K</div>
                                 </div>
-                                
-                                <div class="flex items-center justify-between p-4 bg-red-600 bg-opacity-10 border border-red-600 border-opacity-30 rounded-lg">
+
+                                <div
+                                    class="flex items-center justify-between p-4 bg-red-600 bg-opacity-10 border border-red-600 border-opacity-30 rounded-lg">
                                     <div>
                                         <div class="text-white font-semibold">Overdue</div>
                                         <div class="text-red-400 text-sm">2 invoices</div>
@@ -1062,7 +1153,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Revenue by Practice Area -->
                     <div class="glass-dark rounded-xl p-6 mb-8">
                         <h3 class="text-xl font-bold text-white mb-6">Revenue by Practice Area</h3>
@@ -1073,7 +1164,8 @@
                                     <span class="text-white font-semibold">$3.2M (38%)</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full" style="width: 38%"></div>
+                                    <div class="bg-gradient-to-r from-amber-600 to-orange-500 h-3 rounded-full"
+                                        style="width: 38%"></div>
                                 </div>
                             </div>
                             <div>
@@ -1082,7 +1174,8 @@
                                     <span class="text-white font-semibold">$2.1M (25%)</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-blue-600 to-cyan-500 h-3 rounded-full" style="width: 25%"></div>
+                                    <div class="bg-gradient-to-r from-blue-600 to-cyan-500 h-3 rounded-full"
+                                        style="width: 25%"></div>
                                 </div>
                             </div>
                             <div>
@@ -1091,7 +1184,8 @@
                                     <span class="text-white font-semibold">$1.8M (21%)</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-green-600 to-emerald-500 h-3 rounded-full" style="width: 21%"></div>
+                                    <div class="bg-gradient-to-r from-green-600 to-emerald-500 h-3 rounded-full"
+                                        style="width: 21%"></div>
                                 </div>
                             </div>
                             <div>
@@ -1100,7 +1194,8 @@
                                     <span class="text-white font-semibold">$1.3M (16%)</span>
                                 </div>
                                 <div class="w-full bg-slate-800 rounded-full h-3">
-                                    <div class="bg-gradient-to-r from-purple-600 to-pink-500 h-3 rounded-full" style="width: 16%"></div>
+                                    <div class="bg-gradient-to-r from-purple-600 to-pink-500 h-3 rounded-full"
+                                        style="width: 16%"></div>
                                 </div>
                             </div>
                         </div>
@@ -1114,39 +1209,47 @@
                         <div class="glass-dark rounded-xl p-6">
                             <h3 class="text-lg font-bold text-white mb-4">Categories</h3>
                             <div class="space-y-2">
-                                <button class="w-full text-left px-3 py-2 bg-amber-600 bg-opacity-20 text-amber-400 rounded-lg">
+                                <button
+                                    class="w-full text-left px-3 py-2 bg-amber-600 bg-opacity-20 text-amber-400 rounded-lg">
                                     <i class="fas fa-folder mr-2"></i>All Documents
                                 </button>
-                                <button class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
+                                <button
+                                    class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
                                     <i class="fas fa-file-contract mr-2"></i>Contracts
                                 </button>
-                                <button class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
+                                <button
+                                    class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
                                     <i class="fas fa-file-alt mr-2"></i>Pleadings
                                 </button>
-                                <button class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
+                                <button
+                                    class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
                                     <i class="fas fa-file-pdf mr-2"></i>Evidence
                                 </button>
-                                <button class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
+                                <button
+                                    class="w-full text-left px-3 py-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg">
                                     <i class="fas fa-file-signature mr-2"></i>Signed Documents
                                 </button>
                             </div>
                         </div>
-                        
+
                         <!-- Document List -->
                         <div class="lg:col-span-3 glass-dark rounded-xl p-6">
                             <div class="flex items-center justify-between mb-6">
                                 <h3 class="text-xl font-bold text-white">Document Library</h3>
                                 <div class="flex items-center gap-2">
-                                    <input type="text" placeholder="Search documents..." class="bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500 text-sm">
+                                    <input type="text" placeholder="Search documents..."
+                                        class="bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500 text-sm">
                                     <button class="btn-gold text-sm">
                                         <i class="fas fa-upload mr-2"></i>Upload
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <div class="space-y-3">
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <div class="w-10 h-10 bg-red-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <div
+                                        class="w-10 h-10 bg-red-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-file-pdf text-red-400"></i>
                                     </div>
                                     <div class="flex-1">
@@ -1168,14 +1271,17 @@
                                         </button>
                                     </div>
                                 </div>
-                                
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <div class="w-10 h-10 bg-blue-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <div
+                                        class="w-10 h-10 bg-blue-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-file-word text-blue-400"></i>
                                     </div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
-                                            <h4 class="text-white font-semibold">Contract Amendment - Wayne Enterprises.docx</h4>
+                                            <h4 class="text-white font-semibold">Contract Amendment - Wayne
+                                                Enterprises.docx</h4>
                                             <span class="text-slate-400 text-sm">1.2 MB</span>
                                         </div>
                                         <p class="text-slate-400 text-sm">Modified: Dec 2, 2025 • Case #2024-076</p>
@@ -1192,14 +1298,17 @@
                                         </button>
                                     </div>
                                 </div>
-                                
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <div class="w-10 h-10 bg-green-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <div
+                                        class="w-10 h-10 bg-green-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-file-excel text-green-400"></i>
                                     </div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
-                                            <h4 class="text-white font-semibold">Financial Analysis - Alpha Corp.xlsx</h4>
+                                            <h4 class="text-white font-semibold">Financial Analysis - Alpha Corp.xlsx
+                                            </h4>
                                             <span class="text-slate-400 text-sm">856 KB</span>
                                         </div>
                                         <p class="text-slate-400 text-sm">Modified: Dec 1, 2025 • Case #2024-098</p>
@@ -1216,14 +1325,17 @@
                                         </button>
                                     </div>
                                 </div>
-                                
-                                <div class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
-                                    <div class="w-10 h-10 bg-purple-600 bg-opacity-20 rounded-lg flex items-center justify-center">
+
+                                <div
+                                    class="flex items-center gap-4 p-4 bg-slate-900 rounded-lg border border-slate-800 hover:border-slate-700 transition-colors">
+                                    <div
+                                        class="w-10 h-10 bg-purple-600 bg-opacity-20 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-file-signature text-purple-400"></i>
                                     </div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between">
-                                            <h4 class="text-white font-semibold">Settlement Agreement - Johnson v Tech Corp.pdf</h4>
+                                            <h4 class="text-white font-semibold">Settlement Agreement - Johnson v Tech
+                                                Corp.pdf</h4>
                                             <span class="text-slate-400 text-sm">3.1 MB</span>
                                         </div>
                                         <p class="text-slate-400 text-sm">Modified: Nov 28, 2025 • Case #2024-103</p>
@@ -1254,43 +1366,51 @@
                             <h3 class="text-xl font-bold text-white mb-6">Profile Settings</h3>
                             <div class="space-y-6">
                                 <div class="flex items-center gap-4">
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Profile" class="w-20 h-20 rounded-full">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100"
+                                        alt="Profile" class="w-20 h-20 rounded-full">
                                     <div>
                                         <button class="btn-gold text-sm mb-2">Change Photo</button>
                                         <p class="text-slate-400 text-sm">JPG, GIF or PNG. 1MB max.</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block text-slate-300 text-sm font-semibold mb-2">First Name</label>
-                                        <input type="text" value="Alexander" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                        <label class="block text-slate-300 text-sm font-semibold mb-2">First
+                                            Name</label>
+                                        <input type="text" value="Alexander"
+                                            class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                     </div>
                                     <div>
                                         <label class="block text-slate-300 text-sm font-semibold mb-2">Last Name</label>
-                                        <input type="text" value="Specter" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                        <input type="text" value="Specter"
+                                            class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-slate-300 text-sm font-semibold mb-2">Email</label>
-                                    <input type="email" value="alexander@lexicon.law" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                    <input type="email" value="alexander@lexicon.law"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-slate-300 text-sm font-semibold mb-2">Phone</label>
-                                    <input type="tel" value="+1 (555) 123-4567" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                    <input type="tel" value="+1 (555) 123-4567"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                 </div>
-                                
+
                                 <div>
                                     <label class="block text-slate-300 text-sm font-semibold mb-2">Bio</label>
-                                    <textarea rows="3" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500" placeholder="Tell us about yourself...">Managing Partner with 15+ years of experience in corporate law and criminal defense.</textarea>
+                                    <textarea rows="3"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500"
+                                        placeholder="Tell us about yourself...">Managing Partner with 15+ years of experience in corporate law and criminal defense.</textarea>
                                 </div>
-                                
+
                                 <button class="btn-gold">Save Changes</button>
                             </div>
                         </div>
-                        
+
                         <!-- Notification Settings -->
                         <div class="glass-dark rounded-xl p-6">
                             <h3 class="text-xl font-bold text-white mb-6">Notification Preferences</h3>
@@ -1300,44 +1420,55 @@
                                     <div class="space-y-3">
                                         <label class="flex items-center justify-between">
                                             <span class="text-slate-300">Case Updates</span>
-                                            <input type="checkbox" checked class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
+                                            <input type="checkbox" checked
+                                                class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
                                         </label>
                                         <label class="flex items-center justify-between">
                                             <span class="text-slate-300">Court Reminders</span>
-                                            <input type="checkbox" checked class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
+                                            <input type="checkbox" checked
+                                                class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
                                         </label>
                                         <label class="flex items-center justify-between">
                                             <span class="text-slate-300">Payment Notifications</span>
-                                            <input type="checkbox" class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
+                                            <input type="checkbox"
+                                                class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
                                         </label>
                                         <label class="flex items-center justify-between">
                                             <span class="text-slate-300">Weekly Reports</span>
-                                            <input type="checkbox" checked class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
+                                            <input type="checkbox" checked
+                                                class="form-checkbox h-5 w-5 text-amber-600 bg-slate-800 border-slate-600 rounded">
                                         </label>
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <h4 class="text-white font-semibold mb-4">Security Settings</h4>
                                     <div class="space-y-4">
                                         <div>
-                                            <label class="block text-slate-300 text-sm font-semibold mb-2">Current Password</label>
-                                            <input type="password" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                            <label class="block text-slate-300 text-sm font-semibold mb-2">Current
+                                                Password</label>
+                                            <input type="password"
+                                                class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                         </div>
                                         <div>
-                                            <label class="block text-slate-300 text-sm font-semibold mb-2">New Password</label>
-                                            <input type="password" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                            <label class="block text-slate-300 text-sm font-semibold mb-2">New
+                                                Password</label>
+                                            <input type="password"
+                                                class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                         </div>
                                         <div>
-                                            <label class="block text-slate-300 text-sm font-semibold mb-2">Confirm New Password</label>
-                                            <input type="password" class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                            <label class="block text-slate-300 text-sm font-semibold mb-2">Confirm New
+                                                Password</label>
+                                            <input type="password"
+                                                class="w-full bg-slate-800 text-white placeholder-slate-400 px-3 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                         </div>
-                                        <button class="w-full bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg transition-colors">
+                                        <button
+                                            class="w-full bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg transition-colors">
                                             Update Password
                                         </button>
                                     </div>
                                 </div>
-                                
+
                                 <div>
                                     <h4 class="text-white font-semibold mb-4">Two-Factor Authentication</h4>
                                     <div class="flex items-center justify-between p-4 bg-slate-900 rounded-lg">
@@ -1371,7 +1502,7 @@
                                     </button>
                                 </div>
                             </div>
-                            
+
                             <!-- Calendar Grid -->
                             <div class="grid grid-cols-7 gap-2 mb-4">
                                 <div class="text-center text-slate-400 text-sm font-semibold py-2">Sun</div>
@@ -1382,59 +1513,116 @@
                                 <div class="text-center text-slate-400 text-sm font-semibold py-2">Fri</div>
                                 <div class="text-center text-slate-400 text-sm font-semibold py-2">Sat</div>
                             </div>
-                            
+
                             <div class="grid grid-cols-7 gap-2">
                                 <div class="aspect-square p-2 text-slate-500 text-sm">1</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">2</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">3</div>
-                                <div class="aspect-square p-2 text-white text-sm bg-amber-600 bg-opacity-20 rounded relative">
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    2</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    3</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm bg-amber-600 bg-opacity-20 rounded relative">
                                     4
                                     <div class="w-2 h-2 bg-amber-600 rounded-full absolute bottom-1 right-1"></div>
                                 </div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">5</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">6</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">7</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">8</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">9</div>
-                                <div class="aspect-square p-2 text-white text-sm bg-red-600 bg-opacity-20 rounded relative">
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    5</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    6</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    7</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    8</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    9</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm bg-red-600 bg-opacity-20 rounded relative">
                                     10
                                     <div class="w-2 h-2 bg-red-600 rounded-full absolute bottom-1 right-1"></div>
                                 </div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">11</div>
-                                <div class="aspect-square p-2 text-white text-sm bg-blue-600 bg-opacity-20 rounded relative">
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    11</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm bg-blue-600 bg-opacity-20 rounded relative">
                                     12
                                     <div class="w-2 h-2 bg-blue-600 rounded-full absolute bottom-1 right-1"></div>
                                 </div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">13</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">14</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">15</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">16</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">17</div>
-                                <div class="aspect-square p-2 text-white text-sm bg-green-600 bg-opacity-20 rounded relative">
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    13</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    14</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    15</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    16</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    17</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm bg-green-600 bg-opacity-20 rounded relative">
                                     18
                                     <div class="w-2 h-2 bg-green-600 rounded-full absolute bottom-1 right-1"></div>
                                 </div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">19</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">20</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">21</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">22</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">23</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">24</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">25</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">26</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">27</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">28</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">29</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">30</div>
-                                <div class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">31</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    19</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    20</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    21</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    22</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    23</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    24</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    25</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    26</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    27</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    28</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    29</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    30</div>
+                                <div
+                                    class="aspect-square p-2 text-white text-sm hover:bg-slate-800 rounded cursor-pointer">
+                                    31</div>
                             </div>
                         </div>
-                        
+
                         <!-- Upcoming Events -->
                         <div class="glass-dark rounded-xl p-6">
                             <h3 class="text-lg font-bold text-white mb-4">Upcoming Events</h3>
                             <div class="space-y-4">
-                                <div class="p-3 bg-amber-600 bg-opacity-10 border border-amber-600 border-opacity-30 rounded-lg">
+                                <div
+                                    class="p-3 bg-amber-600 bg-opacity-10 border border-amber-600 border-opacity-30 rounded-lg">
                                     <div class="flex items-start gap-3">
                                         <div class="w-3 h-3 bg-amber-600 rounded-full mt-1.5"></div>
                                         <div class="flex-1">
@@ -1444,8 +1632,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="p-3 bg-red-600 bg-opacity-10 border border-red-600 border-opacity-30 rounded-lg">
+
+                                <div
+                                    class="p-3 bg-red-600 bg-opacity-10 border border-red-600 border-opacity-30 rounded-lg">
                                     <div class="flex items-start gap-3">
                                         <div class="w-3 h-3 bg-red-600 rounded-full mt-1.5"></div>
                                         <div class="flex-1">
@@ -1455,8 +1644,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="p-3 bg-blue-600 bg-opacity-10 border border-blue-600 border-opacity-30 rounded-lg">
+
+                                <div
+                                    class="p-3 bg-blue-600 bg-opacity-10 border border-blue-600 border-opacity-30 rounded-lg">
                                     <div class="flex items-start gap-3">
                                         <div class="w-3 h-3 bg-blue-600 rounded-full mt-1.5"></div>
                                         <div class="flex-1">
@@ -1466,8 +1656,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="p-3 bg-green-600 bg-opacity-10 border border-green-600 border-opacity-30 rounded-lg">
+
+                                <div
+                                    class="p-3 bg-green-600 bg-opacity-10 border border-green-600 border-opacity-30 rounded-lg">
                                     <div class="flex items-start gap-3">
                                         <div class="w-3 h-3 bg-green-600 rounded-full mt-1.5"></div>
                                         <div class="flex-1">
@@ -1478,14 +1669,15 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <button class="w-full mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors">
+
+                            <button
+                                class="w-full mt-4 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors">
                                 <i class="fas fa-plus mr-2"></i>Add Event
                             </button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Tab Content: Documents -->
                 <div class="tab-content" data-tab="documents" style="display: none;">
                     <div class="glass-dark rounded-xl p-6">
@@ -1495,7 +1687,7 @@
                                 <i class="fas fa-plus mr-2"></i>Upload Document
                             </button>
                         </div>
-                        
+
                         <div class="grid lg:grid-cols-4 gap-4 mb-6">
                             <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
                                 <div class="flex items-center gap-3 mb-3">
@@ -1507,7 +1699,7 @@
                                 </div>
                                 <div class="text-slate-500 text-xs">2 days ago • 1.2 MB</div>
                             </div>
-                            
+
                             <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
                                 <div class="flex items-center gap-3 mb-3">
                                     <i class="fas fa-file-word text-2xl text-blue-500"></i>
@@ -1518,7 +1710,7 @@
                                 </div>
                                 <div class="text-slate-500 text-xs">1 week ago • 856 KB</div>
                             </div>
-                            
+
                             <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
                                 <div class="flex items-center gap-3 mb-3">
                                     <i class="fas fa-file-excel text-2xl text-green-500"></i>
@@ -1529,7 +1721,7 @@
                                 </div>
                                 <div class="text-slate-500 text-xs">3 days ago • 2.4 MB</div>
                             </div>
-                            
+
                             <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
                                 <div class="flex items-center gap-3 mb-3">
                                     <i class="fas fa-file-image text-2xl text-purple-500"></i>
@@ -1541,14 +1733,14 @@
                                 <div class="text-slate-500 text-xs">5 days ago • 15.6 MB</div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center py-8">
                             <i class="fas fa-folder-open text-6xl text-slate-600 mb-4"></i>
                             <p class="text-slate-400">Document management system coming soon...</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Tab Content: Settings -->
                 <div class="tab-content" data-tab="settings" style="display: none;">
                     <div class="grid lg:grid-cols-2 gap-6">
@@ -1557,23 +1749,27 @@
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-300 mb-2">Full Name</label>
-                                    <input type="text" value="Alexander Specter" class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                    <input type="text" value="Alexander Specter"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-300 mb-2">Email</label>
-                                    <input type="email" value="alexander@lexicon.law" class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                    <input type="email" value="alexander@lexicon.law"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-300 mb-2">Position</label>
-                                    <input type="text" value="Managing Partner" class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                    <input type="text" value="Managing Partner"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-semibold text-slate-300 mb-2">Bar Number</label>
-                                    <input type="text" value="NY-123456" class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
+                                    <input type="text" value="NY-123456"
+                                        class="w-full bg-slate-800 text-white placeholder-slate-400 px-4 py-2 rounded-lg border border-slate-700 focus:border-indigo-500">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="glass-dark rounded-xl p-6">
                             <h3 class="text-xl font-bold text-white mb-6">Preferences</h3>
                             <div class="space-y-4">
@@ -1581,34 +1777,43 @@
                                     <span class="text-slate-300">Email Notifications</span>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" value="" class="sr-only peer" checked>
-                                        <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                        <div
+                                            class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+                                        </div>
                                     </label>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-slate-300">Dark Mode</span>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" value="" class="sr-only peer" checked>
-                                        <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                        <div
+                                            class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+                                        </div>
                                     </label>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-slate-300">Auto-save Documents</span>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" value="" class="sr-only peer" checked>
-                                        <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                        <div
+                                            class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+                                        </div>
                                     </label>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span class="text-slate-300">Calendar Sync</span>
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <input type="checkbox" value="" class="sr-only peer">
-                                        <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                        <div
+                                            class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+                                        </div>
                                     </label>
                                 </div>
                             </div>
-                            
+
                             <div class="mt-6 pt-6 border-t border-slate-700">
-                                <button class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
+                                <button
+                                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
                                     Save Changes
                                 </button>
                             </div>
@@ -1628,40 +1833,40 @@
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.style.display = 'none';
             });
-            
+
             // Show selected tab content
             const selectedTab = document.querySelector(`.tab-content[data-tab="${tabName}"]`);
             if (selectedTab) {
                 selectedTab.style.display = 'block';
             }
-            
+
             // Update sidebar navigation states
             document.querySelectorAll('.tab-nav-btn').forEach(btn => {
                 btn.classList.remove('text-amber-600', 'bg-slate-800');
                 btn.classList.add('text-slate-300');
             });
-            
+
             const activeNavBtn = document.querySelector(`.tab-nav-btn[data-tab="${tabName}"]`);
             if (activeNavBtn) {
                 activeNavBtn.classList.add('text-amber-600', 'bg-slate-800');
                 activeNavBtn.classList.remove('text-slate-300');
             }
         }
-        
+
         // Initialize tab functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Load saved RTL preference
             const savedDirection = localStorage.getItem('textDirection') || 'ltr';
-            
+
             // Apply direction attributes
             document.documentElement.setAttribute('dir', savedDirection);
             document.body.setAttribute('dir', savedDirection);
-            
+
             // Apply layout classes
             const mainContainer = document.getElementById('main-container');
             const sidebar = document.getElementById('sidebar');
             const mainContent = document.getElementById('main-content');
-            
+
             if (mainContainer) {
                 mainContainer.classList.add(savedDirection + '-layout');
             }
@@ -1671,32 +1876,32 @@
             if (mainContent) {
                 mainContent.classList.add(savedDirection + '-content');
             }
-            
+
             if (savedDirection !== 'ltr') {
                 updateAdminNavigationOrder();
             }
-            
+
             console.log('Initialized with direction:', savedDirection); // Debug log
-            
+
             // Sidebar navigation event listeners
             document.querySelectorAll('.tab-nav-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     const tabName = this.getAttribute('data-tab');
                     showTab(tabName);
                 });
             });
-            
+
             // Show overview tab by default
             showTab('overview');
-            
+
             // Initialize RTL/LTR manager for admin dashboard
             window.alignmentManager = new AlignmentManager();
-            
+
             // RTL toggle button functionality
             const rtlButton = document.querySelector('#rtl-toggle-btn');
             if (rtlButton) {
-                rtlButton.addEventListener('click', function() {
+                rtlButton.addEventListener('click', function () {
                     if (window.alignmentManager) {
                         window.alignmentManager.toggleDirection();
                     }
@@ -1705,7 +1910,7 @@
         });
 
         // Initialize Charts
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Revenue Trend Chart (Line)
             const revenueCtx = document.getElementById('revenueChart');
             if (revenueCtx) {
@@ -1729,7 +1934,7 @@
                             legend: { display: false }
                         },
                         scales: {
-                            y: { 
+                            y: {
                                 beginAtZero: true,
                                 ticks: { color: '#94a3b8' },
                                 grid: { color: 'rgba(148, 163, 184, 0.1)' }
@@ -1801,7 +2006,7 @@
                             legend: { display: false }
                         },
                         scales: {
-                            y: { 
+                            y: {
                                 beginAtZero: true,
                                 max: 100,
                                 ticks: { color: '#94a3b8' },
@@ -1839,7 +2044,7 @@
                             legend: { display: false }
                         },
                         scales: {
-                            y: { 
+                            y: {
                                 beginAtZero: true,
                                 ticks: { color: '#94a3b8' },
                                 grid: { color: 'rgba(148, 163, 184, 0.1)' }
@@ -1869,29 +2074,29 @@
                     }
                 }, 30);
             });
-            
+
             // Initialize mobile sidebar for admin
             initAdminMobileSidebar();
-            
+
             // RTL Toggle functionality for admin
             const adminRtlBtn = document.getElementById('rtl-toggle-btn');
             const adminRtlSidebarBtn = document.getElementById('rtl-toggle-btn-sidebar');
-            
+
             if (adminRtlBtn) {
-                adminRtlBtn.addEventListener('click', function(e) {
+                adminRtlBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     toggleAdminRTL();
                 });
             }
-            
+
             if (adminRtlSidebarBtn) {
-                adminRtlSidebarBtn.addEventListener('click', function(e) {
+                adminRtlSidebarBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     toggleAdminRTL();
                 });
             }
         });
-        
+
         // Admin Mobile Sidebar Functions
         function initAdminMobileSidebar() {
             const toggleBtn = document.querySelector('.mobile-sidebar-toggle');
@@ -1899,44 +2104,44 @@
                 toggleBtn.addEventListener('click', openAdminMobileSidebar);
             }
         }
-        
+
         function openAdminMobileSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.mobile-sidebar-overlay');
-            
+
             if (sidebar && overlay) {
                 sidebar.classList.add('open');
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
         }
-        
+
         function closeAdminMobileSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.mobile-sidebar-overlay');
-            
+
             if (sidebar && overlay) {
                 sidebar.classList.remove('open');
                 overlay.classList.remove('active');
                 document.body.style.overflow = '';
             }
         }
-        
+
         // Admin RTL Toggle Function
         function toggleAdminRTL() {
             const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
             const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
-            
+
             // Close mobile sidebar if open during direction change
             const sidebar = document.getElementById('sidebar');
             if (sidebar && sidebar.classList.contains('open')) {
                 closeAdminMobileSidebar();
             }
-            
+
             // Apply direction to all relevant elements
             document.documentElement.setAttribute('dir', newDir);
             document.body.setAttribute('dir', newDir);
-            
+
             // Force immediate layout update
             const mainContainer = document.getElementById('main-container');
             if (mainContainer) {
@@ -1944,31 +2149,31 @@
                 mainContainer.style.display = 'block';
                 void mainContainer.offsetHeight; // Force reflow
                 mainContainer.style.display = 'flex';
-                
+
                 // Add specific direction class for additional CSS targeting
                 mainContainer.classList.remove('rtl-layout', 'ltr-layout');
                 mainContainer.classList.add(newDir + '-layout');
             }
-            
+
             // Update sidebar positioning
             if (sidebar) {
                 sidebar.classList.remove('rtl-positioned', 'ltr-positioned');
                 sidebar.classList.add(newDir + '-positioned');
             }
-            
+
             // Update main content
             const mainContent = document.getElementById('main-content');
             if (mainContent) {
                 mainContent.classList.remove('rtl-content', 'ltr-content');
                 mainContent.classList.add(newDir + '-content');
             }
-            
+
             // Update admin navigation order
             updateAdminNavigationOrder();
-            
+
             // Save preference
             localStorage.setItem('textDirection', newDir);
-            
+
             // Update RTL toggle button text/icon if needed
             const rtlButtons = document.querySelectorAll('#rtl-toggle-btn, #rtl-toggle-btn-sidebar');
             rtlButtons.forEach(btn => {
@@ -1979,24 +2184,24 @@
                     }
                 }
             });
-            
+
             console.log('Direction changed to:', newDir); // Debug log
         }
-        
+
         // Admin RTL Navigation Order Function
         function updateAdminNavigationOrder() {
             const nav = document.querySelector('.admin-sidebar-nav');
             const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-            
+
             if (nav) {
                 const links = Array.from(nav.querySelectorAll('a'));
-                
+
                 if (isRTL) {
                     // Reverse order for RTL: Team, Billing, Clients, Court Calendar, Active Cases, Overview
                     links.reverse();
                 }
                 // For LTR, keep original order: Overview, Active Cases, Court Calendar, Clients, Billing, Team
-                
+
                 // Clear navigation and re-append in correct order
                 nav.innerHTML = '';
                 links.forEach(link => {
@@ -2005,10 +2210,11 @@
             }
         }
     </script>
-    
+
     <!-- Include main navigation scripts -->
     <script src="js/main.js"></script>
     <script src="js/rtl-toggle.js"></script>
-    
+
 </body>
+
 </html>

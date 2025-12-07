@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal - LexIcon</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -18,26 +21,26 @@
             margin-left: 0;
             margin-right: 0.75rem;
         }
-        
+
         [dir="rtl"] .notification-badge {
             left: auto;
             right: auto;
         }
-        
+
         [dir="rtl"] .border-r {
             border-right: none;
             border-left: 1px solid #e2e8f0;
         }
-        
+
         [dir="rtl"] .border-l-4 {
             border-left: none;
             border-right: 4px solid;
         }
-        
+
         .no-rtl {
             direction: ltr !important;
         }
-        
+
         .no-rtl * {
             direction: ltr !important;
         }
@@ -46,8 +49,9 @@
         * {
             box-sizing: border-box;
         }
-        
-        html, body {
+
+        html,
+        body {
             overflow-x: auto !important;
             max-width: none !important;
         }
@@ -104,6 +108,11 @@
 
         /* Mobile Responsive Layout - Admin Dashboard Style */
         @media (max-width: 768px) {
+            body, html {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+            }
+
             /* Mobile header */
             .mobile-header {
                 height: 60px !important;
@@ -112,6 +121,7 @@
                 top: 0;
                 left: 0;
                 right: 0;
+                width: 100% !important;
                 z-index: 1000;
                 background: white;
                 border-bottom: 1px solid #e2e8f0;
@@ -181,26 +191,26 @@
                 flex: 1 !important;
                 overflow-x: hidden !important;
             }
-            
+
             /* RTL adjustments for mobile sidebar */
             [dir="rtl"] #sidebar {
                 left: auto !important;
                 right: -100% !important;
                 transition: right 0.3s ease-in-out !important;
             }
-            
+
             [dir="rtl"] #sidebar.open {
                 right: 0 !important;
                 left: auto !important;
             }
-            
+
             .mobile-sidebar-overlay.active {
                 opacity: 1;
                 pointer-events: all;
             }
-            
 
-            
+
+
             .mobile-hamburger {
                 display: flex;
                 flex-direction: column;
@@ -208,7 +218,7 @@
                 height: 18px;
                 cursor: pointer;
             }
-            
+
             .mobile-hamburger span {
                 display: block;
                 height: 2px;
@@ -218,40 +228,82 @@
                 transition: all 0.3s ease;
                 border-radius: 2px;
             }
-            
+
             .mobile-hamburger span:last-child {
                 margin-bottom: 0;
             }
-            
+
             .mobile-hamburger:hover span {
                 background-color: #6366f1;
             }
-            
+
             /* Mobile font size adjustments */
-            h1 { font-size: 1.25rem !important; }
-            h2 { font-size: 1.125rem !important; }
-            h3 { font-size: 1rem !important; }
-            h4 { font-size: 0.9rem !important; }
-            h5 { font-size: 0.8rem !important; }
-            h6 { font-size: 0.75rem !important; }
-            
-            .text-xl { font-size: 1rem !important; }
-            .text-2xl { font-size: 1.125rem !important; }
-            .text-3xl { font-size: 1.25rem !important; }
-            .text-4xl { font-size: 1.5rem !important; }
-            .text-5xl { font-size: 1.75rem !important; }
-            
+            h1 {
+                font-size: 1.25rem !important;
+            }
+
+            h2 {
+                font-size: 1.125rem !important;
+            }
+
+            h3 {
+                font-size: 1rem !important;
+            }
+
+            h4 {
+                font-size: 0.9rem !important;
+            }
+
+            h5 {
+                font-size: 0.8rem !important;
+            }
+
+            h6 {
+                font-size: 0.75rem !important;
+            }
+
+            .text-xl {
+                font-size: 1rem !important;
+            }
+
+            .text-2xl {
+                font-size: 1.125rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.25rem !important;
+            }
+
+            .text-4xl {
+                font-size: 1.5rem !important;
+            }
+
+            .text-5xl {
+                font-size: 1.75rem !important;
+            }
+
             /* Body text adjustments */
-            p, span, a, div { font-size: 0.85rem !important; }
-            .text-sm { font-size: 0.75rem !important; }
-            .text-xs { font-size: 0.7rem !important; }
+            p,
+            span,
+            a,
+            div {
+                font-size: 0.85rem !important;
+            }
+
+            .text-sm {
+                font-size: 0.75rem !important;
+            }
+
+            .text-xs {
+                font-size: 0.7rem !important;
+            }
         }
-        
+
         @media (min-width: 769px) {
             .mobile-header {
                 display: none !important;
             }
-            
+
             .mobile-sidebar-toggle {
                 display: none !important;
             }
@@ -261,12 +313,12 @@
             .mobile-header {
                 display: flex !important;
             }
-            
+
             .mobile-sidebar-toggle {
                 display: block !important;
             }
         }
-        
+
         /* Additional Mobile Styling - Updated for overlay */
         @media (max-width: 768px) {
             .main-content {
@@ -274,7 +326,7 @@
                 margin-top: 0 !important;
                 width: 100% !important;
             }
-            
+
             /* Ensure header takes full width on mobile */
             header {
                 width: 100% !important;
@@ -286,7 +338,7 @@
                 padding-left: 1rem !important;
                 padding-right: 1rem !important;
             }
-            
+
             /* Mobile content padding and overflow fixes */
             .p-4.md\\:p-8 {
                 padding: 1rem !important;
@@ -295,7 +347,7 @@
                 box-sizing: border-box !important;
                 overflow-x: auto !important;
             }
-            
+
             /* Fix dashboard content wrapper */
             .p-4 {
                 padding-left: 1rem !important;
@@ -303,7 +355,7 @@
                 box-sizing: border-box !important;
                 width: 100% !important;
             }
-            
+
             /* Fix all child containers - allow content to show */
             .tab-content {
                 width: 100% !important;
@@ -311,33 +363,34 @@
                 overflow-x: auto !important;
                 box-sizing: border-box !important;
             }
-            
+
             /* Fix grid layouts - remove restrictive overflow */
             .grid {
                 width: 100% !important;
                 max-width: none !important;
                 overflow-x: auto !important;
             }
-            
+
             /* Fix cards and containers - allow content */
-            .glass, .bg-white {
+            .glass,
+            .bg-white {
                 max-width: none !important;
                 overflow-x: auto !important;
                 box-sizing: border-box !important;
             }
-            
+
             /* Mobile responsive text */
             .text-xl.md\\:text-2xl {
                 font-size: 1.125rem !important;
             }
-            
+
             /* Prevent content from being pushed when sidebar opens */
             #main-container {
                 overflow-x: hidden !important;
                 width: 100vw !important;
                 max-width: 100vw !important;
             }
-            
+
             #main-content {
                 transition: none !important;
                 transform: none !important;
@@ -345,9 +398,10 @@
                 max-width: 100vw !important;
                 overflow-x: hidden !important;
             }
-            
+
             /* Fix dashboard tabs overflow */
-            .flex.gap-1, .flex.gap-2 {
+            .flex.gap-1,
+            .flex.gap-2 {
                 overflow-x: auto !important;
                 flex-wrap: nowrap !important;
                 width: 100% !important;
@@ -355,17 +409,19 @@
                 padding-bottom: 4px !important;
                 -webkit-overflow-scrolling: touch !important;
             }
-            
+
             /* Hide scrollbar but keep functionality */
-            .flex.gap-1::-webkit-scrollbar, .flex.gap-2::-webkit-scrollbar {
+            .flex.gap-1::-webkit-scrollbar,
+            .flex.gap-2::-webkit-scrollbar {
                 height: 2px !important;
             }
-            
-            .flex.gap-1::-webkit-scrollbar-thumb, .flex.gap-2::-webkit-scrollbar-thumb {
+
+            .flex.gap-1::-webkit-scrollbar-thumb,
+            .flex.gap-2::-webkit-scrollbar-thumb {
                 background-color: #cbd5e1 !important;
                 border-radius: 1px !important;
             }
-            
+
             /* Fix tab buttons */
             .tab-button {
                 flex-shrink: 0 !important;
@@ -375,64 +431,57 @@
                 padding-right: 0.75rem !important;
                 font-size: 0.875rem !important;
             }
-            
+
             /* Fix alert banners and cards */
-            .bg-green-50, .glass, .bg-white {
+            .bg-green-50,
+            .glass,
+            .bg-white {
                 margin-left: 0 !important;
                 margin-right: 0 !important;
                 width: 100% !important;
                 max-width: 100% !important;
                 box-sizing: border-box !important;
             }
-            
+
             /* Fix grid layouts */
             .grid {
                 grid-template-columns: 1fr !important;
                 gap: 1rem !important;
                 width: 100% !important;
             }
-            
+
             .md\\:grid-cols-3 {
                 grid-template-columns: 1fr !important;
             }
-            
+
             .lg\\:grid-cols-2 {
                 grid-template-columns: 1fr !important;
             }
         }
-        
+
         /* RTL Navigation Order */
         [dir="rtl"] .sidebar-nav {
             direction: rtl;
         }
-        
-        [dir="rtl"] .sidebar-nav a {
-            flex-direction: row-reverse;
-        }
-        
-        [dir="rtl"] .sidebar-nav .gap-3 {
-            gap: 0.75rem;
-            flex-direction: row-reverse;
-        }
-        
+
+
+
+
+
         /* Mobile responsive grid */
         @media (max-width: 768px) {
             .dashboard-grid {
                 grid-template-columns: 1fr !important;
             }
-            
+
             .dashboard-card {
                 min-width: 100% !important;
             }
         }
 
-        [dir="rtl"] .flex {
-            flex-direction: row-reverse;
-        }
 
-        [dir="rtl"] .h-screen {
-            flex-direction: row-reverse;
-        }
+
+
 
         [dir="rtl"] #sidebar {
             border-right: none !important;
@@ -444,14 +493,10 @@
             border-right: 1px solid #e2e8f0 !important;
         }
 
-        [dir="rtl"] .justify-between {
-            flex-direction: row-reverse;
-        }
+
 
         /* Horizontal Tab Navigation */
-        [dir="rtl"] .border-b {
-            flex-direction: row-reverse;
-        }
+
 
         [dir="rtl"] [role="tab"] {
             text-align: right;
@@ -470,10 +515,8 @@
         }
 
         /* Header and Navigation Alignment */
-        [dir="rtl"] header .flex {
-            flex-direction: row-reverse;
-        }
-        
+
+
         [dir="ltr"] header .flex {
             flex-direction: row;
         }
@@ -481,18 +524,14 @@
         [dir="rtl"] .grid {
             direction: rtl;
         }
-        
+
         [dir="ltr"] .grid {
             direction: ltr;
         }
 
         /* Button Groups */
-        [dir="rtl"] .gap-2,
-        [dir="rtl"] .gap-3,
-        [dir="rtl"] .gap-4 {
-            flex-direction: row-reverse;
-        }
-        
+
+
         [dir="ltr"] .gap-2,
         [dir="ltr"] .gap-3,
         [dir="ltr"] .gap-4 {
@@ -503,27 +542,27 @@
         [dir="rtl"] .tab-content {
             text-align: right;
         }
-        
+
         [dir="ltr"] .tab-content {
             text-align: left;
         }
 
-        [dir="rtl"] .space-x-3 > * + * {
+        [dir="rtl"] .space-x-3>*+* {
             margin-left: 0;
             margin-right: 0.75rem;
         }
 
-        [dir="ltr"] .space-x-3 > * + * {
+        [dir="ltr"] .space-x-3>*+* {
             margin-right: 0;
             margin-left: 0.75rem;
         }
 
-        [dir="rtl"] .space-x-4 > * + * {
+        [dir="rtl"] .space-x-4>*+* {
             margin-left: 0;
             margin-right: 1rem;
         }
 
-        [dir="ltr"] .space-x-4 > * + * {
+        [dir="ltr"] .space-x-4>*+* {
             margin-right: 0;
             margin-left: 1rem;
         }
@@ -583,10 +622,7 @@
         }
 
         /* Main Container RTL Support - Enhanced */
-        [dir="rtl"] #main-container {
-            flex-direction: row-reverse !important;
-            direction: rtl !important;
-        }
+
 
         /* LTR Main Container Support - Enhanced */
         [dir="ltr"] #main-container {
@@ -601,7 +637,7 @@
             /* Force positioning for RTL */
             position: relative !important;
         }
-        
+
         [dir="ltr"] #sidebar {
             order: 1 !important;
             border-left: none !important;
@@ -613,7 +649,7 @@
         [dir="rtl"] #main-content {
             order: 1 !important;
         }
-        
+
         [dir="ltr"] #main-content {
             order: 2 !important;
         }
@@ -626,11 +662,9 @@
                 left: auto !important;
                 right: auto !important;
             }
-            
-            [dir="rtl"] #main-container {
-                flex-direction: row-reverse !important;
-            }
-            
+
+
+
             /* LTR Desktop positioning - Force sidebar to left */
             [dir="ltr"] #sidebar {
                 position: relative !important;
@@ -638,29 +672,26 @@
                 left: auto !important;
                 right: auto !important;
             }
-            
+
             [dir="ltr"] #main-container {
                 flex-direction: row !important;
             }
-            
+
             /* Ensure sidebar stays in normal document flow on desktop */
             #sidebar {
                 position: relative !important;
                 display: block !important;
                 flex-shrink: 0 !important;
             }
-            
+
             #main-content {
                 flex: 1 !important;
             }
         }
 
         /* Sidebar positioning improvements */
-        [dir="rtl"] .sidebar-nav a {
-            flex-direction: row-reverse !important;
-            text-align: right !important;
-        }
-        
+
+
         /* LTR Sidebar positioning */
         [dir="ltr"] .sidebar-nav a {
             flex-direction: row !important;
@@ -671,7 +702,7 @@
             margin-left: 0.75rem !important;
             margin-right: 0 !important;
         }
-        
+
         [dir="ltr"] .sidebar-nav i {
             margin-right: 0.75rem !important;
             margin-left: 0 !important;
@@ -683,7 +714,7 @@
                 right: auto !important;
                 left: auto !important;
             }
-            
+
             [dir="ltr"] .mobile-sidebar-overlay {
                 left: auto !important;
                 right: auto !important;
@@ -692,10 +723,12 @@
 
         /* Space optimization - consolidated */
         #sidebar {
-            width: 240px !important; /* Reduced from 264px for desktop */
+            width: 240px !important;
+            /* Reduced from 264px for desktop */
         }
 
         @media (max-width: 768px) {
+
             /* Sidebar completely hidden on mobile - no width allocation */
             .desktop-sidebar {
                 display: none !important;
@@ -705,9 +738,10 @@
         /* Enhanced mobile responsiveness */
         @media (max-width: 480px) {
             #sidebar {
-                width: 100vw !important; /* Full width on very small screens */
+                width: 100vw !important;
+                /* Full width on very small screens */
             }
-            
+
             .mobile-header {
                 padding: 0.75rem 1rem !important;
                 height: 60px !important;
@@ -715,11 +749,11 @@
                 align-items: center !important;
                 justify-content: flex-start !important;
             }
-            
+
             .mobile-sidebar-toggle {
                 display: block !important;
             }
-            
+
             .sidebar-nav a {
                 padding: 0.875rem 1rem !important;
                 font-size: 0.9rem !important;
@@ -727,8 +761,9 @@
         }
     </style>
 </head>
+
 <body class="bg-slate-50">
-    
+
     <!-- Dashboard Content -->
     <div class="flex h-screen overflow-hidden" id="main-container">
         <!-- Mobile Header -->
@@ -741,31 +776,35 @@
                 </div>
             </button>
         </div>
-        
+
         <!-- Mobile Sidebar Overlay -->
         <div class="mobile-sidebar-overlay" onclick="closeMobileSidebar()"></div>
-        
+
         <!-- Sidebar -->
         <aside id="sidebar" class="w-60 bg-white border-r border-slate-200 flex-shrink-0 desktop-sidebar">
             <div class="p-6 border-b border-slate-200">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center no-rtl">
+                        <div
+                            class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center no-rtl">
                             <i class="fas fa-balance-scale text-white text-lg"></i>
                         </div>
-                        <h2 class="text-2xl font-bold gradient-text" style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <h2 class="text-2xl font-bold gradient-text"
+                            style="font-family: 'Playfair Display', serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                             LexIcon
                         </h2>
                     </div>
-                    <button class="mobile-sidebar-close md:hidden p-1 text-slate-400 hover:text-slate-600" onclick="closeMobileSidebar()">
+                    <button class="mobile-sidebar-close md:hidden p-1 text-slate-400 hover:text-slate-600"
+                        onclick="closeMobileSidebar()">
                         <i class="fas fa-times text-lg"></i>
                     </button>
                 </div>
                 <p class="text-slate-500 text-xs mt-2 ml-13">Client Portal</p>
             </div>
-            
+
             <nav class="p-4 sidebar-nav">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-amber-600 bg-amber-50 rounded-lg mb-2 font-semibold">
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-amber-600 bg-amber-50 rounded-lg mb-2 font-semibold">
                     <i class="fas fa-briefcase"></i>
                     <span>My Case</span>
                 </a>
@@ -791,9 +830,10 @@
                     <span>Settings</span>
                 </a>
             </nav>
-            
+
             <div class="absolute bottom-0 w-60 p-4 border-t border-slate-200">
-                <a href="login.html" class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg">
+                <a href="login.html"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-50 rounded-lg">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
@@ -810,15 +850,18 @@
                         <p class="text-slate-600 text-sm">Here's an overview of your case</p>
                     </div>
                     <div class="flex items-center gap-2 md:gap-4">
-                        <button id="rtl-toggle-btn" class="text-slate-600 hover:text-indigo-600 transition-colors" title="Toggle Text Direction (LTR/RTL)">
+                        <button id="rtl-toggle-btn" class="text-slate-600 hover:text-indigo-600 transition-colors"
+                            title="Toggle Text Direction (LTR/RTL)">
                             <i class="fas fa-language text-xl md:text-2xl"></i>
                         </button>
                         <button class="relative">
                             <i class="fas fa-bell text-xl md:text-2xl text-slate-600"></i>
-                            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
+                            <span
+                                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">5</span>
                         </button>
                         <div class="hidden md:flex items-center gap-3 no-rtl">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100" alt="Profile" class="w-10 h-10 rounded-full">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100"
+                                alt="Profile" class="w-10 h-10 rounded-full">
                             <div>
                                 <div class="font-semibold text-slate-900">Bruce Wayne</div>
                                 <div class="text-xs text-slate-500">Client</div>
@@ -832,16 +875,24 @@
                 <!-- Dashboard Tabs (My Case Sub-tabs) -->
                 <div class="mb-8" id="mycase-subtabs">
                     <div class="flex gap-1 md:gap-2 border-b border-slate-200 overflow-x-auto" role="tablist">
-                        <button class="tab-button active px-3 md:px-6 py-3 font-semibold text-sm md:text-base text-slate-700 border-b-2 border-transparent hover:text-indigo-600 transition-colors whitespace-nowrap" data-tab="overview" role="tab">
+                        <button
+                            class="tab-button active px-3 md:px-6 py-3 font-semibold text-sm md:text-base text-slate-700 border-b-2 border-transparent hover:text-indigo-600 transition-colors whitespace-nowrap"
+                            data-tab="overview" role="tab">
                             <i class="fas fa-chart-line mr-2"></i>Overview
                         </button>
-                        <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="timeline" role="tab">
+                        <button
+                            class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors"
+                            data-tab="timeline" role="tab">
                             <i class="fas fa-clock mr-2"></i>Timeline
                         </button>
-                        <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="documents" role="tab">
+                        <button
+                            class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors"
+                            data-tab="documents" role="tab">
                             <i class="fas fa-folder mr-2"></i>Documents
                         </button>
-                        <button class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-tab="team">
+                        <button
+                            class="tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors"
+                            data-tab="team">
                             <i class="fas fa-users mr-2"></i>Team
                         </button>
                     </div>
@@ -854,7 +905,8 @@
                         <i class="fas fa-check-circle text-2xl text-green-500 mt-1"></i>
                         <div>
                             <h3 class="font-bold text-green-900 mb-1">Good Morning, Mr. Wayne</h3>
-                            <p class="text-green-800">Your hearing is scheduled for tomorrow at 09:00 AM in Courtroom 5B. Your attorney, Alexander Specter, will meet you 30 minutes prior.</p>
+                            <p class="text-green-800">Your hearing is scheduled for tomorrow at 09:00 AM in Courtroom
+                                5B. Your attorney, Alexander Specter, will meet you 30 minutes prior.</p>
                         </div>
                     </div>
 
@@ -864,9 +916,12 @@
                             <div class="flex items-start justify-between mb-4">
                                 <div>
                                     <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Next Hearing</p>
-                                    <h3 class="text-3xl font-bold gradient-text" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Tomorrow</h3>
+                                    <h3 class="text-3xl font-bold gradient-text"
+                                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                        Tomorrow</h3>
                                 </div>
-                                <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                                     <i class="fas fa-calendar-check text-2xl text-white"></i>
                                 </div>
                             </div>
@@ -877,9 +932,12 @@
                             <div class="flex items-start justify-between mb-4">
                                 <div>
                                     <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Case Status</p>
-                                    <h3 class="text-3xl font-bold gradient-text" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Active</h3>
+                                    <h3 class="text-3xl font-bold gradient-text"
+                                        style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                        Active</h3>
                                 </div>
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
                                     <i class="fas fa-briefcase text-2xl text-white"></i>
                                 </div>
                             </div>
@@ -890,9 +948,12 @@
                             <div class="flex items-start justify-between mb-4">
                                 <div>
                                     <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Days Active</p>
-                                    <h3 class="text-3xl font-bold gradient-text" data-target="87" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">0</h3>
+                                    <h3 class="text-3xl font-bold gradient-text" data-target="87"
+                                        style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                        0</h3>
                                 </div>
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <div
+                                    class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
                                     <i class="fas fa-hourglass-half text-2xl text-white"></i>
                                 </div>
                             </div>
@@ -927,7 +988,8 @@
                                     <span class="text-sm font-bold text-emerald-600">100%</span>
                                 </div>
                                 <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full animate-slideInLeft" style="width: 100%;"></div>
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full animate-slideInLeft"
+                                        style="width: 100%;"></div>
                                 </div>
                             </div>
                             <div>
@@ -936,7 +998,8 @@
                                     <span class="text-sm font-bold text-blue-600">75%</span>
                                 </div>
                                 <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-slideInLeft" style="width: 75%; animation-delay: 0.2s;"></div>
+                                    <div class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-slideInLeft"
+                                        style="width: 75%; animation-delay: 0.2s;"></div>
                                 </div>
                             </div>
                             <div>
@@ -945,7 +1008,8 @@
                                     <span class="text-sm font-bold text-purple-600">60%</span>
                                 </div>
                                 <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-slideInLeft" style="width: 60%; animation-delay: 0.4s;"></div>
+                                    <div class="h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full animate-slideInLeft"
+                                        style="width: 60%; animation-delay: 0.4s;"></div>
                                 </div>
                             </div>
                             <div>
@@ -954,7 +1018,8 @@
                                     <span class="text-sm font-bold text-orange-600">30%</span>
                                 </div>
                                 <div class="h-3 bg-slate-200 rounded-full overflow-hidden">
-                                    <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full animate-slideInLeft" style="width: 30%; animation-delay: 0.6s;"></div>
+                                    <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full animate-slideInLeft"
+                                        style="width: 30%; animation-delay: 0.6s;"></div>
                                 </div>
                             </div>
                         </div>
@@ -963,218 +1028,227 @@
 
                 <!-- Tab Content: Timeline -->
                 <div class="tab-content" data-tab="timeline" style="display: none;">
-                <!-- Case Timeline -->
-                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6" style="font-family: 'Playfair Display', serif;">Case Progress</h2>
-                    
-                    <div class="progress-timeline">
-                        <div class="progress-step completed">
-                            <div class="progress-step-circle">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="text-sm font-semibold text-slate-700 mt-2">Consultation</div>
-                            <div class="text-xs text-slate-500">Completed</div>
-                        </div>
-                        
-                        <div class="progress-step completed">
-                            <div class="progress-step-circle">
-                                <i class="fas fa-check"></i>
-                            </div>
-                            <div class="text-sm font-semibold text-slate-700 mt-2">Discovery</div>
-                            <div class="text-xs text-slate-500">Completed</div>
-                        </div>
-                        
-                        <div class="progress-step active">
-                            <div class="progress-step-circle">
-                                <i class="fas fa-gavel"></i>
-                            </div>
-                            <div class="text-sm font-semibold text-amber-700 mt-2">Deposition</div>
-                            <div class="text-xs text-amber-600">In Progress</div>
-                        </div>
-                        
-                        <div class="progress-step">
-                            <div class="progress-step-circle">
-                                <i class="fas fa-balance-scale"></i>
-                            </div>
-                            <div class="text-sm font-semibold text-slate-500 mt-2">Trial</div>
-                            <div class="text-xs text-slate-400">Upcoming</div>
-                        </div>
-                        
-                        <div class="progress-step">
-                            <div class="progress-step-circle">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="text-sm font-semibold text-slate-500 mt-2">Verdict</div>
-                            <div class="text-xs text-slate-400">Pending</div>
-                        </div>
-                    </div>
-                </div>
+                    <!-- Case Timeline -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-6"
+                            style="font-family: 'Playfair Display', serif;">Case Progress</h2>
 
-                <!-- Stats Cards -->
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="premium-card p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Next Hearing</p>
-                                <h3 class="text-3xl font-bold text-slate-900">Tomorrow</h3>
+                        <div class="progress-timeline">
+                            <div class="progress-step completed">
+                                <div class="progress-step-circle">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="text-sm font-semibold text-slate-700 mt-2">Consultation</div>
+                                <div class="text-xs text-slate-500">Completed</div>
                             </div>
-                            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-calendar-check text-2xl text-amber-600"></i>
+
+                            <div class="progress-step completed">
+                                <div class="progress-step-circle">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="text-sm font-semibold text-slate-700 mt-2">Discovery</div>
+                                <div class="text-xs text-slate-500">Completed</div>
+                            </div>
+
+                            <div class="progress-step active">
+                                <div class="progress-step-circle">
+                                    <i class="fas fa-gavel"></i>
+                                </div>
+                                <div class="text-sm font-semibold text-amber-700 mt-2">Deposition</div>
+                                <div class="text-xs text-amber-600">In Progress</div>
+                            </div>
+
+                            <div class="progress-step">
+                                <div class="progress-step-circle">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <div class="text-sm font-semibold text-slate-500 mt-2">Trial</div>
+                                <div class="text-xs text-slate-400">Upcoming</div>
+                            </div>
+
+                            <div class="progress-step">
+                                <div class="progress-step-circle">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="text-sm font-semibold text-slate-500 mt-2">Verdict</div>
+                                <div class="text-xs text-slate-400">Pending</div>
                             </div>
                         </div>
-                        <p class="text-slate-600 text-sm">December 5, 2025 at 09:00 AM</p>
                     </div>
 
-                    <div class="premium-card p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Days Since Filing</p>
-                                <h3 class="text-3xl font-bold text-slate-900">142</h3>
+                    <!-- Stats Cards -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="premium-card p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Next Hearing</p>
+                                    <h3 class="text-3xl font-bold text-slate-900">Tomorrow</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-calendar-check text-2xl text-amber-600"></i>
+                                </div>
                             </div>
-                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-hourglass-half text-2xl text-blue-600"></i>
-                            </div>
+                            <p class="text-slate-600 text-sm">December 5, 2025 at 09:00 AM</p>
                         </div>
-                        <p class="text-slate-600 text-sm">Filed on July 15, 2025</p>
-                    </div>
 
-                    <div class="premium-card p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Case Status</p>
-                                <h3 class="text-xl font-bold text-green-600">On Track</h3>
+                        <div class="premium-card p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Days Since Filing</p>
+                                    <h3 class="text-3xl font-bold text-slate-900">142</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-hourglass-half text-2xl text-blue-600"></i>
+                                </div>
                             </div>
-                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-chart-line text-2xl text-green-600"></i>
-                            </div>
+                            <p class="text-slate-600 text-sm">Filed on July 15, 2025</p>
                         </div>
-                        <p class="text-slate-600 text-sm">All milestones met on schedule</p>
+
+                        <div class="premium-card p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Case Status</p>
+                                    <h3 class="text-xl font-bold text-green-600">On Track</h3>
+                                </div>
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-2xl text-green-600"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 text-sm">All milestones met on schedule</p>
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <!-- Tab Content: Documents -->
                 <div class="tab-content" data-tab="documents" style="display: none;">
-                <!-- Recent Documents -->
-                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-2xl font-bold text-slate-900" style="font-family: 'Playfair Display', serif;">Recent Documents</h2>
-                        <button class="text-amber-600 hover:text-amber-700 font-semibold text-sm">
-                            View All <i class="fas fa-arrow-right ml-1"></i>
-                        </button>
+                    <!-- Recent Documents -->
+                    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-slate-900"
+                                style="font-family: 'Playfair Display', serif;">Recent Documents</h2>
+                            <button class="text-amber-600 hover:text-amber-700 font-semibold text-sm">
+                                View All <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-slate-50">
+                                    <tr>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Document
+                                            Name</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Type</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Date</th>
+                                        <th class="text-right py-3 px-4 font-semibold text-slate-700 text-sm">Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <i class="fas fa-file-pdf text-2xl text-red-500"></i>
+                                                <span class="font-semibold text-slate-900">Subpoena_Response.pdf</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-600">Legal Filing</td>
+                                        <td class="py-4 px-4 text-slate-600">Dec 1, 2025</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <i class="fas fa-file-word text-2xl text-blue-500"></i>
+                                                <span
+                                                    class="font-semibold text-slate-900">Settlement_Draft_v2.docx</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-600">Agreement</td>
+                                        <td class="py-4 px-4 text-slate-600">Nov 28, 2025</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="py-4 px-4">
+                                            <div class="flex items-center gap-3">
+                                                <i class="fas fa-file-alt text-2xl text-slate-500"></i>
+                                                <span
+                                                    class="font-semibold text-slate-900">Discovery_Documents.zip</span>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-4 text-slate-600">Evidence</td>
+                                        <td class="py-4 px-4 text-slate-600">Nov 22, 2025</td>
+                                        <td class="py-4 px-4 text-right">
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="bg-slate-50">
-                                <tr>
-                                    <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Document Name</th>
-                                    <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Type</th>
-                                    <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Date</th>
-                                    <th class="text-right py-3 px-4 font-semibold text-slate-700 text-sm">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-200">
-                                <tr class="hover:bg-slate-50">
-                                    <td class="py-4 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <i class="fas fa-file-pdf text-2xl text-red-500"></i>
-                                            <span class="font-semibold text-slate-900">Subpoena_Response.pdf</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-600">Legal Filing</td>
-                                    <td class="py-4 px-4 text-slate-600">Dec 1, 2025</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
-                                            <i class="fas fa-download"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="py-4 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <i class="fas fa-file-word text-2xl text-blue-500"></i>
-                                            <span class="font-semibold text-slate-900">Settlement_Draft_v2.docx</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-600">Agreement</td>
-                                    <td class="py-4 px-4 text-slate-600">Nov 28, 2025</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
-                                            <i class="fas fa-download"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-slate-50">
-                                    <td class="py-4 px-4">
-                                        <div class="flex items-center gap-3">
-                                            <i class="fas fa-file-alt text-2xl text-slate-500"></i>
-                                            <span class="font-semibold text-slate-900">Discovery_Documents.zip</span>
-                                        </div>
-                                    </td>
-                                    <td class="py-4 px-4 text-slate-600">Evidence</td>
-                                    <td class="py-4 px-4 text-slate-600">Nov 22, 2025</td>
-                                    <td class="py-4 px-4 text-right">
-                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="text-amber-600 hover:text-amber-700 mx-1">
-                                            <i class="fas fa-download"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
                 </div>
 
                 <!-- Tab Content: Team -->
                 <div class="tab-content" data-tab="team" style="display: none;">
-                <!-- Your Legal Team -->
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h2 class="text-2xl font-bold text-slate-900 mb-6" style="font-family: 'Playfair Display', serif;">Your Legal Team</h2>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-lg">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100" alt="Attorney" class="w-16 h-16 rounded-full">
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-lg">Alexander Specter</h3>
-                                <p class="text-amber-600 font-semibold text-sm">Lead Attorney</p>
-                                <div class="flex gap-3 mt-2">
-                                    <a href="#" class="text-slate-600 hover:text-amber-600">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                    <a href="#" class="text-slate-600 hover:text-amber-600">
-                                        <i class="fas fa-phone"></i>
-                                    </a>
+                    <!-- Your Legal Team -->
+                    <div class="bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-6"
+                            style="font-family: 'Playfair Display', serif;">Your Legal Team</h2>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100"
+                                    alt="Attorney" class="w-16 h-16 rounded-full">
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-lg">Alexander Specter</h3>
+                                    <p class="text-amber-600 font-semibold text-sm">Lead Attorney</p>
+                                    <div class="flex gap-3 mt-2">
+                                        <a href="#" class="text-slate-600 hover:text-amber-600">
+                                            <i class="fas fa-envelope"></i>
+                                        </a>
+                                        <a href="#" class="text-slate-600 hover:text-amber-600">
+                                            <i class="fas fa-phone"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-lg">
-                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100" alt="Paralegal" class="w-16 h-16 rounded-full">
-                            <div>
-                                <h3 class="font-bold text-slate-900 text-lg">Sarah Martinez</h3>
-                                <p class="text-amber-600 font-semibold text-sm">Case Manager</p>
-                                <div class="flex gap-3 mt-2">
-                                    <a href="#" class="text-slate-600 hover:text-amber-600">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                    <a href="#" class="text-slate-600 hover:text-amber-600">
-                                        <i class="fas fa-phone"></i>
-                                    </a>
+                            <div class="flex items-center gap-4 p-4 border border-slate-200 rounded-lg">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100"
+                                    alt="Paralegal" class="w-16 h-16 rounded-full">
+                                <div>
+                                    <h3 class="font-bold text-slate-900 text-lg">Sarah Martinez</h3>
+                                    <p class="text-amber-600 font-semibold text-sm">Case Manager</p>
+                                    <div class="flex gap-3 mt-2">
+                                        <a href="#" class="text-slate-600 hover:text-amber-600">
+                                            <i class="fas fa-envelope"></i>
+                                        </a>
+                                        <a href="#" class="text-slate-600 hover:text-amber-600">
+                                            <i class="fas fa-phone"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
 
                 <!-- Tab Content: Billing -->
@@ -1184,9 +1258,12 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-slate-600 text-sm uppercase tracking-wide mb-2">Outstanding Balance</p>
-                                <h3 class="text-4xl font-bold gradient-text" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">$12,450.00</h3>
+                                <h3 class="text-4xl font-bold gradient-text"
+                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                                    $12,450.00</h3>
                             </div>
-                            <button class="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105">
+                            <button
+                                class="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105">
                                 <i class="fas fa-credit-card mr-2"></i>Make Payment
                             </button>
                         </div>
@@ -1199,12 +1276,15 @@
                             <table class="w-full">
                                 <thead class="bg-slate-50">
                                     <tr>
-                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Invoice #</th>
-                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Description</th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Invoice #
+                                        </th>
+                                        <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Description
+                                        </th>
                                         <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Date</th>
                                         <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Amount</th>
                                         <th class="text-left py-3 px-4 font-semibold text-slate-700 text-sm">Status</th>
-                                        <th class="text-right py-3 px-4 font-semibold text-slate-700 text-sm">Actions</th>
+                                        <th class="text-right py-3 px-4 font-semibold text-slate-700 text-sm">Actions
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-slate-200">
@@ -1214,11 +1294,14 @@
                                         <td class="py-4 px-4 text-slate-600">Dec 1, 2025</td>
                                         <td class="py-4 px-4 font-semibold text-slate-900">$4,850.00</td>
                                         <td class="py-4 px-4">
-                                            <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">Pending</span>
+                                            <span
+                                                class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">Pending</span>
                                         </td>
                                         <td class="py-4 px-4 text-right">
-                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
-                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-credit-card"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i
+                                                    class="fas fa-download"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i
+                                                    class="fas fa-credit-card"></i></button>
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-slate-50">
@@ -1227,11 +1310,14 @@
                                         <td class="py-4 px-4 text-slate-600">Nov 15, 2025</td>
                                         <td class="py-4 px-4 font-semibold text-slate-900">$7,600.00</td>
                                         <td class="py-4 px-4">
-                                            <span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">Pending</span>
+                                            <span
+                                                class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-semibold">Pending</span>
                                         </td>
                                         <td class="py-4 px-4 text-right">
-                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
-                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-credit-card"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i
+                                                    class="fas fa-download"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i
+                                                    class="fas fa-credit-card"></i></button>
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-slate-50">
@@ -1240,11 +1326,14 @@
                                         <td class="py-4 px-4 text-slate-600">Oct 20, 2025</td>
                                         <td class="py-4 px-4 font-semibold text-slate-900">$8,200.00</td>
                                         <td class="py-4 px-4">
-                                            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Paid</span>
+                                            <span
+                                                class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Paid</span>
                                         </td>
                                         <td class="py-4 px-4 text-right">
-                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
-                                            <button class="text-slate-400 cursor-not-allowed mx-1"><i class="fas fa-check-circle"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i
+                                                    class="fas fa-download"></i></button>
+                                            <button class="text-slate-400 cursor-not-allowed mx-1"><i
+                                                    class="fas fa-check-circle"></i></button>
                                         </td>
                                     </tr>
                                     <tr class="hover:bg-slate-50">
@@ -1253,11 +1342,14 @@
                                         <td class="py-4 px-4 text-slate-600">Sept 10, 2025</td>
                                         <td class="py-4 px-4 font-semibold text-slate-900">$5,500.00</td>
                                         <td class="py-4 px-4">
-                                            <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Paid</span>
+                                            <span
+                                                class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Paid</span>
                                         </td>
                                         <td class="py-4 px-4 text-right">
-                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i class="fas fa-download"></i></button>
-                                            <button class="text-slate-400 cursor-not-allowed mx-1"><i class="fas fa-check-circle"></i></button>
+                                            <button class="text-amber-600 hover:text-amber-700 mx-1"><i
+                                                    class="fas fa-download"></i></button>
+                                            <button class="text-slate-400 cursor-not-allowed mx-1"><i
+                                                    class="fas fa-check-circle"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -1274,10 +1366,12 @@
                             </button>
                         </div>
                         <div class="grid md:grid-cols-2 gap-4">
-                            <div class="border-2 border-amber-300 rounded-lg p-4 bg-gradient-to-br from-amber-50 to-orange-50">
+                            <div
+                                class="border-2 border-amber-300 rounded-lg p-4 bg-gradient-to-br from-amber-50 to-orange-50">
                                 <div class="flex items-center justify-between mb-3">
                                     <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
-                                    <span class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Primary</span>
+                                    <span
+                                        class="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-semibold">Primary</span>
                                 </div>
                                 <p class="text-slate-900 font-semibold">Visa •••• 4242</p>
                                 <p class="text-slate-600 text-sm">Expires 12/2026</p>
@@ -1285,7 +1379,8 @@
                             <div class="border border-slate-200 rounded-lg p-4">
                                 <div class="flex items-center justify-between mb-3">
                                     <i class="fab fa-cc-mastercard text-3xl text-orange-600"></i>
-                                    <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                    <button class="text-slate-400 hover:text-slate-600"><i
+                                            class="fas fa-ellipsis-v"></i></button>
                                 </div>
                                 <p class="text-slate-900 font-semibold">Mastercard •••• 8888</p>
                                 <p class="text-slate-600 text-sm">Expires 08/2027</p>
@@ -1303,22 +1398,27 @@
                                 <h3 class="text-lg font-bold text-slate-900">Messages</h3>
                             </div>
                             <div class="divide-y divide-slate-200 max-h-[600px] overflow-y-auto">
-                                <div class="p-4 hover:bg-slate-50 cursor-pointer border-l-4 border-amber-600 bg-amber-50">
+                                <div
+                                    class="p-4 hover:bg-slate-50 cursor-pointer border-l-4 border-amber-600 bg-amber-50">
                                     <div class="flex items-start gap-3">
-                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50" alt="Attorney" class="w-10 h-10 rounded-full">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50"
+                                            alt="Attorney" class="w-10 h-10 rounded-full">
                                         <div class="flex-1">
                                             <div class="flex items-center justify-between">
                                                 <h4 class="font-semibold text-slate-900">Alexander Specter</h4>
                                                 <span class="text-xs text-slate-500">2h ago</span>
                                             </div>
-                                            <p class="text-sm text-slate-600 truncate">Deposition scheduled for tomorrow morning...</p>
-                                            <span class="inline-block mt-1 px-2 py-0.5 bg-amber-600 text-white rounded-full text-xs">New</span>
+                                            <p class="text-sm text-slate-600 truncate">Deposition scheduled for tomorrow
+                                                morning...</p>
+                                            <span
+                                                class="inline-block mt-1 px-2 py-0.5 bg-amber-600 text-white rounded-full text-xs">New</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="p-4 hover:bg-slate-50 cursor-pointer">
                                     <div class="flex items-start gap-3">
-                                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=50" alt="Case Manager" class="w-10 h-10 rounded-full">
+                                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=50"
+                                            alt="Case Manager" class="w-10 h-10 rounded-full">
                                         <div class="flex-1">
                                             <div class="flex items-center justify-between">
                                                 <h4 class="font-semibold text-slate-900">Sarah Martinez</h4>
@@ -1330,25 +1430,30 @@
                                 </div>
                                 <div class="p-4 hover:bg-slate-50 cursor-pointer">
                                     <div class="flex items-start gap-3">
-                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50" alt="Attorney" class="w-10 h-10 rounded-full">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50"
+                                            alt="Attorney" class="w-10 h-10 rounded-full">
                                         <div class="flex-1">
                                             <div class="flex items-center justify-between">
                                                 <h4 class="font-semibold text-slate-900">Alexander Specter</h4>
                                                 <span class="text-xs text-slate-500">Dec 1</span>
                                             </div>
-                                            <p class="text-sm text-slate-600 truncate">Settlement offer discussion...</p>
+                                            <p class="text-sm text-slate-600 truncate">Settlement offer discussion...
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="p-4 hover:bg-slate-50 cursor-pointer">
                                     <div class="flex items-start gap-3">
-                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold">LS</div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+                                            LS</div>
                                         <div class="flex-1">
                                             <div class="flex items-center justify-between">
                                                 <h4 class="font-semibold text-slate-900">LexIcon Support</h4>
                                                 <span class="text-xs text-slate-500">Nov 28</span>
                                             </div>
-                                            <p class="text-sm text-slate-600 truncate">Your account has been verified...</p>
+                                            <p class="text-sm text-slate-600 truncate">Your account has been verified...
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -1359,21 +1464,26 @@
                         <div class="lg:col-span-2 bg-white rounded-xl shadow-lg flex flex-col">
                             <div class="p-4 border-b border-slate-200 flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50" alt="Attorney" class="w-10 h-10 rounded-full">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=50"
+                                        alt="Attorney" class="w-10 h-10 rounded-full">
                                     <div>
                                         <h4 class="font-semibold text-slate-900">Alexander Specter</h4>
                                         <p class="text-xs text-slate-500">Lead Attorney</p>
                                     </div>
                                 </div>
-                                <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                <button class="text-slate-400 hover:text-slate-600"><i
+                                        class="fas fa-ellipsis-v"></i></button>
                             </div>
 
                             <div class="flex-1 p-6 space-y-4 overflow-y-auto max-h-[450px]">
                                 <div class="flex gap-3">
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=40" alt="Attorney" class="w-8 h-8 rounded-full">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=40"
+                                        alt="Attorney" class="w-8 h-8 rounded-full">
                                     <div class="flex-1">
                                         <div class="bg-slate-100 rounded-lg p-3 max-w-md">
-                                            <p class="text-sm text-slate-900">Good afternoon! I wanted to update you on the deposition scheduled for tomorrow at 9:00 AM. Please review the attached preparation materials.</p>
+                                            <p class="text-sm text-slate-900">Good afternoon! I wanted to update you on
+                                                the deposition scheduled for tomorrow at 9:00 AM. Please review the
+                                                attached preparation materials.</p>
                                         </div>
                                         <span class="text-xs text-slate-500 mt-1 inline-block">Today at 2:30 PM</span>
                                     </div>
@@ -1381,19 +1491,26 @@
 
                                 <div class="flex gap-3 justify-end">
                                     <div class="flex-1 flex flex-col items-end">
-                                        <div class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg p-3 max-w-md">
-                                            <p class="text-sm">Thank you for the update. I've reviewed the materials. Should I bring any additional documents?</p>
+                                        <div
+                                            class="bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg p-3 max-w-md">
+                                            <p class="text-sm">Thank you for the update. I've reviewed the materials.
+                                                Should I bring any additional documents?</p>
                                         </div>
                                         <span class="text-xs text-slate-500 mt-1">Today at 3:15 PM</span>
                                     </div>
-                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">JD</div>
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                                        JD</div>
                                 </div>
 
                                 <div class="flex gap-3">
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=40" alt="Attorney" class="w-8 h-8 rounded-full">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=40"
+                                        alt="Attorney" class="w-8 h-8 rounded-full">
                                     <div class="flex-1">
                                         <div class="bg-slate-100 rounded-lg p-3 max-w-md">
-                                            <p class="text-sm text-slate-900">Just the photo ID and any notes you'd like to reference. We'll go over everything 30 minutes before the deposition starts.</p>
+                                            <p class="text-sm text-slate-900">Just the photo ID and any notes you'd like
+                                                to reference. We'll go over everything 30 minutes before the deposition
+                                                starts.</p>
                                         </div>
                                         <span class="text-xs text-slate-500 mt-1 inline-block">Today at 3:20 PM</span>
                                     </div>
@@ -1402,8 +1519,10 @@
 
                             <div class="p-4 border-t border-slate-200">
                                 <div class="flex gap-3">
-                                    <input type="text" placeholder="Type your message..." class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
-                                    <button class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                                    <input type="text" placeholder="Type your message..."
+                                        class="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                    <button
+                                        class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
                                         <i class="fas fa-paper-plane"></i>
                                     </button>
                                 </div>
@@ -1419,23 +1538,29 @@
                         <div class="lg:col-span-1 bg-white rounded-xl shadow-lg p-6">
                             <h3 class="text-lg font-bold text-slate-900 mb-4">Categories</h3>
                             <div class="space-y-2">
-                                <button class="w-full text-left px-4 py-2 bg-amber-50 text-amber-700 rounded-lg font-semibold hover:bg-amber-100 transition-colors">
+                                <button
+                                    class="w-full text-left px-4 py-2 bg-amber-50 text-amber-700 rounded-lg font-semibold hover:bg-amber-100 transition-colors">
                                     <i class="fas fa-folder mr-2"></i>All Documents (24)
                                 </button>
-                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                <button
+                                    class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
                                     <i class="fas fa-file-pdf mr-2"></i>Legal Filings (8)
                                 </button>
-                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                <button
+                                    class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
                                     <i class="fas fa-file-contract mr-2"></i>Agreements (5)
                                 </button>
-                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                <button
+                                    class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
                                     <i class="fas fa-file-alt mr-2"></i>Evidence (7)
                                 </button>
-                                <button class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
+                                <button
+                                    class="w-full text-left px-4 py-2 text-slate-600 rounded-lg hover:bg-slate-50 transition-colors">
                                     <i class="fas fa-file-invoice mr-2"></i>Billing (4)
                                 </button>
                             </div>
-                            <button class="w-full mt-6 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                            <button
+                                class="w-full mt-6 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                                 <i class="fas fa-upload mr-2"></i>Upload Document
                             </button>
                         </div>
@@ -1446,87 +1571,133 @@
                                 <div class="flex items-center justify-between mb-6">
                                     <h3 class="text-xl font-bold text-slate-900">All Documents</h3>
                                     <div class="flex gap-2">
-                                        <button class="px-3 py-2 text-amber-600 border border-amber-300 rounded-lg hover:bg-amber-50"><i class="fas fa-th"></i></button>
-                                        <button class="px-3 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50"><i class="fas fa-list"></i></button>
+                                        <button
+                                            class="px-3 py-2 text-amber-600 border border-amber-300 rounded-lg hover:bg-amber-50"><i
+                                                class="fas fa-th"></i></button>
+                                        <button
+                                            class="px-3 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50"><i
+                                                class="fas fa-list"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                    <div
+                                        class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
                                         <div class="flex items-center justify-between mb-3">
                                             <i class="fas fa-file-pdf text-4xl text-red-500"></i>
-                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                            <button class="text-slate-400 hover:text-slate-600"><i
+                                                    class="fas fa-ellipsis-v"></i></button>
                                         </div>
-                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Subpoena_Response.pdf</h4>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">
+                                            Subpoena_Response.pdf</h4>
                                         <p class="text-xs text-slate-500 mb-2">2.4 MB • Dec 1, 2025</p>
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
-                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i
+                                                    class="fas fa-eye mr-1"></i>View</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i
+                                                    class="fas fa-download mr-1"></i>Download</button>
                                         </div>
                                     </div>
 
-                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                    <div
+                                        class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
                                         <div class="flex items-center justify-between mb-3">
                                             <i class="fas fa-file-word text-4xl text-blue-500"></i>
-                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                            <button class="text-slate-400 hover:text-slate-600"><i
+                                                    class="fas fa-ellipsis-v"></i></button>
                                         </div>
-                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Settlement_Draft_v2.docx</h4>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">
+                                            Settlement_Draft_v2.docx</h4>
                                         <p class="text-xs text-slate-500 mb-2">1.8 MB • Nov 28, 2025</p>
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
-                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i
+                                                    class="fas fa-eye mr-1"></i>View</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i
+                                                    class="fas fa-download mr-1"></i>Download</button>
                                         </div>
                                     </div>
 
-                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                    <div
+                                        class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
                                         <div class="flex items-center justify-between mb-3">
                                             <i class="fas fa-file-archive text-4xl text-amber-500"></i>
-                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                            <button class="text-slate-400 hover:text-slate-600"><i
+                                                    class="fas fa-ellipsis-v"></i></button>
                                         </div>
-                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Discovery_Documents.zip</h4>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">
+                                            Discovery_Documents.zip</h4>
                                         <p class="text-xs text-slate-500 mb-2">15.2 MB • Nov 22, 2025</p>
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
-                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i
+                                                    class="fas fa-eye mr-1"></i>View</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i
+                                                    class="fas fa-download mr-1"></i>Download</button>
                                         </div>
                                     </div>
 
-                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                    <div
+                                        class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
                                         <div class="flex items-center justify-between mb-3">
                                             <i class="fas fa-file-contract text-4xl text-green-500"></i>
-                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                            <button class="text-slate-400 hover:text-slate-600"><i
+                                                    class="fas fa-ellipsis-v"></i></button>
                                         </div>
-                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Retainer_Agreement.pdf</h4>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">
+                                            Retainer_Agreement.pdf</h4>
                                         <p class="text-xs text-slate-500 mb-2">890 KB • Sept 8, 2025</p>
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
-                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i
+                                                    class="fas fa-eye mr-1"></i>View</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i
+                                                    class="fas fa-download mr-1"></i>Download</button>
                                         </div>
                                     </div>
 
-                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                    <div
+                                        class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
                                         <div class="flex items-center justify-between mb-3">
                                             <i class="fas fa-file-image text-4xl text-purple-500"></i>
-                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                            <button class="text-slate-400 hover:text-slate-600"><i
+                                                    class="fas fa-ellipsis-v"></i></button>
                                         </div>
-                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Evidence_Photos.zip</h4>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">
+                                            Evidence_Photos.zip</h4>
                                         <p class="text-xs text-slate-500 mb-2">8.5 MB • Nov 10, 2025</p>
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
-                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i
+                                                    class="fas fa-eye mr-1"></i>View</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i
+                                                    class="fas fa-download mr-1"></i>Download</button>
                                         </div>
                                     </div>
 
-                                    <div class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                                    <div
+                                        class="border border-slate-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer">
                                         <div class="flex items-center justify-between mb-3">
                                             <i class="fas fa-file-excel text-4xl text-emerald-500"></i>
-                                            <button class="text-slate-400 hover:text-slate-600"><i class="fas fa-ellipsis-v"></i></button>
+                                            <button class="text-slate-400 hover:text-slate-600"><i
+                                                    class="fas fa-ellipsis-v"></i></button>
                                         </div>
-                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">Financial_Records.xlsx</h4>
+                                        <h4 class="font-semibold text-slate-900 text-sm mb-1 truncate">
+                                            Financial_Records.xlsx</h4>
                                         <p class="text-xs text-slate-500 mb-2">3.2 MB • Oct 28, 2025</p>
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i class="fas fa-eye mr-1"></i>View</button>
-                                            <button class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i class="fas fa-download mr-1"></i>Download</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-slate-100 text-slate-600 rounded hover:bg-slate-200"><i
+                                                    class="fas fa-eye mr-1"></i>View</button>
+                                            <button
+                                                class="flex-1 px-2 py-1 text-xs bg-amber-100 text-amber-700 rounded hover:bg-amber-200"><i
+                                                    class="fas fa-download mr-1"></i>Download</button>
                                         </div>
                                     </div>
                                 </div>
@@ -1541,7 +1712,8 @@
                     <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-xl font-bold text-slate-900">Upcoming Appointments</h3>
-                            <button class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                            <button
+                                class="px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                                 <i class="fas fa-plus mr-2"></i>Schedule New
                             </button>
                         </div>
@@ -1553,12 +1725,16 @@
                                         <h4 class="font-bold text-slate-900 text-lg mb-1">Deposition Hearing</h4>
                                         <p class="text-slate-600 text-sm mb-2">with Alexander Specter</p>
                                         <div class="flex items-center gap-4 text-sm text-slate-600">
-                                            <span><i class="fas fa-calendar mr-2 text-amber-600"></i>Tomorrow, Dec 5, 2025</span>
-                                            <span><i class="fas fa-clock mr-2 text-amber-600"></i>09:00 AM - 11:00 AM</span>
-                                            <span><i class="fas fa-map-marker-alt mr-2 text-amber-600"></i>Court Room 3B</span>
+                                            <span><i class="fas fa-calendar mr-2 text-amber-600"></i>Tomorrow, Dec 5,
+                                                2025</span>
+                                            <span><i class="fas fa-clock mr-2 text-amber-600"></i>09:00 AM - 11:00
+                                                AM</span>
+                                            <span><i class="fas fa-map-marker-alt mr-2 text-amber-600"></i>Court Room
+                                                3B</span>
                                         </div>
                                     </div>
-                                    <button class="text-amber-600 hover:text-amber-700"><i class="fas fa-ellipsis-v"></i></button>
+                                    <button class="text-amber-600 hover:text-amber-700"><i
+                                            class="fas fa-ellipsis-v"></i></button>
                                 </div>
                             </div>
 
@@ -1566,14 +1742,17 @@
                                 <div class="flex items-start justify-between">
                                     <div>
                                         <h4 class="font-bold text-slate-900 text-lg mb-1">Strategy Meeting</h4>
-                                        <p class="text-slate-600 text-sm mb-2">with Alexander Specter & Sarah Martinez</p>
+                                        <p class="text-slate-600 text-sm mb-2">with Alexander Specter & Sarah Martinez
+                                        </p>
                                         <div class="flex items-center gap-4 text-sm text-slate-600">
                                             <span><i class="fas fa-calendar mr-2 text-blue-600"></i>Dec 8, 2025</span>
-                                            <span><i class="fas fa-clock mr-2 text-blue-600"></i>02:00 PM - 03:30 PM</span>
+                                            <span><i class="fas fa-clock mr-2 text-blue-600"></i>02:00 PM - 03:30
+                                                PM</span>
                                             <span><i class="fas fa-video mr-2 text-blue-600"></i>Video Conference</span>
                                         </div>
                                     </div>
-                                    <button class="text-blue-600 hover:text-blue-700"><i class="fas fa-ellipsis-v"></i></button>
+                                    <button class="text-blue-600 hover:text-blue-700"><i
+                                            class="fas fa-ellipsis-v"></i></button>
                                 </div>
                             </div>
 
@@ -1583,12 +1762,16 @@
                                         <h4 class="font-bold text-slate-900 text-lg mb-1">Document Review Session</h4>
                                         <p class="text-slate-600 text-sm mb-2">with Sarah Martinez</p>
                                         <div class="flex items-center gap-4 text-sm text-slate-600">
-                                            <span><i class="fas fa-calendar mr-2 text-purple-600"></i>Dec 12, 2025</span>
-                                            <span><i class="fas fa-clock mr-2 text-purple-600"></i>10:00 AM - 12:00 PM</span>
-                                            <span><i class="fas fa-map-marker-alt mr-2 text-purple-600"></i>Office - Conference Room A</span>
+                                            <span><i class="fas fa-calendar mr-2 text-purple-600"></i>Dec 12,
+                                                2025</span>
+                                            <span><i class="fas fa-clock mr-2 text-purple-600"></i>10:00 AM - 12:00
+                                                PM</span>
+                                            <span><i class="fas fa-map-marker-alt mr-2 text-purple-600"></i>Office -
+                                                Conference Room A</span>
                                         </div>
                                     </div>
-                                    <button class="text-purple-600 hover:text-purple-700"><i class="fas fa-ellipsis-v"></i></button>
+                                    <button class="text-purple-600 hover:text-purple-700"><i
+                                            class="fas fa-ellipsis-v"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -1604,7 +1787,8 @@
                                         <h4 class="font-semibold text-slate-900">Case Consultation</h4>
                                         <p class="text-sm text-slate-600">Dec 1, 2025 • 03:00 PM - 04:30 PM</p>
                                     </div>
-                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
+                                    <span
+                                        class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
                                 </div>
                             </div>
                             <div class="border border-slate-200 rounded-lg p-4 opacity-75">
@@ -1613,7 +1797,8 @@
                                         <h4 class="font-semibold text-slate-900">Discovery Phase Review</h4>
                                         <p class="text-sm text-slate-600">Nov 20, 2025 • 11:00 AM - 12:00 PM</p>
                                     </div>
-                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
+                                    <span
+                                        class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
                                 </div>
                             </div>
                             <div class="border border-slate-200 rounded-lg p-4 opacity-75">
@@ -1622,7 +1807,8 @@
                                         <h4 class="font-semibold text-slate-900">Initial Consultation</h4>
                                         <p class="text-sm text-slate-600">Sept 8, 2025 • 10:00 AM - 11:00 AM</p>
                                     </div>
-                                    <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
+                                    <span
+                                        class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold">Completed</span>
                                 </div>
                             </div>
                         </div>
@@ -1634,16 +1820,24 @@
                     <!-- Settings Sub-tabs -->
                     <div class="mb-8">
                         <div class="flex gap-2 border-b border-slate-200">
-                            <button class="settings-tab-button active px-6 py-3 font-semibold text-slate-700 border-b-2 border-indigo-600 hover:text-indigo-600 transition-colors" data-settings-tab="profile">
+                            <button
+                                class="settings-tab-button active px-6 py-3 font-semibold text-slate-700 border-b-2 border-indigo-600 hover:text-indigo-600 transition-colors"
+                                data-settings-tab="profile">
                                 <i class="fas fa-user mr-2"></i>Profile
                             </button>
-                            <button class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-settings-tab="notifications">
+                            <button
+                                class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors"
+                                data-settings-tab="notifications">
                                 <i class="fas fa-bell mr-2"></i>Notifications
                             </button>
-                            <button class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-settings-tab="security">
+                            <button
+                                class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors"
+                                data-settings-tab="security">
                                 <i class="fas fa-lock mr-2"></i>Security
                             </button>
-                            <button class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors" data-settings-tab="billing">
+                            <button
+                                class="settings-tab-button px-6 py-3 font-semibold text-slate-600 border-b-2 border-transparent hover:text-indigo-600 transition-colors"
+                                data-settings-tab="billing">
                                 <i class="fas fa-credit-card mr-2"></i>Billing
                             </button>
                         </div>
@@ -1658,28 +1852,38 @@
                                 <div class="space-y-4">
                                     <div class="grid md:grid-cols-2 gap-4">
                                         <div>
-                                            <label class="block text-sm font-semibold text-slate-700 mb-2">First Name</label>
-                                            <input type="text" value="John" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                            <label class="block text-sm font-semibold text-slate-700 mb-2">First
+                                                Name</label>
+                                            <input type="text" value="John"
+                                                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                         </div>
                                         <div>
-                                            <label class="block text-sm font-semibold text-slate-700 mb-2">Last Name</label>
-                                            <input type="text" value="Doe" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                            <label class="block text-sm font-semibold text-slate-700 mb-2">Last
+                                                Name</label>
+                                            <input type="text" value="Doe"
+                                                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
-                                        <input type="email" value="john.doe@email.com" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email
+                                            Address</label>
+                                        <input type="email" value="john.doe@email.com"
+                                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
-                                        <input type="tel" value="+1 (555) 123-4567" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Phone
+                                            Number</label>
+                                        <input type="tel" value="+1 (555) 123-4567"
+                                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                     </div>
                                     <div>
                                         <label class="block text-sm font-semibold text-slate-700 mb-2">Address</label>
-                                        <textarea rows="3" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">123 Main Street
+                                        <textarea rows="3"
+                                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">123 Main Street
 New York, NY 10001</textarea>
                                     </div>
-                                    <button class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                    <button
+                                        class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                                         Save Changes
                                     </button>
                                 </div>
@@ -1691,34 +1895,43 @@ New York, NY 10001</textarea>
                             <div class="bg-white rounded-xl shadow-lg p-6">
                                 <h3 class="text-xl font-bold text-slate-900 mb-6">Notification Preferences</h3>
                                 <div class="space-y-4">
-                                    <div class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
                                         <div>
                                             <h4 class="font-semibold text-slate-900">Email Notifications</h4>
                                             <p class="text-sm text-slate-600">Receive updates via email</p>
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" checked class="sr-only peer">
-                                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                            <div
+                                                class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
+                                            </div>
                                         </label>
                                     </div>
-                                    <div class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
                                         <div>
                                             <h4 class="font-semibold text-slate-900">SMS Notifications</h4>
                                             <p class="text-sm text-slate-600">Receive text message alerts</p>
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" checked class="sr-only peer">
-                                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                            <div
+                                                class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
+                                            </div>
                                         </label>
                                     </div>
-                                    <div class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
+                                    <div
+                                        class="flex items-center justify-between p-4 border border-slate-200 rounded-lg">
                                         <div>
                                             <h4 class="font-semibold text-slate-900">Case Updates</h4>
                                             <p class="text-sm text-slate-600">Notifications about case progress</p>
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" checked class="sr-only peer">
-                                            <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600"></div>
+                                            <div
+                                                class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-600">
+                                            </div>
                                         </label>
                                     </div>
                                 </div>
@@ -1731,18 +1944,25 @@ New York, NY 10001</textarea>
                                 <h3 class="text-xl font-bold text-slate-900 mb-6">Security Settings</h3>
                                 <div class="space-y-4">
                                     <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Current Password</label>
-                                        <input type="password" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Current
+                                            Password</label>
+                                        <input type="password"
+                                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">New Password</label>
-                                        <input type="password" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">New
+                                            Password</label>
+                                        <input type="password"
+                                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Confirm New Password</label>
-                                        <input type="password" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                        <label class="block text-sm font-semibold text-slate-700 mb-2">Confirm New
+                                            Password</label>
+                                        <input type="password"
+                                            class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                     </div>
-                                    <button class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                    <button
+                                        class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                                         Update Password
                                     </button>
                                 </div>
@@ -1757,7 +1977,8 @@ New York, NY 10001</textarea>
                                     <div class="border border-slate-200 rounded-lg p-4">
                                         <h4 class="font-semibold text-slate-900 mb-2">Auto-Pay Settings</h4>
                                         <label class="flex items-center gap-3">
-                                            <input type="checkbox" class="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500">
+                                            <input type="checkbox"
+                                                class="w-4 h-4 text-amber-600 border-slate-300 rounded focus:ring-amber-500">
                                             <span class="text-slate-700">Enable automatic payment for invoices</span>
                                         </label>
                                     </div>
@@ -1765,15 +1986,18 @@ New York, NY 10001</textarea>
                                         <h4 class="font-semibold text-slate-900 mb-2">Invoice Delivery</h4>
                                         <div class="space-y-2">
                                             <label class="flex items-center gap-3">
-                                                <input type="radio" name="invoice-delivery" value="email" checked class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
+                                                <input type="radio" name="invoice-delivery" value="email" checked
+                                                    class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
                                                 <span class="text-slate-700">Email delivery</span>
                                             </label>
                                             <label class="flex items-center gap-3">
-                                                <input type="radio" name="invoice-delivery" value="postal" class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
+                                                <input type="radio" name="invoice-delivery" value="postal"
+                                                    class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
                                                 <span class="text-slate-700">Postal mail delivery</span>
                                             </label>
                                             <label class="flex items-center gap-3">
-                                                <input type="radio" name="invoice-delivery" value="both" class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
+                                                <input type="radio" name="invoice-delivery" value="both"
+                                                    class="w-4 h-4 text-amber-600 border-slate-300 focus:ring-amber-500">
                                                 <span class="text-slate-700">Both email and postal</span>
                                             </label>
                                         </div>
@@ -1781,14 +2005,18 @@ New York, NY 10001</textarea>
                                     <div class="border border-slate-200 rounded-lg p-4">
                                         <h4 class="font-semibold text-slate-900 mb-2">Billing Address</h4>
                                         <div class="space-y-3">
-                                            <input type="text" placeholder="Street Address" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                            <input type="text" placeholder="Street Address"
+                                                class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                             <div class="grid grid-cols-2 gap-3">
-                                                <input type="text" placeholder="City" class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
-                                                <input type="text" placeholder="ZIP Code" class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                                <input type="text" placeholder="City"
+                                                    class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
+                                                <input type="text" placeholder="ZIP Code"
+                                                    class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-amber-600">
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                                    <button
+                                        class="px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all">
                                         Save Billing Settings
                                     </button>
                                 </div>
@@ -1806,13 +2034,13 @@ New York, NY 10001</textarea>
         // Use external RTL toggle script only
 
         // Initialize Charts
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize direction from localStorage first
             const savedDirection = localStorage.getItem('textDirection') || 'ltr';
             document.documentElement.setAttribute('dir', savedDirection);
             document.documentElement.setAttribute('lang', savedDirection === 'rtl' ? 'ar' : 'en');
             console.log('Initialized with direction:', savedDirection);
-            
+
             // Ensure default tab is visible
             const defaultTab = document.querySelector('[data-tab="overview"]');
             if (defaultTab && defaultTab.classList.contains('tab-content')) {
@@ -1902,35 +2130,35 @@ New York, NY 10001</textarea>
                 document.querySelectorAll('.tab-content[data-tab="billing"], .tab-content[data-tab="messages"], .tab-content[data-tab="documents-main"], .tab-content[data-tab="appointments"], .tab-content[data-tab="settings"]').forEach(content => {
                     content.style.display = 'none';
                 });
-                
+
                 // Show overview tab by default
                 const overviewTab = document.querySelector('.tab-content[data-tab="overview"]');
                 if (overviewTab) {
                     overviewTab.style.display = 'block';
                 }
             }
-            
+
             // Call initialization
             initMainTabs();
 
             const sidebarLinks = document.querySelectorAll('#sidebar nav a');
             console.log('Found sidebar links:', sidebarLinks.length);
-            
+
             sidebarLinks.forEach((link, index) => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const tabName = this.querySelector('span').textContent.trim();
                     const targetTab = mainTabMap[tabName];
-                    
+
                     console.log('Sidebar link clicked:', tabName, 'Target:', targetTab);
-                    
+
                     if (targetTab) {
                         // Hide all main tab contents
                         document.querySelectorAll('.tab-content').forEach(content => {
                             content.style.display = 'none';
                             content.classList.remove('active');
                         });
-                        
+
                         // Show selected tab
                         const selectedTab = document.querySelector(`[data-tab="${targetTab}"]`);
                         if (selectedTab) {
@@ -1940,7 +2168,7 @@ New York, NY 10001</textarea>
                         } else {
                             console.error('Tab content not found for:', targetTab);
                         }
-                        
+
                         // Update active sidebar link
                         sidebarLinks.forEach(l => {
                             l.classList.remove('text-amber-600', 'bg-amber-50', 'font-semibold');
@@ -1974,13 +2202,13 @@ New York, NY 10001</textarea>
             // Sub-tab Navigation (for My Case tabs) - Improved
             const subTabButtons = document.querySelectorAll('.tab-button');
             console.log('Found sub-tab buttons:', subTabButtons.length);
-            
+
             subTabButtons.forEach((button, index) => {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetTab = this.getAttribute('data-tab');
                     console.log('Sub-tab clicked:', targetTab);
-                    
+
                     // Hide all sub-tab contents
                     const subTabContents = document.querySelectorAll('[data-tab="overview"], [data-tab="timeline"], [data-tab="documents"], [data-tab="team"]');
                     subTabContents.forEach(content => {
@@ -1989,7 +2217,7 @@ New York, NY 10001</textarea>
                             content.classList.remove('active');
                         }
                     });
-                    
+
                     // Show selected sub-tab
                     const selectedContent = document.querySelector(`.tab-content[data-tab="${targetTab}"]`);
                     if (selectedContent) {
@@ -1999,7 +2227,7 @@ New York, NY 10001</textarea>
                     } else {
                         console.error('Sub-tab content not found for:', targetTab);
                     }
-                    
+
                     // Update active button
                     subTabButtons.forEach(btn => {
                         btn.classList.remove('active', 'text-slate-700', 'border-indigo-600');
@@ -2013,19 +2241,19 @@ New York, NY 10001</textarea>
             // Settings Sub-tab Navigation - Improved
             const settingsTabButtons = document.querySelectorAll('.settings-tab-button');
             console.log('Found settings tab buttons:', settingsTabButtons.length);
-            
+
             settingsTabButtons.forEach((button, index) => {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetTab = this.getAttribute('data-settings-tab');
                     console.log('Settings tab clicked:', targetTab);
-                    
+
                     // Hide all settings tab contents
                     document.querySelectorAll('.settings-tab-content').forEach(content => {
                         content.style.display = 'none';
                         content.classList.remove('active');
                     });
-                    
+
                     // Show selected settings tab
                     const selectedContent = document.querySelector(`.settings-tab-content[data-settings-tab="${targetTab}"]`);
                     if (selectedContent) {
@@ -2035,7 +2263,7 @@ New York, NY 10001</textarea>
                     } else {
                         console.error('Settings tab content not found for:', targetTab);
                     }
-                    
+
                     // Update active button
                     settingsTabButtons.forEach(btn => {
                         btn.classList.remove('active', 'text-slate-700', 'border-indigo-600');
@@ -2048,26 +2276,26 @@ New York, NY 10001</textarea>
 
             // RTL Toggle initialization - Use external script with fallback
             console.log('RTL toggle will be handled by external script');
-            
+
             // Fallback RTL toggle if external script fails
             setTimeout(() => {
                 const rtlBtn = document.getElementById('rtl-toggle-btn');
                 if (rtlBtn && !rtlBtn.hasAttribute('data-rtl-bound')) {
                     console.log('Adding fallback RTL toggle handler');
-                    rtlBtn.addEventListener('click', function(e) {
+                    rtlBtn.addEventListener('click', function (e) {
                         e.preventDefault();
                         const currentDir = document.documentElement.getAttribute('dir') || 'ltr';
                         const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
-                        
+
                         // Set direction
                         document.documentElement.setAttribute('dir', newDir);
                         document.documentElement.setAttribute('lang', newDir === 'rtl' ? 'ar' : 'en');
                         localStorage.setItem('textDirection', newDir);
-                        
+
                         // Force layout reflow for sidebar positioning
                         const mainContainer = document.getElementById('main-container');
                         const sidebar = document.getElementById('sidebar');
-                        
+
                         if (mainContainer && sidebar) {
                             // Hide and show to trigger reflow
                             mainContainer.style.opacity = '0';
@@ -2078,45 +2306,45 @@ New York, NY 10001</textarea>
                                 mainContainer.style.opacity = '1';
                             }, 10);
                         }
-                        
+
                         console.log('Direction changed to:', newDir, '- Layout updated');
                     });
                     rtlBtn.setAttribute('data-rtl-bound', 'true');
                 }
             }, 1000);
-            
+
             // Initialize mobile sidebar
             initMobileSidebar();
         });
-        
+
         // Mobile Sidebar Functions - Enhanced
         function initMobileSidebar() {
             const toggleBtn = document.querySelector('.mobile-sidebar-toggle');
             if (toggleBtn) {
                 toggleBtn.addEventListener('click', openMobileSidebar);
             }
-            
+
             // Handle swipe gestures for mobile
             let startX = 0;
             let startY = 0;
-            
-            document.addEventListener('touchstart', function(e) {
+
+            document.addEventListener('touchstart', function (e) {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;
             });
-            
-            document.addEventListener('touchmove', function(e) {
+
+            document.addEventListener('touchmove', function (e) {
                 if (!startX || !startY) return;
-                
+
                 const xDiff = startX - e.touches[0].clientX;
                 const yDiff = startY - e.touches[0].clientY;
                 const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-                
+
                 // Check if horizontal swipe is more significant than vertical
                 if (Math.abs(xDiff) > Math.abs(yDiff)) {
                     const sidebar = document.getElementById('sidebar');
                     const isOpen = sidebar && sidebar.classList.contains('open');
-                    
+
                     // For LTR: swipe left to close, swipe right to open
                     // For RTL: swipe right to close, swipe left to open
                     if (isRTL) {
@@ -2127,55 +2355,55 @@ New York, NY 10001</textarea>
                         if (xDiff < -50 && !isOpen) openMobileSidebar(); // Swipe right to open
                     }
                 }
-                
+
                 startX = 0;
                 startY = 0;
             });
         }
-        
+
         function openMobileSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.mobile-sidebar-overlay');
-            
+
             if (sidebar && overlay) {
                 sidebar.classList.add('open');
                 overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                
+
                 // Add escape key listener
                 document.addEventListener('keydown', handleEscapeKey);
             }
         }
-        
+
         function closeMobileSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.querySelector('.mobile-sidebar-overlay');
-            
+
             if (sidebar && overlay) {
                 sidebar.classList.remove('open');
                 overlay.classList.remove('active');
                 document.body.style.overflow = '';
-                
+
                 // Remove escape key listener
                 document.removeEventListener('keydown', handleEscapeKey);
             }
         }
-        
+
         function handleEscapeKey(e) {
             if (e.key === 'Escape') {
                 closeMobileSidebar();
             }
         }
-        
+
         // RTL Navigation Order Function
         function updateNavigationOrder() {
             const nav = document.querySelector('.sidebar-nav');
             const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-            
+
             if (nav) {
                 const links = Array.from(nav.querySelectorAll('a'));
                 const logoutLink = nav.parentElement.querySelector('.absolute.bottom-0 a'); // Logout link
-                
+
                 if (isRTL) {
                     // Reverse order for RTL: Login, Settings, Appointments, Documents, Messages, Billing, My Case
                     links.reverse();
@@ -2183,7 +2411,7 @@ New York, NY 10001</textarea>
                     // Keep original order for LTR: My Case, Billing, Messages, Documents, Appointments, Settings
                     // Links are already in correct order
                 }
-                
+
                 // Clear navigation and re-append in correct order
                 nav.innerHTML = '';
                 links.forEach(link => {
@@ -2192,9 +2420,10 @@ New York, NY 10001</textarea>
             }
         }
     </script>
-    
+
     <!-- Include main navigation scripts -->
     <script src="js/main.js"></script>
-    
+
 </body>
+
 </html>

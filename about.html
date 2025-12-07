@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About LexIcon - Our Story</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
-    
+
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- AOS Animation Library -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+
     <style>
         /* RTL Navigation Support */
-        [dir="rtl"] #navbar-content {
-            flex-direction: row-reverse;
-        }
-        
-        [dir="rtl"] .space-x-8 > * + * {
+
+
+        [dir="rtl"] .space-x-8>*+* {
             margin-left: 0;
             margin-right: 2rem;
         }
-        
-        [dir="rtl"] .space-x-4 > * + * {
+
+        [dir="rtl"] .space-x-4>*+* {
             margin-left: 0;
             margin-right: 1rem;
         }
-        
-        [dir="rtl"] .flex {
-            flex-direction: row-reverse;
-        }
-        
+
+
+
         [dir="rtl"] .no-rtl {
             flex-direction: row !important;
         }
+
         /* Mobile RTL Button */
         #mobile-language-toggle {
             border: 1px solid rgba(148, 163, 184, 0.3);
@@ -48,46 +46,105 @@
             margin: 0.5rem 1rem;
             padding: 0.75rem 1rem !important;
         }
+
         #mobile-language-toggle:hover {
             background: rgba(217, 119, 6, 0.1);
             border-color: #d97706;
         }
+
         #mobile-language-toggle i {
             color: #d97706;
         }
-        
+
         /* Mobile navbar height reduction and responsive text */
         @media (max-width: 768px) {
-            .navbar {
-                min-height: 50px !important;
-                padding: 0.25rem 0 !important;
+            body, html {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
             }
             
+            .navbar {
+                min-height: 60px !important;
+                padding: 0.5rem 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+            }
+            
+            section.mt-20 {
+                margin-top: 4rem !important;
+            }
+
             .navbar .container,
             .navbar .max-w-7xl {
                 padding: 0.5rem 1rem !important;
             }
-            
+
             /* Mobile font size adjustments */
-            h1 { font-size: 1.5rem !important; }
-            h2 { font-size: 1.25rem !important; }
-            h3 { font-size: 1.125rem !important; }
-            h4 { font-size: 1rem !important; }
-            h5 { font-size: 0.9rem !important; }
-            h6 { font-size: 0.8rem !important; }
-            
-            .text-xl { font-size: 1rem !important; }
-            .text-2xl { font-size: 1.25rem !important; }
-            .text-3xl { font-size: 1.5rem !important; }
-            .text-4xl { font-size: 1.75rem !important; }
-            .text-5xl { font-size: 2rem !important; }
-            .text-6xl { font-size: 2.25rem !important; }
-            
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            h2 {
+                font-size: 1.25rem !important;
+            }
+
+            h3 {
+                font-size: 1.125rem !important;
+            }
+
+            h4 {
+                font-size: 1rem !important;
+            }
+
+            h5 {
+                font-size: 0.9rem !important;
+            }
+
+            h6 {
+                font-size: 0.8rem !important;
+            }
+
+            .text-xl {
+                font-size: 1rem !important;
+            }
+
+            .text-2xl {
+                font-size: 1.25rem !important;
+            }
+
+            .text-3xl {
+                font-size: 1.5rem !important;
+            }
+
+            .text-4xl {
+                font-size: 1.75rem !important;
+            }
+
+            .text-5xl {
+                font-size: 2rem !important;
+            }
+
+            .text-6xl {
+                font-size: 2.25rem !important;
+            }
+
             /* Body text adjustments */
-            p, span, a, div { font-size: 0.9rem !important; }
-            .text-sm { font-size: 0.8rem !important; }
-            .text-xs { font-size: 0.75rem !important; }
-            
+            p,
+            span,
+            a,
+            div {
+                font-size: 0.9rem !important;
+            }
+
+            .text-sm {
+                font-size: 0.8rem !important;
+            }
+
+            .text-xs {
+                font-size: 0.75rem !important;
+            }
+
             #mobile-menu {
                 background: rgba(15, 23, 42, 0.98);
                 backdrop-filter: blur(10px);
@@ -95,19 +152,23 @@
                 padding: 1rem !important;
                 margin-top: 0.5rem !important;
                 box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+                left: 0 !important;
+                right: 0 !important;
             }
-            
+
             #mobile-menu.show {
                 display: block !important;
                 animation: slideDown 0.3s ease;
             }
-            
+
             /* Mobile menu text sizes */
             #mobile-menu a {
                 font-size: 0.9rem !important;
                 padding: 0.75rem 1rem !important;
             }
-            
+
             /* Ensure mobile RTL toggle is visible */
             #mobile-language-toggle {
                 display: block !important;
@@ -119,90 +180,117 @@
 
         /* Add slide down animation */
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body class="bg-slate-50">
-    
+
     <!-- Navigation -->
-    <nav class="navbar fixed w-full top-0 z-50 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-sm transition-all duration-300">
+    <nav
+        class="navbar fixed w-full top-0 z-50 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 backdrop-blur-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between" id="navbar-content">
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="index.html" class="text-2xl font-bold flex items-center space-x-2 group">
-                        <i class="fas fa-balance-scale text-cyan-300 group-hover:rotate-12 transition-transform duration-300"></i>
-                        <span class="gradient-text" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
+                        <i
+                            class="fas fa-balance-scale text-cyan-300 group-hover:rotate-12 transition-transform duration-300"></i>
+                        <span class="gradient-text"
+                            style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">LexIcon</span>
                     </a>
                 </div>
-                
+
                 <!-- Desktop Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8">
                     <div class="relative dropdown">
-                        <button class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
+                        <button
+                            class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
                             Home
                             <i class="fas fa-chevron-down text-xs"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a href="index.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                            <a href="index.html"
+                                class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
                                 <i class="fas fa-home mr-2"></i>
                                 Home 1
                             </a>
-                            <a href="index2.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                            <a href="index2.html"
+                                class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
                                 <i class="fas fa-star mr-2"></i>
                                 Home 2
                             </a>
                         </div>
                     </div>
-                    <a id="nav-about" href="about.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                    <a id="nav-about" href="about.html"
+                        class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         About
                     </a>
-                    <a id="nav-services" href="services.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                    <a id="nav-services" href="services.html"
+                        class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         Services
                     </a>
-                    <a id="nav-team" href="team.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                    <a id="nav-team" href="team.html"
+                        class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         Team
                     </a>
-                    <a id="nav-contact" href="contact.html" class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
+                    <a id="nav-contact" href="contact.html"
+                        class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold">
                         Contact
                     </a>
                     <div class="relative dropdown">
-                        <button class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
+                        <button
+                            class="text-white hover:text-cyan-300 transition-all duration-300 uppercase tracking-wide text-sm font-semibold flex items-center gap-1">
                             Dashboard
                             <i class="fas fa-chevron-down text-xs"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a href="user-dashboard.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                            <a href="user-dashboard.html"
+                                class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
                                 <i class="fas fa-user mr-2"></i>
                                 Client Dashboard
                             </a>
-                            <a href="admin-dashboard.html" class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
+                            <a href="admin-dashboard.html"
+                                class="block px-4 py-3 text-white hover:text-amber-600 hover:bg-slate-800 transition-colors">
                                 <i class="fas fa-shield-alt mr-2"></i>
                                 Admin Dashboard
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Action Buttons -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="coming-soon.html" class="btn-gradient text-sm inline-block">Case Evaluation</a>
                     <a href="login.html" class="text-white hover:text-cyan-300 transition-all duration-300">
                         <i id="nav-login" class="fas fa-user text-xl" title="Login"></i>
                     </a>
-                    <button id="language-toggle" class="text-white hover:text-cyan-300 transition-all duration-300 relative group">
+                    <button id="theme-toggle"
+                        class="text-white hover:text-cyan-300 transition-all duration-300 relative group">
+                        <i class="fas fa-moon text-xl" title="Toggle Dark/Light Mode"></i>
+                    </button>
+                    <button id="language-toggle"
+                        class="text-white hover:text-cyan-300 transition-all duration-300 relative group">
                         <i class="fas fa-language text-xl" title="Toggle Text Direction (LTR/RTL)"></i>
-                        <span class="absolute top-full right-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">RTL/LTR</span>
+                        <span
+                            class="absolute top-full right-0 mt-2 px-3 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">RTL/LTR</span>
                     </button>
                 </div>
-                
+
                 <button id="mobile-menu-toggle" class="md:hidden text-white">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
-            
+
             <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
                 <div class="border-b border-slate-700 mb-2 pb-2">
                     <div class="text-slate-500 text-xs uppercase tracking-wide mb-2 px-4">Home Pages</div>
@@ -214,21 +302,30 @@
                     </a>
                 </div>
                 <a href="about.html" class="block py-2 text-amber-600 mobile-nav-item">About</a>
-                <a href="services.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Services</a>
+                <a href="services.html"
+                    class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Services</a>
                 <a href="team.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Team</a>
-                <a href="contact.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Contact</a>
+                <a href="contact.html"
+                    class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Contact</a>
                 <div class="border-t border-slate-700 mt-2 pt-2">
                     <div class="text-slate-500 text-xs uppercase tracking-wide mb-2 px-4">Dashboards</div>
-                    <a href="user-dashboard.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                    <a href="user-dashboard.html"
+                        class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
                         <i class="fas fa-user mr-2"></i>Client Dashboard
                     </a>
-                    <a href="admin-dashboard.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
+                    <a href="admin-dashboard.html"
+                        class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">
                         <i class="fas fa-shield-alt mr-2"></i>Admin Dashboard
                     </a>
                 </div>
                 <a href="login.html" class="block py-2 text-slate-300 hover:text-amber-600 mobile-nav-item">Login</a>
                 <div class="border-t border-slate-700 mt-2 pt-2">
-                    <button id="mobile-language-toggle" class="w-full text-left py-2 text-slate-300 hover:text-amber-600 transition-all duration-300">
+                    <button id="mobile-theme-toggle"
+                        class="w-full text-left py-2 text-slate-300 hover:text-amber-600 transition-all duration-300">
+                        <i class="fas fa-moon mr-2"></i>Dark/Light Mode
+                    </button>
+                    <button id="mobile-language-toggle"
+                        class="w-full text-left py-2 text-slate-300 hover:text-amber-600 transition-all duration-300">
                         <i class="fas fa-language mr-2"></i>RTL/LTR Toggle
                     </button>
                 </div>
@@ -237,7 +334,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative h-96 flex items-center justify-center mt-20" style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069') center/cover;">
+    <section class="relative h-72 flex items-center justify-center mt-20"
+        style="background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069') center/cover;">
         <div class="text-center text-white px-6" data-aos="fade-up">
             <h1 class="text-6xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">Our Story</h1>
             <p class="text-xl text-slate-300">From humble beginnings to global excellence</p>
@@ -252,7 +350,9 @@
                 to a <span class="text-amber-600">Global Powerhouse</span>
             </h2>
             <p class="text-xl text-slate-600 leading-relaxed">
-                LexIcon was founded on a simple principle: excellence is not negotiable. What began as a one-person operation in 1985 has grown into one of the world's most respected legal institutions, representing Fortune 500 companies and high-net-worth individuals across three continents.
+                LexIcon was founded on a simple principle: excellence is not negotiable. What began as a one-person
+                operation in 1985 has grown into one of the world's most respected legal institutions, representing
+                Fortune 500 companies and high-net-worth individuals across three continents.
             </p>
         </div>
     </section>
@@ -261,21 +361,26 @@
     <section class="py-20 bg-slate-50">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Our Journey</h2>
+                <h2 class="text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Our
+                    Journey</h2>
                 <p class="text-xl text-slate-600">Four decades of legal excellence</p>
             </div>
-            
+
             <div class="timeline">
                 <!-- 1985 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8" data-aos="fade-right">
                     <div class="text-right md:pr-12">
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">The Foundation</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4"
+                            style="font-family: 'Playfair Display', serif;">The Foundation</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            Arthur Vanguard opens a modest practice in Brooklyn, specializing in corporate law. His first case: defending a small manufacturing company against an unjust patent claim. He wins, setting the tone for decades to come.
+                            Arthur Vanguard opens a modest practice in Brooklyn, specializing in corporate law. His
+                            first case: defending a small manufacturing company against an unjust patent claim. He wins,
+                            setting the tone for decades to come.
                         </p>
                     </div>
                     <div class="md:pl-12 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800" alt="1985" class="rounded-lg shadow-xl w-full">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=800" alt="1985"
+                            class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="timeline-dot">1985</div>
                 </div>
@@ -283,12 +388,15 @@
                 <!-- 1995 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-left">
                     <div class="order-2 md:order-1 md:pr-12 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800" alt="1995" class="rounded-lg shadow-xl w-full">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800" alt="1995"
+                            class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="order-1 md:order-2 md:pl-12">
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Expansion & Recognition</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4"
+                            style="font-family: 'Playfair Display', serif;">Expansion & Recognition</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            After winning a landmark $500M verdict in a securities fraud case, LexIcon attracts national attention. The firm expands to Manhattan, hiring 15 elite attorneys from top law schools.
+                            After winning a landmark $500M verdict in a securities fraud case, LexIcon attracts national
+                            attention. The firm expands to Manhattan, hiring 15 elite attorneys from top law schools.
                         </p>
                     </div>
                     <div class="timeline-dot">1995</div>
@@ -297,13 +405,16 @@
                 <!-- 2005 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-right">
                     <div class="text-right md:pr-12">
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Global Reach</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4"
+                            style="font-family: 'Playfair Display', serif;">Global Reach</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            Opening offices in London and Hong Kong, LexIcon becomes a truly international firm. The firm now handles complex cross-border M&A transactions worth billions.
+                            Opening offices in London and Hong Kong, LexIcon becomes a truly international firm. The
+                            firm now handles complex cross-border M&A transactions worth billions.
                         </p>
                     </div>
                     <div class="md:pl-12 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="2005" class="rounded-lg shadow-xl w-full">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800" alt="2005"
+                            class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="timeline-dot">2005</div>
                 </div>
@@ -311,12 +422,16 @@
                 <!-- 2010 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-left">
                     <div class="order-2 md:order-1 md:pr-12 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800" alt="2010" class="rounded-lg shadow-xl w-full">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=800" alt="2010"
+                            class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="order-1 md:order-2 md:pl-12">
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">The Sterling Merger</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4"
+                            style="font-family: 'Playfair Display', serif;">The Sterling Merger</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            LexIcon merges with Sterling Partners, a boutique litigation firm known for their trial excellence. The combined entity now boasts 50+ attorneys and wins 94% of cases taken to trial.
+                            LexIcon merges with Sterling Partners, a boutique litigation firm known for their trial
+                            excellence. The combined entity now boasts 50+ attorneys and wins 94% of cases taken to
+                            trial.
                         </p>
                     </div>
                     <div class="timeline-dot">2010</div>
@@ -325,13 +440,16 @@
                 <!-- 2018 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-right">
                     <div class="text-right md:pr-12">
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Top 100 Recognition</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4"
+                            style="font-family: 'Playfair Display', serif;">Top 100 Recognition</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            The firm is ranked in the Global Top 100 Law Firms by Legal 500. LexIcon's IP practice wins three landmark cases that shape technology law for the next decade.
+                            The firm is ranked in the Global Top 100 Law Firms by Legal 500. LexIcon's IP practice wins
+                            three landmark cases that shape technology law for the next decade.
                         </p>
                     </div>
                     <div class="md:pl-12 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800" alt="2018" class="rounded-lg shadow-xl w-full">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800" alt="2018"
+                            class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="timeline-dot">2018</div>
                 </div>
@@ -339,12 +457,15 @@
                 <!-- 2024 -->
                 <div class="timeline-item grid md:grid-cols-2 gap-8 mt-20" data-aos="fade-left">
                     <div class="order-2 md:order-1 md:pr-12 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=800" alt="2024" class="rounded-lg shadow-xl w-full">
+                        <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=800" alt="2024"
+                            class="rounded-lg shadow-xl w-full">
                     </div>
                     <div class="order-1 md:order-2 md:pl-12">
-                        <h3 class="text-3xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Middle East Expansion</h3>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4"
+                            style="font-family: 'Playfair Display', serif;">Middle East Expansion</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            Opening a state-of-the-art office in Dubai, LexIcon now serves clients across North America, Europe, Asia, and the Middle East. The firm handles over $5 billion in annual case value.
+                            Opening a state-of-the-art office in Dubai, LexIcon now serves clients across North America,
+                            Europe, Asia, and the Middle East. The firm handles over $5 billion in annual case value.
                         </p>
                     </div>
                     <div class="timeline-dot">2024</div>
@@ -357,30 +478,34 @@
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Our Core Values</h2>
+                <h2 class="text-5xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Our
+                    Core Values</h2>
                 <p class="text-xl text-slate-600">The principles that guide every decision we make</p>
             </div>
-            
+
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="premium-card p-8 text-center" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-scale-balanced text-5xl text-amber-600 mb-6"></i>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Integrity</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">
+                        Integrity</h3>
                     <p class="text-slate-600">
                         We uphold the highest ethical standards in every case, every interaction, every decision.
                     </p>
                 </div>
-                
+
                 <div class="premium-card p-8 text-center" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-trophy text-5xl text-amber-600 mb-6"></i>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Excellence</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">
+                        Excellence</h3>
                     <p class="text-slate-600">
                         Mediocrity has no place here. We strive for perfection in research, strategy, and execution.
                     </p>
                 </div>
-                
+
                 <div class="premium-card p-8 text-center" data-aos="fade-up" data-aos-delay="300">
                     <i class="fas fa-handshake-angle text-5xl text-amber-600 mb-6"></i>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">Partnership</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4" style="font-family: 'Playfair Display', serif;">
+                        Partnership</h3>
                     <p class="text-slate-600">
                         Your success is our success. We work alongside you as trusted advisors and fierce advocates.
                     </p>
@@ -393,9 +518,11 @@
     <section class="py-20 bg-slate-900 text-white">
         <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
             <p class="text-2xl font-light mb-12 leading-relaxed" style="font-family: 'Playfair Display', serif;">
-                "Justice is not a privilege. It is a right that must be fought for, defended, and upheld with unwavering commitment. That is the mission of LexIcon, and it will remain so for generations to come."
+                "Justice is not a privilege. It is a right that must be fought for, defended, and upheld with unwavering
+                commitment. That is the mission of LexIcon, and it will remain so for generations to come."
             </p>
-            <div class="text-6xl text-amber-600 mb-4" style="font-family: 'Playfair Display', serif; font-style: italic;">
+            <div class="text-6xl text-amber-600 mb-4"
+                style="font-family: 'Playfair Display', serif; font-style: italic;">
                 Arthur Vanguard
             </div>
             <div class="text-slate-400 uppercase tracking-wider">Founder & Senior Partner</div>
@@ -423,11 +550,15 @@
         <div class="max-w-7xl mx-auto px-6">
             <!-- Section Header -->
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;" data-aos="fade-up">
-                    Award-Winning <span class="gradient-text" style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Excellence</span>
+                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;"
+                    data-aos="fade-up">
+                    Award-Winning <span class="gradient-text"
+                        style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Excellence</span>
                 </h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                    Our commitment to exceptional legal representation has been recognized by the most prestigious institutions in the legal industry.
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up"
+                    data-aos-delay="100">
+                    Our commitment to exceptional legal representation has been recognized by the most prestigious
+                    institutions in the legal industry.
                 </p>
             </div>
 
@@ -435,8 +566,10 @@
             <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-16">
                 <!-- Award 1 -->
                 <div class="group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+                    <div
+                        class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
                             <i class="fas fa-trophy text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Best Law Firm</h3>
@@ -447,8 +580,10 @@
 
                 <!-- Award 2 -->
                 <div class="group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+                    <div
+                        class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
                             <i class="fas fa-medal text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Excellence in Litigation</h3>
@@ -459,8 +594,10 @@
 
                 <!-- Award 3 -->
                 <div class="group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+                    <div
+                        class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
                             <i class="fas fa-star text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Top Rated Lawyers</h3>
@@ -471,8 +608,10 @@
 
                 <!-- Award 4 -->
                 <div class="group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
+                    <div
+                        class="bg-slate-950/70 backdrop-blur-lg border border-slate-700 rounded-xl p-6 h-full hover:border-amber-600 transition-all duration-300 hover:transform hover:scale-105 text-center">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-amber-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:rotate-12 transition-transform duration-300">
                             <i class="fas fa-crown text-white text-2xl"></i>
                         </div>
                         <h3 class="text-lg font-bold text-white mb-2">Legal Elite</h3>
@@ -489,8 +628,16 @@
                     <div class="text-slate-400 uppercase tracking-wider text-sm">Industry Awards</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-amber-600 mb-2">15</div>
-                    <div class="text-slate-400 uppercase tracking-wider text-sm">Years Running</div>
+                    <div class="inline-flex flex-col items-center justify-center p-6 bg-gradient-to-br from-amber-500 to-amber-700 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300">
+                        <div class="flex items-baseline gap-1 mb-2">
+                            <span class="text-5xl font-black text-white">15</span>
+                            <span class="text-2xl font-semibold text-amber-100">+</span>
+                        </div>
+                        <div class="text-white font-semibold uppercase tracking-wider text-sm px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm">
+                            Years of Excellence
+                        </div>
+                    </div>
+                    <div class="text-slate-400 uppercase tracking-wider text-xs mt-4">Trusted Since 2010</div>
                 </div>
                 <div class="text-center">
                     <div class="text-4xl font-bold text-amber-600 mb-2">#1</div>
@@ -505,11 +652,15 @@
         <div class="max-w-7xl mx-auto px-6">
             <!-- Section Header -->
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;" data-aos="fade-up">
-                    Success <span class="gradient-text" style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Stories</span>
+                <h2 class="text-5xl font-bold text-white mb-6" style="font-family: 'Playfair Display', serif;"
+                    data-aos="fade-up">
+                    Success <span class="gradient-text"
+                        style="background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Stories</span>
                 </h2>
-                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                    Real victories, real impact. Explore landmark cases that showcase our expertise in delivering extraordinary legal outcomes.
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up"
+                    data-aos-delay="100">
+                    Real victories, real impact. Explore landmark cases that showcase our expertise in delivering
+                    extraordinary legal outcomes.
                 </p>
             </div>
 
@@ -517,9 +668,11 @@
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Case Study 1 -->
                 <div class="group" data-aos="fade-right">
-                    <div class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300">
+                    <div
+                        class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300">
                         <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mr-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-building text-white text-xl"></i>
                             </div>
                             <div>
@@ -527,16 +680,18 @@
                                 <p class="text-slate-400 text-sm">Fortune 500 Acquisition</p>
                             </div>
                         </div>
-                        
+
                         <div class="mb-6">
                             <div class="text-3xl font-bold text-amber-600 mb-2">$2.8B</div>
                             <div class="text-slate-400 text-sm">Settlement Secured</div>
                         </div>
-                        
+
                         <p class="text-slate-300 mb-6 leading-relaxed">
-                            Successfully navigated complex multi-jurisdictional merger, overcoming regulatory hurdles and securing favorable terms for our Fortune 500 client. Our strategic approach saved the client over $500M in potential liabilities.
+                            Successfully navigated complex multi-jurisdictional merger, overcoming regulatory hurdles
+                            and securing favorable terms for our Fortune 500 client. Our strategic approach saved the
+                            client over $500M in potential liabilities.
                         </p>
-                        
+
                         <div class="space-y-2 text-sm">
                             <div class="flex items-center text-slate-400">
                                 <i class="fas fa-check-circle text-amber-400 mr-3"></i>
@@ -556,9 +711,11 @@
 
                 <!-- Case Study 2 -->
                 <div class="group" data-aos="fade-left">
-                    <div class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300">
+                    <div
+                        class="bg-slate-900/50 backdrop-blur-lg border border-slate-700 rounded-xl p-8 h-full hover:border-amber-600 transition-all duration-300">
                         <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mr-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-500 rounded-lg flex items-center justify-center mr-4">
                                 <i class="fas fa-gavel text-white text-xl"></i>
                             </div>
                             <div>
@@ -566,16 +723,18 @@
                                 <p class="text-slate-400 text-sm">Patent Infringement Defense</p>
                             </div>
                         </div>
-                        
+
                         <div class="mb-6">
                             <div class="text-3xl font-bold text-amber-600 mb-2">$1.2B</div>
                             <div class="text-slate-400 text-sm">Liability Dismissed</div>
                         </div>
-                        
+
                         <p class="text-slate-300 mb-6 leading-relaxed">
-                            Defended tech innovator against baseless patent infringement claims, achieving complete dismissal and establishing new precedent in software patent law. Case now cited in federal courts nationwide.
+                            Defended tech innovator against baseless patent infringement claims, achieving complete
+                            dismissal and establishing new precedent in software patent law. Case now cited in federal
+                            courts nationwide.
                         </p>
-                        
+
                         <div class="space-y-2 text-sm">
                             <div class="flex items-center text-slate-400">
                                 <i class="fas fa-check-circle text-amber-400 mr-3"></i>
@@ -598,13 +757,15 @@
             <div class="text-center mt-16" data-aos="fade-up">
                 <h3 class="text-3xl font-bold text-white mb-4">Ready to Create Your Success Story?</h3>
                 <p class="text-slate-400 mb-8 max-w-2xl mx-auto">
-                    Join our portfolio of landmark victories. Let's discuss how we can achieve extraordinary results for your case.
+                    Join our portfolio of landmark victories. Let's discuss how we can achieve extraordinary results for
+                    your case.
                 </p>
                 <a href="coming-soon.html" class="btn-gradient inline-block px-8 py-4 text-lg font-semibold mr-4">
                     Start Your Case
                     <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="contact.html" class="btn-outline inline-block px-8 py-4 text-lg font-semibold border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-slate-900 transition-all">
+                <a href="contact.html"
+                    class="btn-outline inline-block px-8 py-4 text-lg font-semibold border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-slate-900 transition-all">
                     View All Cases
                 </a>
             </div>
@@ -634,27 +795,30 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div>
                     <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="about.html" class="hover:text-amber-600 transition-colors">About Us</a></li>
-                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Practice Areas</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Practice Areas</a>
+                        </li>
                         <li><a href="team.html" class="hover:text-amber-600 transition-colors">Our Team</a></li>
                         <li><a href="contact.html" class="hover:text-amber-600 transition-colors">Contact</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Services</h4>
                     <ul class="space-y-2">
-                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Corporate Law</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">Corporate Law</a>
+                        </li>
                         <li><a href="services.html" class="hover:text-amber-600 transition-colors">Litigation</a></li>
-                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">IP Protection</a></li>
+                        <li><a href="services.html" class="hover:text-amber-600 transition-colors">IP Protection</a>
+                        </li>
                         <li><a href="services.html" class="hover:text-amber-600 transition-colors">M&A Advisory</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Contact</h4>
                     <ul class="space-y-3">
@@ -673,25 +837,28 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="border-t border-slate-800 pt-8 text-center text-slate-500">
-                <p>&copy; 2025 LexIcon. All rights reserved. | <a href="#" class="hover:text-amber-600">Privacy Policy</a> | <a href="#" class="hover:text-amber-600">Terms of Service</a></p>
+                <p>&copy; 2025 LexIcon. All rights reserved. | <a href="#" class="hover:text-amber-600">Privacy
+                        Policy</a> | <a href="#" class="hover:text-amber-600">Terms of Service</a></p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/theme-manager.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/rtl-toggle.js"></script>
+    <script src="js/rtl-toggle.js?v=2"></script>
     <script>
         // Initialize RTL/LTR manager
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             if (typeof AlignmentManager !== 'undefined') {
                 window.alignmentManager = new AlignmentManager();
             }
         });
     </script>
-    
+
 </body>
+
 </html>
